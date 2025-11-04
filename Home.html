@@ -93,9 +93,7 @@
         .hamburger-menu.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
         .hamburger-menu.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-        
-        .page { display: none; animation: fadeIn 0.6s ease; }
-        .page.active { display: block; }
+    
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .hero { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-size: cover; background-position: center; color: var(--white); padding: clamp(60px, 15vw, 120px) 0; text-align: center; }
@@ -194,7 +192,6 @@
         .copyright-bar { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; margin-top: 20px; text-align: center; font-size: 0.85rem; opacity: 0.7; }
         
         /* Scroll Animations */
-        .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; }
         .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
         
         /* Accordion Styles */
@@ -209,10 +206,9 @@
     </style>
 </head>
 <body>
-
     <header class="main-header" role="banner">
         <div class="container">
-            <a href="#home" class="logo-container nav-link" aria-label="Village Values Home">
+            <a href="Home.html" class="logo-container nav-link" aria-label="Village Values Home">
                 <img src="https://i.imgur.com/gfuf7Xt.png" alt="Village Values Logo" class="header-logo">
                 <div class="logo-text-wrapper">
                     <span class="logo-text">Village Values</span>
@@ -221,13 +217,13 @@
             </a>
             <nav class="main-nav" aria-label="Main navigation">
                  <ul>
-                    <li><a href="#home" class="nav-link active">Welcome</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#programs" class="nav-link">Programs & Services</a></li>
-                    <li><a href="#blog" class="nav-link">Village Voice</a></li>
-                    <li><a href="#internships" class="nav-link">Internships</a></li>
-                    <li><a href="#partnerships" class="nav-link">Community Partners</a></li>
-                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                    <li><a href="Home.html" class="nav-link">Welcome</a></li>
+                    <li><a href="About.html" class="nav-link">About Us</a></li>
+                    <li><a href="Programs.html" class="nav-link">Programs & Services</a></li>
+                    <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
+                    <li><a href="Internships.html" class="nav-link">Internships</a></li>
+                    <li><a href="Partnerships.html" class="nav-link">Community Partners</a></li>
+                    <li><a href="Contact.html" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
             <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
@@ -235,21 +231,20 @@
             </button>
         </div>
     </header>
-    
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <ul>
-            <li><a href="#home" class="nav-link active">Welcome</a></li>
-            <li><a href="#about" class="nav-link">About Us</a></li>
-            <li><a href="#programs" class="nav-link">Programs & Services</a></li>
-            <li><a href="#blog" class="nav-link">Village Voice</a></li>
-            <li><a href="#internships" class="nav-link">Internships</a></li>
-            <li><a href="#partnerships" class="nav-link">Community Partners</a></li>
-            <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            <li><a href="Home.html" class="nav-link active">Welcome</a></li>
+            <li><a href="About.html" class="nav-link">About Us</a></li>
+            <li><a href="Programs.html" class="nav-link">Programs & Services</a></li>
+            <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
+            <li><a href="Internships.html" class="nav-link">Internships</a></li>
+            <li><a href="Partnerships.html" class="nav-link">Community Partners</a></li>
+            <li><a href="Contact.html" class="nav-link">Contact Us</a></li>
         </ul>
     </nav>
 
     <main role="main">
-        <section id="home" class="page active">
+        <section id="home" class="page">
             <div class="hero">
                 <div class="container">
                     <h1>Rancho Cordova's In-Home Childcare Village.</h1>
@@ -259,6 +254,7 @@
                     </div>
                 </div>
             </div>
+        </section>
 
             <section class="intro section-padding fade-in-section" style="background-color: var(--light-teal-bg);">
                 <div class="container grid-two-columns">
@@ -269,7 +265,7 @@
                         <h2>A Note from Your Founders</h2>
                         <p>We’re Paskael and Shyreese Tyiska, a husband and wife team and the heart of Village Values. We started this program because we believe that the best care happens in a place that feels like an extension of your own home—a place built on love, teamwork, and purpose.</p>
                         <p>Our commitment is to be your trusted partners in your child’s earliest years. We can't wait to welcome you to our village.</p>
-                        <a href="#about" class="btn btn-secondary nav-link">Read Our Full Story</a>
+                        <a href="About.html" class="btn btn-secondary nav-link">Read Our Full Story</a>
                     </div>
                 </div>
             </section>
@@ -395,182 +391,6 @@
                     </div>
                 </div>
             </section>
-        </section>
-
-        <section id="about" class="page">
-            <header class="page-header"><div class="container"><h1>Our Story: From Our Family to Yours</h1><p>Why Village Values is more than a childcare center—it's a calling.</p></div></header>
-            <section class="section-padding">
-                <div class="container">
-                    <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem auto;">
-                        <div class="founder-photo-container">
-                             <img src="https://i.imgur.com/CLT8FM8.jpeg" loading="lazy" alt="Paskael and Shyreese Tyiska smiling together in front of the Sacramento bridge" class="founder-photo">
-                        </div>
-                        <h2>Welcome to our Village.</h2>
-                        <p>We’re Paskael and Shyreese Tyiska, a husband and wife team and the heart and soul of Village Values. Our partnership in life and in work is the foundation of this center, and we aim for it to be an extension of what love, teamwork, and purpose can create. This center is a silent ode to our love for each other and our community.</p>
-                        <p>We saw a need in our community for a place that felt as safe, loving, and nurturing as a grandparent’s home, but with the structure, expertise, and resources of a professional learning center. Our goal is to be your trusted partners in your child’s earliest and most important years, creating a foundation of confidence, curiosity, and community that will last a lifetime.</p>
-                    </div>
-                    <hr style="margin: 3rem auto; border: 1px solid rgba(0,0,0,0.1); max-width: 50%;">
-                    <div class="text-center"><h2>Our Commitment to Your Family</h2></div>
-                    <div class="grid-two-columns" style="margin-top: 2rem;">
-                         <div class="founder-role-card" style="background-color: rgba(212, 160, 23, 0.1);">
-                            <h4>Paskael Tyiska</h4>
-                            <h5>Co-Founder | Community & Mentorship</h5>
-                            <p>My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.</p>
-                            <ul>
-                                <li>Community Partnership Development</li>
-                                <li>Internship Program Director</li>
-                                <li>Facility & Safety Operations</li>
-                            </ul>
-                        </div>
-                         <div class="founder-role-card" style="background-color: var(--light-teal-bg);">
-                            <h4>Shyreese Tyiska</h4>
-                            <h5>Co-Founder | Director & Lead Educator</h5>
-                            <p>As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.</p>
-                            <ul>
-                                <li>Early Childhood Curriculum Design</li>
-                                <li>Daily Educational Leadership</li>
-                                <li>Family & Developmental Communication</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <section id="programs" class="page" aria-labelledby="programs-heading">
-            <header class="page-header"><div class="container"><h1 id="programs-heading">Programs & Services</h1><p>Nurturing care and development at every stage.</p></div></header>
-            <section class="section-padding">
-                <div class="container" style="max-width: 800px; margin: auto;">
-                    <div class="accordion">
-                        <div class="accordion-item"><button class="accordion-header"><h4>Full-Time Care (Infants & Toddlers)</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Our infant and toddler program provides a warm, safe, and nurturing environment that focuses on building strong bonds and attachments. We support early development through sensory exploration, tummy time, music, and gentle routines that align with your family's needs.</p></div></div>
-                        <div class="accordion-item"><button class="accordion-header"><h4>Full-Time Care (Preschoolers)</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Our preschool program fosters school readiness through a play-based curriculum. We focus on social-emotional learning, early literacy and math concepts, creative arts, and problem-solving skills. Children engage in both structured activities and free play to build confidence and independence.</p></div></div>
-                        <div class="accordion-item"><button class="accordion-header"><h4>Part-Time Care</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>We offer flexible part-time schedules to accommodate the varying needs of families. This option provides the same high-quality, play-based learning environment as our full-time program, but for a set number of days per week. Please contact us to discuss available schedules.</p></div></div>
-                        <div class="accordion-item"><button class="accordion-header"><h4>Drop-In & Flexible Care</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Understanding the needs of modern families, we offer reliable and high-quality drop-in and flexible care options. This service is provided on a first-come, first-served basis. Please call us directly to inquire about same-day availability and to discuss your family's specific scheduling needs.</p></div></div>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <section id="blog" class="page" aria-labelledby="blog-heading">
-            <header class="page-header"><div class="container"><h1 id="blog-heading">From the Village Voice</h1><p>Insights and resources for our families and community.</p></div></header>
-            <section class="section-padding">
-                <div class="container" style="max-width: 900px;">
-                    <a href="#article-daycare-transition" class="article-card nav-link" style="text-decoration: none;">
-                        <img src="https://images.pexels.com/photos/4474052/pexels-photo-4474052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parent hugging a child goodbye" class="article-card-img">
-                        <div class="article-card-content">
-                            <h3>Expert Tips for a Smooth Daycare Transition</h3>
-                            <p class="meta">A Village Values Resource | August 11, 2025</p>
-                            <p class="excerpt">Starting daycare is a big step. We've gathered expert advice to help make the transition a positive and reassuring experience for your family.</p>
-                            <span class="read-more">Read More →</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
-        </section>
-
-        <section id="article-daycare-transition" class="page">
-            <section class="section-padding">
-                <div class="container article-layout">
-                    <article class="article-content">
-                        <header class="article-header">
-                            <h1>5 Expert Tips for a Smooth Daycare Transition</h1>
-                            <p class="article-meta">A Village Values Resource | Adapted from NAEYC & CDSS Guidance</p>
-                        </header>
-                        <img src="https://images.pexels.com/photos/4474052/pexels-photo-4474052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parent hugging a child goodbye" class="article-featured-img">
-                        <p>Starting childcare is a major milestone in your child’s life—and in yours! It’s completely normal for everyone to feel a mix of excitement and anxiety. At Village Values, we partner with families to make this process a success. Here are five trusted tips, adapted from guidance by leading early childhood organizations, to help make the transition as smooth as possible.</p>
-                        <h4>1. Talk About it Positively and Often</h4>
-                        <p>Familiarity builds comfort. In the days leading up to the start, talk about "school" in an exciting way. You can read books about starting school or say things like, "Soon you'll get to play with new friends and fun toys at Village Values!" Your positive energy is contagious and helps frame the experience as an adventure.</p>
-                        <h4>2. Establish a Goodbye Routine</h4>
-                        <p>A short, sweet, and predictable goodbye routine creates security. It could be two hugs, a high-five, and a wave from the window. The key is to be loving, but brief and consistent. This helps your child understand the routine of separation and reunion.</p>
-                        <blockquote>"As tempting as it may be, never sneak out while your child is distracted. This can create anxiety and mistrust. A confident, loving goodbye helps them understand that you will always come back."</blockquote>
-                        <h4>3. Bring a Comfort from Home</h4>
-                        <p>A small piece of home can provide immense security. Pack a familiar object like a special blanket ("lovie"), a favorite stuffed animal, or a laminated photo of your family. This "transitional object" gives them a tangible link to you throughout the day when they need a little extra reassurance.</p>
-                        <h4>4. Create a Partnership with Your Caregivers</h4>
-                        <p>We are your partners in this! Communication is everything. Share your child’s schedule, what soothes them, their special words for things, and any concerns you have. The more we know, the better we can support your child's individual needs. Trust that we are experts in this process and are here to help both you and your little one feel secure.</p>
-                        <h4>5. Be Confident at Drop-Off</h4>
-                        <p>Children are incredibly perceptive and feed off your emotions. It's okay to feel sad, but try your best to project a calm and confident attitude. If you seem anxious, your child may feel there is something to worry about. Give your hugs, say your loving goodbye as you practiced, and then depart confidently. A happy, confident departure from you gives them the green light to have a happy, confident day.</p>
-                        <hr style="margin: 2rem 0;">
-                        <a href="#blog" class="nav-link">← Back to Village Voice</a>
-                    </article>
-                </div>
-            </section>
-        </section>
-
-        <section id="internships" class="page" aria-labelledby="internships-heading">
-            <header class="page-header"><div class="container"><h1 id="internships-heading">Internship Program</h1><p>Grow With Us and Make a Difference.</p></div></header>
-            <section class="section-padding">
-                <div class="container text-center" style="max-width: 700px; margin: auto;">
-                    <h2>Mentoring the Next Generation</h2>
-                    <p>Our internship program provides hands-on experience and mentorship for aspiring leaders in Early Childhood Education, Culinary Arts, and Administration. If you are passionate about making a difference in the lives of children and families, we encourage you to apply.</p>
-                    <form id="internship-form" class="form-container" novalidate>
-                        <div class="form-group"><label for="intern-name">Full Name</label><input type="text" id="intern-name" name="intern-name" required></div>
-                        <div class="form-group"><label for="intern-email">Email Address</label><input type="email" id="intern-email" name="intern-email" required></div>
-                        <div class="form-group"><label for="intern-interest">Tell us about your interest</label><textarea id="intern-interest" name="intern-interest" rows="4" required></textarea></div>
-                        <button type="submit" class="btn btn-secondary">Submit Application</button>
-                    </form>
-                    <div id="internship-form-success" class="form-success-message"><h4>Application Submitted!</h4><p>Thank you for your interest. We have received your application and will be in touch if your qualifications meet our current needs.</p></div>
-                </div>
-            </section>
-        </section>
-
-        <section id="partnerships" class="page" aria-labelledby="partnerships-heading">
-            <header class="page-header"><div class="container"><h1 id="partnerships-heading">Our Village Partners</h1><p>A curated network of trusted local businesses and resources dedicated to supporting our Village Values families.</p></div></header>
-            <section class="section-padding">
-                <div class="container">
-                    <div class="text-center" style="margin-bottom: 3rem;">
-                        <h2>Interested in Joining Our Network?</h2>
-                        <p>We are always looking to partner with trusted, high-quality local businesses. If you offer a service that could benefit our families, we'd love to connect.</p>
-                        <a href="mailto:info@villagevalues.net?subject=Partnership Inquiry" class="btn btn-primary">Become a Partner</a>
-                    </div>
-                    <hr style="margin: 3rem auto; border: 1px solid rgba(0,0,0,0.1); max-width: 50%;">
-                    <div>
-                        <h3 style="margin-bottom: 2rem; text-align: center;">Family Wellness & Health</h3>
-                        <div class="partner-grid">
-                            <div class="partner-card">
-                                <img src="https://i.imgur.com/L4u2xwg.png" alt="Sacramento Pediatrics Logo" style="max-height: 70px;">
-                                <h4 style="color: #008080;">Sacramento Pediatrics</h4>
-                                <p style="font-size: 0.9rem;">Compassionate pediatric care for every stage of childhood.</p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
-                            </div>
-                            <div class="partner-card">
-                                <img src="https://i.imgur.com/n7q8y3t.png" alt="RC Family Dentistry Logo" style="max-height: 70px;">
-                                <h4 style="color: #008080;">RC Family Dentistry</h4>
-                                <p style="font-size: 0.9rem;">Gentle and friendly dental services for children and adults.</p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
-                            </div>
-                            <div class="partner-card">
-                                <img src="https://i.imgur.com/9F0Z1sE.png" alt="Little Sprouts Nutrition Logo" style="max-height: 70px;">
-                                <h4 style="color: #008080;">Little Sprouts Nutrition</h4>
-                                <p style="font-size: 0.9rem;">Personalized nutrition counseling for picky eaters.</p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="disclaimer-container">
-                        <p class="disclaimer-text"><strong>Please Note:</strong> This list is provided as a courtesy to connect our Village families with our growing network of resources. Village Values does not endorse any person or businesses listed herein and does not assume liability for the services these businesses provide or fail to provide. Before hiring any person or business, families should evaluate that they carry the proper licensing and or credentials to perform any work or services rendered.</p>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <section id="contact" class="page" aria-labelledby="contact-heading">
-            <header class="page-header"><div class="container"><h1 id="contact-heading">Contact Us</h1><p>We'd love to hear from you.</p></div></header>
-            <section class="section-padding">
-                <div class="container">
-                    <div class="text-center" style="max-width: 700px; margin: auto;">
-                        <h2>Get in Touch</h2>
-                        <p>For questions about enrollment, programs, or anything else, please don't hesitate to reach out.</p>
-                    </div>
-                    <form id="contact-form" class="form-container" novalidate>
-                        <div class="form-group"><label for="contact-name">Name</label><input type="text" id="contact-name" name="contact-name" required></div>
-                        <div class="form-group"><label for="contact-email">Email</label><input type="email" id="contact-email" name="contact-email" required></div>
-                        <div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" name="contact-message" rows="5" required></textarea></div>
-                        <button type="submit" class="btn btn-secondary">Send Message</button>
-                    </form>
-                    <div id="contact-form-success" class="form-success-message"><h4>Message Sent!</h4><p>Thank you for reaching out. We have received your message and will get back to you shortly.</p></div>
-                </div>
-            </section>
-        </section>
     </main>
 
     <footer class="main-footer" role="contentinfo">
@@ -579,10 +399,10 @@
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home" class="nav-link">Welcome</a></li>
-                        <li><a href="#about" class="nav-link">About Us</a></li>
-                        <li><a href="#programs" class="nav-link">Programs</a></li>
-                        <li><a href="#blog" class="nav-link">Village Voice</a></li>
+                        <li><a href="Home.html" class="nav-link">Welcome</a></li>
+                        <li><a href="About.html" class="nav-link">About Us</a></li>
+                        <li><a href="Programs.html" class="nav-link">Programs</a></li>
+                        <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -610,6 +430,6 @@
             </div>
         </div>
     </footer>
-    <script type="module"" src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
