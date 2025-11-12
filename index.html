@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Village Values | Childcare & Family Resource Network | Rancho Cordova, CA</title>
+
+    <link rel="stylesheet" href="styles.css">
     
     <meta name="description" content="Village Values is a licensed, play-based in-home childcare and family resource network in Rancho Cordova, CA, offering full-time, part-time, drop-in, and overnight care.">
     <meta property="og:title" content="Village Values | Childcare & Family Resource Network">
@@ -17,198 +19,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-gold: #D4A017;
-            --secondary-teal: #008080;
-            --dark-teal: #004d4d;
-            --light-teal-bg: rgba(0, 128, 128, 0.05);
-            --warm-neutral: #FFF8E7;
-            --text-charcoal: #333333;
-            --white: #FFFFFF;
-            --light-gray: #f9f9f9;
-            --font-heading: 'Poppins', sans-serif;
-            --font-body: 'Lato', sans-serif;
-            --header-height: 90px;
-            --border-radius: 10px;
-            --shadow-soft: 0 4px 12px rgba(0,0,0,0.06);
-            --shadow-strong: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: var(--font-body); 
-            background-color: var(--warm-neutral); 
-            color: var(--text-charcoal); 
-            line-height: 1.7; 
-            font-size: 16px;
-        }
-        img { max-width: 100%; height: auto; display: block; }
-        h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 800; line-height: 1.25; color: var(--secondary-teal); }
-        h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); margin-bottom: 1rem; }
-        h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 1.5rem; }
-        h3 { font-size: clamp(1.4rem, 3vw, 1.6rem); color: var(--primary-gold); margin-bottom: 1rem; }
-        h4 { font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700; }
-        h5 { font-size: 1rem; margin-bottom: 1rem; font-weight: 700; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.5px;}
-        p { margin-bottom: 1.2rem; max-width: 65ch; }
-        a { color: var(--primary-gold); text-decoration: none; font-weight: 700; }
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-        .section-padding { padding: clamp(60px, 10vw, 100px) 0; }
-        .grid-two-columns { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
-        .text-center { text-align: center; }
-        .text-center p { margin-left: auto; margin-right: auto; }
-        @media (min-width: 768px) { .grid-two-columns { grid-template-columns: 1fr 1fr; align-items: center;} body { line-height: 1.7; } }
-        @media (max-width: 767px) { body { line-height: 1.8; } }
-        .btn { display: inline-block; padding: 14px 32px; border: none; border-radius: 50px; text-decoration: none; font-family: var(--font-heading); font-weight: 700; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; text-align: center; }
-        .btn-primary { background-color: var(--primary-gold); color: var(--white); }
-        .btn-secondary { background-color: var(--secondary-teal); color: var(--white); }
-        .btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); text-decoration: none; }
-        
-        .main-header { background-color: rgba(255, 248, 231, 0.9); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; height: var(--header-height); }
-        .main-header .container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; background: transparent; }
-        .header-logo { height: 60px; background: transparent; flex-shrink: 0; }
-        .logo-text-wrapper { display: flex; flex-direction: column; text-align: left; }
-        .logo-text { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 1.8rem); font-weight: 800; color: var(--secondary-teal); line-height: 1.1; }
-        .logo-tagline { font-size: 0.8rem; font-family: var(--font-body); color: var(--text-charcoal); font-weight: 700; letter-spacing: 0.5px; margin-top: 2px; }
-        
-        .main-nav { display: none; }
-        .hamburger-menu { display: block; background: none; border: none; cursor: pointer; padding: 10px; z-index: 1002; }
-        @media (min-width: 1024px) {
-            .main-nav { display: block; }
-            .hamburger-menu { display: none; }
-            .main-nav ul { list-style: none; display: flex; gap: 20px; }
-            .main-nav a { text-decoration: none; color: var(--text-charcoal); font-weight: 700; position: relative; padding: 5px 0; cursor: pointer; font-size: 0.9rem;}
-            .main-nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 3px; background-color: var(--primary-gold); transition: width 0.3s ease; }
-            .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
-        }
-        .hamburger-line { display: block; width: 25px; height: 3px; background-color: var(--secondary-teal); margin: 5px 0; transition: all 0.3s ease-in-out; }
-        .mobile-nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background-color: rgba(255, 248, 231, 0.95); backdrop-filter: blur(10px); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 1001; transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1); padding: calc(var(--header-height) + 20px) 20px 20px; display: flex; flex-direction: column; }
-        .mobile-nav ul { list-style: none; padding: 0;}
-        .mobile-nav li { margin-bottom: 10px;}
-        .mobile-nav a { display: block; padding: 10px; font-weight: 700; color: var(--text-charcoal); text-decoration: none; border-radius: 5px;}
-        .mobile-nav a.active { background-color: var(--light-teal-bg);}
-        .mobile-nav.active { right: 0; }
-        .hamburger-menu.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-        .hamburger-menu.active .hamburger-line:nth-child(2) { opacity: 0; }
-        .hamburger-menu.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-    
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .hero { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-size: cover; background-position: center; color: var(--white); padding: clamp(60px, 15vw, 120px) 0; text-align: center; }
-        .hero h1, .hero p { color: var(--white); }
-        .hero p { font-size: 1.2rem; max-width: 50ch; margin: 1rem auto 0; }
-        .hero .btn-primary { transform: scale(1.05); box-shadow: var(--shadow-strong); margin-top: 1.5rem; }
-        
-        .services-section { background-color: var(--light-teal-bg); }
-        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .services-grid { grid-template-columns: 1fr; } }
-        .service-card { background: var(--white); padding: 2rem; border-radius: var(--border-radius); text-align: center; box-shadow: var(--shadow-soft); transition: transform 0.3s ease, box-shadow 0.3s ease;}
-        .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
-        .service-card .icon { color: var(--primary-gold); margin-bottom: 1rem; width: 48px; height: 48px; margin-left: auto; margin-right: auto; }
-        .service-card h4 { color: var(--secondary-teal); font-size: 1.1rem; }
-        
-        /* Carousel Styles */
-        .carousel-container { position: relative; max-width: 100%; margin: auto; overflow: hidden; }
-        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-        .carousel-slide { min-width: 100%; padding: 15px; }
-        @media (min-width: 600px) { .carousel-slide { min-width: 50%; } }
-        @media (min-width: 900px) { .carousel-slide { min-width: 33.33%; } }
-        .carousel-dots { text-align: center; margin-top: 20px; }
-        .carousel-dot { cursor: pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: background-color 0.3s ease; }
-        .carousel-dot.active { background-color: var(--secondary-teal); }
-
-        .flip-card { background-color: transparent; width: 280px; height: 180px; perspective: 1000px; cursor: pointer; margin: auto; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .flip-card:hover .flip-card-inner, .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); border: 2px solid rgba(212, 160, 23, 0.5); }
-        .flip-card-front { background-color: var(--white); }
-        .flip-card-back { background-image: linear-gradient(to bottom right, var(--secondary-teal), var(--dark-teal)); color: var(--white); transform: rotateY(180deg); font-size: 0.95rem; }
-        .flip-card-back h4 { color: var(--primary-gold); font-size: 1.1rem;}
-        .flip-card-icon img { height: 60px; width: auto; margin-bottom: 10px; }
-        .flip-card-front h4 { font-size: 1.1rem; }
-        
-        .page-header { background: var(--secondary-teal); color: var(--white); padding: 3rem 0; text-align: center; }
-        .page-header h1, .page-header p { color: var(--white); }
-        .founder-photo-container { text-align: center; }
-        .founder-photo { width: clamp(250px, 80vw, 300px); height: clamp(250px, 80vw, 300px); border-radius: 50%; object-fit: cover; object-position: center; margin: 0 auto; border: 8px solid var(--white); box-shadow: var(--shadow-strong); }
-        .founder-role-card { background: var(--white); padding: 2rem; border-radius: var(--border-radius); height: 100%; }
-        .founder-role-card ul { list-style: none; padding-left: 0; }
-        .founder-role-card li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
-        .founder-role-card li::before { content: '✓'; color: var(--primary-gold); position: absolute; left: 0; font-weight: 700; }
-        
-        .enrollment-steps { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
-        .enrollment-step { background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); text-align: center;}
-        .enrollment-step .step-number { background: var(--primary-gold); color: white; font-size: 1.5rem; font-weight: 800; border-radius: 50%; width: 50px; height: 50px; display: grid; place-items: center; margin: 0 auto 1rem;}
-        .enrollment-step h4 { color: var(--secondary-teal); }
-        .enrollment-step p { margin-bottom: 1.5rem; min-height: 100px; }
-        @media (min-width: 900px) { .enrollment-steps { grid-template-columns: repeat(3, 1fr); } }
-        
-        /* Form Styles */
-        .form-container { max-width: 600px; margin: 2rem auto 0; text-align: left; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: .5rem; font-weight: 700; color: var(--secondary-teal); }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: var(--border-radius); font-family: var(--font-body); font-size: 1rem; }
-        .form-success-message { display: none; text-align: center; padding: 2rem; background-color: var(--light-teal-bg); border-radius: var(--border-radius); margin-top: 2rem; }
-        .form-success-message h4 { color: var(--secondary-teal); }
-
-        /* Blog Styles */
-        .article-card { display: flex; flex-direction: column; background: var(--white); border-radius: var(--border-radius); box-shadow: var(--shadow-soft); overflow: hidden; text-decoration: none; color: var(--text-charcoal); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .article-card:hover { transform: translateY(-5px); box-shadow: var(--strong-shadow); text-decoration: none; }
-        .article-card-img { height: 220px; object-fit: cover; }
-        .article-card-content { padding: 1.5rem; }
-        .article-card-content h3 { color: var(--secondary-teal); font-size: 1.5rem; }
-        .article-card-content .meta { font-size: 0.9rem; color: #777; margin: 0.5rem 0 1rem; }
-        .article-card-content .read-more { font-weight: 700; color: var(--primary-gold); }
-        
-        .article-layout { max-width: 750px; margin: 0 auto; }
-        .article-header { text-align: center; margin-bottom: 2rem; }
-        .article-meta { color: #555; font-size: 0.9rem; margin-top: -1rem; margin-bottom: 2rem; }
-        .article-content h4 { color: var(--primary-gold); font-size: 1.4rem; margin-top: 2rem; }
-        .article-content blockquote { border-left: 4px solid var(--primary-gold); padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; font-size: 1.1rem; color: #555;}
-        .article-featured-img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: var(--border-radius); margin-bottom: 2rem; }
-
-        /* Partner Directory Styles */
-        .partner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .partner-card { background: var(--white); padding: 20px; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); text-align: center; }
-        .partner-card img { max-height: 80px; width: auto; margin: 0 auto 15px; }
-        .partner-card h4 { color: var(--secondary-teal); }
-        .partner-card p { font-size: 0.9rem; }
-        .partner-card .btn { padding: 8px 20px; font-size: 0.9rem; }
-        .disclaimer-container { margin: 4rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); }
-        .disclaimer-text { font-size: 0.85rem; font-style: italic; color: #777; text-align: center; }
-
-        .main-footer { background-color: var(--secondary-teal); color: var(--white); padding-top: 50px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; padding-bottom: 40px; }
-        .footer-column h4 { color: var(--primary-gold); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
-        .footer-column ul { list-style: none; padding: 0; }
-        .footer-column li { margin-bottom: 10px; }
-        .footer-column a { color: var(--white); font-weight: 400; opacity: 0.8; text-decoration: none; }
-        .footer-column a:hover { opacity: 1; text-decoration: underline; }
-        .social-media a { display: inline-block; opacity: 0.8; transition: transform 0.2s ease, opacity 0.2s ease; margin-right: 15px; }
-        .social-media a:hover { opacity: 1; transform: scale(1.1); }
-        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; margin-top: 20px; text-align: center; font-size: 0.85rem; opacity: 0.7; }
-        
-        /* Scroll Animations */
-        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
-        
-        /* Accordion Styles */
-        .accordion-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
-        .accordion-header { background: none; border: none; width: 100%; text-align: left; padding: 1.5rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .accordion-header h4 { margin: 0; color: var(--secondary-teal); }
-        .accordion-icon { font-size: 1.5rem; color: var(--primary-gold); transition: transform 0.3s ease; }
-        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; }
-        .accordion-content p { padding: 0 1rem 1.5rem; margin: 0; }
-
-    </style>
 </head>
-<body>
+
+<body> 
+
     <header class="main-header" role="banner">
         <div class="container">
-            <a href="index.html" class="logo-container nav-link" aria-label="Village Values Home">
+            <a href="#home" class="logo-container nav-link" aria-label="Village Values Home">
                 <img src="https://i.imgur.com/gfuf7Xt.png" alt="Village Values Logo" class="header-logo">
                 <div class="logo-text-wrapper">
                     <span class="logo-text">Village Values</span>
@@ -217,44 +34,46 @@
             </a>
             <nav class="main-nav" aria-label="Main navigation">
                  <ul>
-                    <li><a href="index.html" class="nav-link">Welcome</a></li>
-                    <li><a href="About.html" class="nav-link">About Us</a></li>
-                    <li><a href="Programs.html" class="nav-link">Programs & Services</a></li>
-                    <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
-                    <li><a href="Internships.html" class="nav-link">Internships</a></li>
-                    <li><a href="Partnerships.html" class="nav-link">Community Partners</a></li>
-                    <li><a href="Contact.html" class="nav-link">Contact Us</a></li>
+                    <li><a href="#home" class="nav-link active">Welcome</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#programs" class="nav-link">Programs & Services</a></li>
+                    <li><a href="#blog" class="nav-link">Village Voice</a></li>
+                    <li><a href="#internships" class="nav-link">Internships</a></li>
+                    <li><a href="#partnerships" class="nav-link">Community Partners</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
             <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
         </div>
     </header>
+    
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
         <ul>
-            <li><a href="index.html" class="nav-link active">Welcome</a></li>
-            <li><a href="About.html" class="nav-link">About Us</a></li>
-            <li><a href="Programs.html" class="nav-link">Programs & Services</a></li>
-            <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
-            <li><a href="Internships.html" class="nav-link">Internships</a></li>
-            <li><a href="Partnerships.html" class="nav-link">Community Partners</a></li>
-            <li><a href="Contact.html" class="nav-link">Contact Us</a></li>
+            <li><a href="#home" class="nav-link active">Welcome</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
+            <li><a href="#programs" class="nav-link">Programs & Services</a></li>
+            <li><a href="#blog" class="nav-link">Village Voice</a></li>
+            <li><a href="#internships" class="nav-link">Internships</a></li>
+            <li><a href="#partnerships" class="nav-link">Community Partners</a></li>
+            <li><a href="#contact" class="nav-link">Contact Us</a></li>
         </ul>
     </nav>
 
     <main role="main">
-        <section id="home" class="page">
+        <section id="home" class="page active">
             <div class="hero">
                 <div class="container">
-                    <h1>Rancho Cordova's In-Home Childcare Village.</h1>
+                    <h1 class="head1">Rancho Cordova's In-Home Childcare Village.</h1>
                     <p>A licensed, play-based approach where your child is known, loved, and celebrated.</p>
                     <div class="cta-buttons">
                         <a href="#enrollment" class="btn btn-primary nav-link">Join Our Village</a>
                     </div>
                 </div>
             </div>
-        </section>
 
             <section class="intro section-padding fade-in-section" style="background-color: var(--light-teal-bg);">
                 <div class="container grid-two-columns">
@@ -262,37 +81,37 @@
                         <img src="https://i.imgur.com/CLT8FM8.jpeg" loading="lazy" alt="Paskael and Shyreese Tyiska, founders of Village Values" class="founder-photo">
                     </div>
                     <div>
-                        <h2>A Note from Your Founders</h2>
-                        <p>We’re Paskael and Shyreese Tyiska, a husband and wife team and the heart of Village Values. We started this program because we believe that the best care happens in a place that feels like an extension of your own home—a place built on love, teamwork, and purpose.</p>
+                        <h2 class="head2">A Note from Your Founders</h2>
+                        <p>We’re Paskael and Shyreese Tyiska, a husband and wife team and the heart of Village Values. We started this program because we believe that the best care happens in a place that feels like an extension of your own home—a place built on love, teamwork, and purpose.</p><br>
                         <p>Our commitment is to be your trusted partners in your child’s earliest years. We can't wait to welcome you to our village.</p>
-                        <a href="About.html" class="btn btn-secondary nav-link">Read Our Full Story</a>
+                        <a href="#about" class="btn btn-secondary nav-link">Read Our Full Story</a>
                     </div>
                 </div>
             </section>
             
             <section class="services-section section-padding fade-in-section">
                 <div class="container text-center">
-                    <h2>What We Offer</h2>
+                    <h2 class="head2">What We Offer</h2>
                     <p style="margin-bottom: 2.5rem;">Flexible care options designed for modern families.</p>
                     <div class="services-grid">
                         <div class="service-card">
                             <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-                            <h4>Full-Time Care</h4>
+                            <h4 class="head4">Full-Time Care</h4>
                             <p>Consistent, loving care for infants and preschoolers in a structured, play-based environment.</p>
                         </div>
                         <div class="service-card">
                             <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
-                            <h4>Part-Time Care</h4>
+                            <h4 class="head4">Part-Time Care</h4>
                             <p>Flexible schedules for families who need consistent care for a few days a week.</p>
                         </div>
                         <div class="service-card">
                             <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg></div>
-                            <h4>Drop-In & Flex-Care</h4>
+                            <h4 class="head4">Drop-In & Flex-Care</h4>
                             <p>Reliable options for non-traditional schedules. Please call for availability.</p>
                         </div>
                         <div class="service-card">
                             <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-                            <h4>Family Resources</h4>
+                            <h4 class="head4">Family Resources</h4>
                             <p>Connecting our families to a trusted network of community partners and supports.</p>
                         </div>
                     </div>
@@ -301,7 +120,7 @@
             
             <section class="trust-seals-section section-padding fade-in-section">
                 <div class="container text-center">
-                    <h2>Your Child's Safety is Our Highest Priority</h2>
+                    <h2 class="head2">Your Child's Safety is Our Highest Priority</h2>
                     <div class="carousel-container" id="safety-carousel">
                         <div class="carousel-track">
                             <div class="carousel-slide">
@@ -309,10 +128,10 @@
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
                                             <div class="flip-card-icon"><img src="https://i.imgur.com/DiTFeFQ.png" alt="CDSS Licensed Logo"></div>
-                                            <h4>State Licensed Facility</h4>
+                                            <h4 class="head4">State Licensed Facility</h4>
                                         </div>
                                         <div class="flip-card-back">
-                                            <h4>Fully Licensed & Insured</h4>
+                                            <h4 class="head4">Fully Licensed & Insured</h4>
                                             <p>Licensed by the CA Dept. of Social Services (#343626863) and fully insured.</p>
                                         </div>
                                     </div>
@@ -323,10 +142,10 @@
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
                                             <div class="flip-card-icon"><img src="https://i.imgur.com/td7r0nh.png" alt="Background Check Cleared Icon" style="height: 65px;"></div>
-                                            <h4>Background Cleared</h4>
+                                            <h4 class="head4">Background Cleared</h4>
                                         </div>
                                         <div class="flip-card-back">
-                                            <h4>FBI & DOJ Cleared</h4>
+                                            <h4 class="head4">FBI & DOJ Cleared</h4>
                                             <p>All staff have passed comprehensive background checks from the FBI & Dept. of Justice.</p>
                                         </div>
                                     </div>
@@ -337,10 +156,10 @@
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
                                             <div class="flip-card-icon"><img src="https://i.imgur.com/yf5sneW.png" alt="AHA CPR Certified Logo"></div>
-                                            <h4>AHA CPR Certified</h4>
+                                            <h4 class="head4">AHA CPR Certified</h4>
                                         </div>
                                         <div class="flip-card-back">
-                                            <h4>AHA Certified</h4>
+                                            <h4 class="head4">AHA Certified</h4>
                                             <p>All lead caregivers are certified in CPR & First Aid by the American Heart Association.</p>
                                         </div>
                                     </div>
@@ -351,10 +170,10 @@
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
                                             <div class="flip-card-icon"><img src="https://i.imgur.com/oJBz7sF.png" alt="Preventative Health and Safety Certified Logo" style="height: 65px;"></div>
-                                            <h4>Health & Safety Certified</h4>
+                                            <h4 class="head4">Health & Safety Certified</h4>
                                         </div>
                                         <div class="flip-card-back">
-                                            <h4>Preventative Health & Safety</h4>
+                                            <h4 class="head4">Preventative Health & Safety</h4>
                                             <p>Certified for Preventative Health and Safety practices for Child Care Providers.</p>
                                         </div>
                                     </div>
@@ -365,10 +184,10 @@
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
                                             <div class="flip-card-icon"><img src="https://i.imgur.com/JbVEmBQ.png" alt="CA Food Handler Certified Logo" style="height: 65px;"></div>
-                                            <h4>CA Food Handler Certified</h4>
+                                            <h4 class="head4">CA Food Handler Certified</h4>
                                         </div>
                                         <div class="flip-card-back">
-                                            <h4>Safe Meal Preparation</h4>
+                                            <h4 class="head4">Safe Meal Preparation</h4>
                                             <p>Both directors hold California Food Handler Certificates, ensuring healthy and safe meals.</p>
                                         </div>
                                     </div>
@@ -382,31 +201,207 @@
             
             <section id="enrollment" class="section-padding fade-in-section" style="background: var(--light-gray);">
                 <div class="container text-center">
-                    <h2>Start Your Enrollment Journey</h2>
+                    <h2 class="head2">Start Your Enrollment Journey</h2>
                     <p>Joining our village is a simple, straightforward process. Here’s how to get started.</p>
                     <div class="enrollment-steps">
-                        <div class="enrollment-step"><div class="step-number">1</div><div class="step-text"><h4>Submit an Interest Form</h4><p>Fill out our short interest form. We'll personally call you within 24 hours to discuss your family's needs and our availability.</p><a href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: 1rem;">Open Interest Form</a></div></div>
-                        <div class="enrollment-step"><div class="step-number">2</div><div class="step-text"><h4>Schedule a Tour</h4><p>Once we connect, we'll invite you to schedule a tour to meet us and see our home. No more phone tag—pick a time that works for you.</p><a href="https://calendly.com/villagevalues-info/30min" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: 1rem;">Select a Tour Date</a></div></div>
-                        <div class="enrollment-step"><div class="step-number">3</div><div class="step-text"><h4>Join the Village Family</h4><p>After your tour, you'll receive a link to our formal application on Brightwheel to join the Village Values family!</p><a href="https://schools.mybrightwheel.com/sign-in" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: 1rem;">Apply on Brightwheel</a></div></div>
+                        <div class="enrollment-step"><div class="step-number">1</div><div class="step-text"><h4 class="head4">Submit an Interest Form</h4><p>Fill out our short interest form. We'll personally call you within 24 hours to discuss your family's needs and our availability.</p><a href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: 1rem;">Open Interest Form</a></div></div>
+                        <div class="enrollment-step"><div class="step-number">2</div><div class="step-text"><h4 class="head4">Schedule a Tour</h4><p>Once we connect, we'll invite you to schedule a tour to meet us and see our home. No more phone tag—pick a time that works for you.</p><a href="https://calendly.com/villagevalues-info/30min" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: 1rem;">Select a Tour Date</a></div></div>
+                        <div class="enrollment-step"><div class="step-number">3</div><div class="step-text"><h4 class="head4">Join the Village Family</h4><p>After your tour, you'll receive a link to our formal application on Brightwheel to join the Village Values family!</p><a href="https://schools.mybrightwheel.com/sign-in" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: 1rem;">Apply on Brightwheel</a></div></div>
                     </div>
                 </div>
             </section>
+        </section>
+
+        <section id="about" class="page">
+            <header class="page-header"><div class="container"><h1 class="head1">Our Story: From Our Family to Yours</h1><p>Why Village Values is more than a childcare center—it's a calling.</p></div></header>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem auto;">
+                        <div class="founder-photo-container">
+                             <img src="https://i.imgur.com/CLT8FM8.jpeg" loading="lazy" alt="Paskael and Shyreese Tyiska smiling together in front of the Sacramento bridge" class="founder-photo">
+                        </div>
+                        <h2 class="head2">Welcome to our Village.</h2>
+                        <p>We’re Paskael and Shyreese Tyiska, a husband and wife team and the heart and soul of Village Values. Our partnership in life and in work is the foundation of this center, and we aim for it to be an extension of what love, teamwork, and purpose can create. This center is a silent ode to our love for each other and our community.</p>
+                        <p>We saw a need in our community for a place that felt as safe, loving, and nurturing as a grandparent’s home, but with the structure, expertise, and resources of a professional learning center. Our goal is to be your trusted partners in your child’s earliest and most important years, creating a foundation of confidence, curiosity, and community that will last a lifetime.</p>
+                    </div>
+                    <hr style="margin: 3rem auto; border: 1px solid rgba(0,0,0,0.1); max-width: 50%;">
+                    <div class="text-center"><h2 class="head2">Our Commitment to Your Family</h2></div>
+                    <div class="grid-two-columns" style="margin-top: 2rem;">
+                         <div class="founder-role-card" style="background-color: rgba(212, 160, 23, 0.1);">
+                            <h4 class="head4">Paskael Tyiska</h4>
+                            <h5 class="head5">Co-Founder | Community & Mentorship</h5>
+                            <p>My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.</p>
+                            <ul>
+                                <li>Community Partnership Development</li>
+                                <li>Internship Program Director</li>
+                                <li>Facility & Safety Operations</li>
+                            </ul>
+                        </div>
+                         <div class="founder-role-card" style="background-color: var(--light-teal-bg);">
+                            <h4 class="head4">Shyreese Tyiska</h4>
+                            <h5 class="head5">Co-Founder | Director & Lead Educator</h5>
+                            <p>As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.</p>
+                            <ul>
+                                <li>Early Childhood Curriculum Design</li>
+                                <li>Daily Educational Leadership</li>
+                                <li>Family & Developmental Communication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="programs" class="page" aria-labelledby="programs-heading">
+            <header class="page-header"><div class="container"><h1 class="head1">Programs & Services</h1><p>Nurturing care and development at every stage.</p></div></header>
+            <section class="section-padding">
+                <div class="container" style="max-width: 800px; margin: auto;">
+                    <div class="accordion">
+                        <div class="accordion-item"><button class="accordion-header"><h4 class="head4">Full-Time Care (Infants & Toddlers)</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Our infant and toddler program provides a warm, safe, and nurturing environment that focuses on building strong bonds and attachments. We support early development through sensory exploration, tummy time, music, and gentle routines that align with your family's needs.</p></div></div>
+                        <div class="accordion-item"><button class="accordion-header"><h4 class="head4">Full-Time Care (Preschoolers)</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Our preschool program fosters school readiness through a play-based curriculum. We focus on social-emotional learning, early literacy and math concepts, creative arts, and problem-solving skills. Children engage in both structured activities and free play to build confidence and independence.</p></div></div>
+                        <div class="accordion-item"><button class="accordion-header"><h4 class="head4">Part-Time Care</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>We offer flexible part-time schedules to accommodate the varying needs of families. This option provides the same high-quality, play-based learning environment as our full-time program, but for a set number of days per week. Please contact us to discuss available schedules.</p></div></div>
+                        <div class="accordion-item"><button class="accordion-header"><h4 class="head4">Drop-In & Flexible Care</h4><span class="accordion-icon">+</span></button><div class="accordion-content"><p>Understanding the needs of modern families, we offer reliable and high-quality drop-in and flexible care options. This service is provided on a first-come, first-served basis. Please call us directly to inquire about same-day availability and to discuss your family's specific scheduling needs.</p></div></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="blog" class="page" aria-labelledby="blog-heading">
+            <header class="page-header"><div class="container"><h1 class="head1">From the Village Voice</h1><p>Insights and resources for our families and community.</p></div></header>
+            <section class="section-padding">
+                <div class="container" style="max-width: 900px;">
+                    <a href="#article-daycare-transition" class="article-card nav-link" style="text-decoration: none;">
+                        <img src="https://images.pexels.com/photos/4474052/pexels-photo-4474052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parent hugging a child goodbye" class="article-card-img">
+                        <div class="article-card-content">
+                            <h3 class="head3">Expert Tips for a Smooth Daycare Transition</h3>
+                            <p class="meta">A Village Values Resource | October 28, 2025</p>
+                            <p class="excerpt">Starting daycare is a big step. We've gathered expert advice to help make the transition a positive and reassuring experience for your family.</p>
+                            <span class="read-more">Read More →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+
+        <section id="article-daycare-transition" class="page">
+            <section class="section-padding">
+                <div class="container article-layout">
+                    <article class="article-content">
+                        <header class="article-header">
+                            <h1 class="head1">5 Expert Tips for a Smooth Daycare Transition</h1>
+                            <p class="article-meta">A Village Values Resource | Adapted from NAEYC & CDSS Guidance</p>
+                        </header>
+                        <img src="https://images.pexels.com/photos/4474052/pexels-photo-4474052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parent hugging a child goodbye" class="article-featured-img">
+                        <p>Starting childcare is a major milestone in your child’s life—and in yours! It’s completely normal for everyone to feel a mix of excitement and anxiety. At Village Values, we partner with families to make this process a success. Here are five trusted tips, adapted from guidance by leading early childhood organizations, to help make the transition as smooth as possible.</p>
+                        <h4 class="head4">1. Talk About it Positively and Often</h4>
+                        <p>Familiarity builds comfort. In the days leading up to the start, talk about "school" in an exciting way. You can read books about starting school or say things like, "Soon you'll get to play with new friends and fun toys at Village Values!" Your positive energy is contagious and helps frame the experience as an adventure.</p>
+                        <h4 class="head4">2. Establish a Goodbye Routine</h4>
+                        <p>A short, sweet, and predictable goodbye routine creates security. It could be two hugs, a high-five, and a wave from the window. The key is to be loving, but brief and consistent. This helps your child understand the routine of separation and reunion.</p>
+                        <blockquote>"As tempting as it may be, never sneak out while your child is distracted. This can create anxiety and mistrust. A confident, loving goodbye helps them understand that you will always come back."</blockquote>
+                        <h4 class="head4">3. Bring a Comfort from Home</h4>
+                        <p>A small piece of home can provide immense security. Pack a familiar object like a special blanket ("lovie"), a favorite stuffed animal, or a laminated photo of your family. This "transitional object" gives them a tangible link to you throughout the day when they need a little extra reassurance.</p>
+                        <h4 class="head4">4. Create a Partnership with Your Caregivers</h4>
+                        <p>We are your partners in this! Communication is everything. Share your child’s schedule, what soothes them, their special words for things, and any concerns you have. The more we know, the better we can support your child's individual needs. Trust that we are experts in this process and are here to help both you and your little one feel secure.</p>
+                        <h4 class="head4">5. Be Confident at Drop-Off</h4>
+                        <p>Children are incredibly perceptive and feed off your emotions. It's okay to feel sad, but try your best to project a calm and confident attitude. If you seem anxious, your child may feel there is something to worry about. Give your hugs, say your loving goodbye as you practiced, and then depart confidently. A happy, confident departure from you gives them the green light to have a happy, confident day.</p>
+                        <hr style="margin: 2rem 0;">
+                        <a href="#blog" class="nav-link">← Back to Village Voice</a>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <section id="internships" class="page" aria-labelledby="internships-heading">
+            <header class="page-header"><div class="container"><h1 class="head1">Internship Program</h1><p>Grow With Us and Make a Difference.</p></div></header>
+            <section class="section-padding">
+                <div class="container text-center" style="max-width: 700px; margin: auto;">
+                    <h2 class="head2">Mentoring the Next Generation</h2>
+                    <p>Our internship program provides hands-on experience and mentorship for aspiring leaders in Early Childhood Education, Culinary Arts, and Administration. If you are passionate about making a difference in the lives of children and families, we encourage you to apply.</p>
+                    <form id="internship-form" class="form-container" novalidate>
+                        <div class="form-group"><label for="intern-name">Full Name</label><input type="text" id="intern-name" name="intern-name" required></div>
+                        <div class="form-group"><label for="intern-email">Email Address</label><input type="email" id="intern-email" name="intern-email" required></div>
+                        <div class="form-group"><label for="intern-interest">Tell us about your interest</label><textarea id="intern-interest" name="intern-interest" rows="4" required></textarea></div>
+                        <button type="submit" class="btn btn-secondary">Submit Application</button>
+                    </form>
+                    <div id="internship-form-success" class="form-success-message"><h4>Application Submitted!</h4><p>Thank you for your interest. We have received your application and will be in touch if your qualifications meet our current needs.</p></div>
+                </div>
+            </section>
+        </section>
+
+        <section id="partnerships" class="page" aria-labelledby="partnerships-heading">
+            <header class="page-header"><div class="container"><h1 class="head1">Our Village Partners</h1><p>A curated network of trusted local businesses and resources dedicated to supporting our Village Values families.</p></div></header>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center" style="margin-bottom: 3rem;">
+                        <h2 class="head2">Interested in Joining Our Network?</h2>
+                        <p>We are always looking to partner with trusted, high-quality local businesses. If you offer a service that could benefit our families, we'd love to connect.</p>
+                        <a href="mailto:info@villagevalues.net?subject=Partnership Inquiry" class="btn btn-primary">Become a Partner</a>
+                    </div>
+                    <hr style="margin: 3rem auto; border: 1px solid rgba(0,0,0,0.1); max-width: 50%;">
+                    <div>
+                        <h3 class="head3" style="margin-bottom: 2rem; text-align: center;">Family Wellness & Health</h3>
+                        <div class="partner-grid">
+                            <div class="partner-card">
+                                <img src="https://i.imgur.com/L4u2xwg.png" alt="Sacramento Pediatrics Logo" style="max-height: 70px;">
+                                <h4 class="head4" style="color: #008080;">Sacramento Pediatrics</h4>
+                                <p style="font-size: 0.9rem;">Compassionate pediatric care for every stage of childhood.</p>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
+                            </div>
+                            <div class="partner-card">
+                                <img src="https://i.imgur.com/n7q8y3t.png" alt="RC Family Dentistry Logo" style="max-height: 70px;">
+                                <h4 class="head4" style="color: #008080;">RC Family Dentistry</h4>
+                                <p style="font-size: 0.9rem;">Gentle and friendly dental services for children and adults.</p>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
+                            </div>
+                            <div class="partner-card">
+                                <img src="https://i.imgur.com/9F0Z1sE.png" alt="Little Sprouts Nutrition Logo" style="max-height: 70px;">
+                                <h4 class="head4" style="color: #008080;">Little Sprouts Nutrition</h4>
+                                <p style="font-size: 0.9rem;">Personalized nutrition counseling for picky eaters.</p>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disclaimer-container">
+                        <p class="disclaimer-text"><strong>Please Note:</strong> This list is provided as a courtesy to connect our Village families with our growing network of resources. Village Values does not endorse any person or businesses listed herein and does not assume liability for the services these businesses provide or fail to provide. Before hiring any person or business, families should evaluate that they carry the proper licensing and or credentials to perform any work or services rendered.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="contact" class="page" aria-labelledby="contact-heading">
+            <header class="page-header"><div class="container"><h1 class="head1">Contact Us</h1><p>We'd love to hear from you.</p></div></header>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center" style="max-width: 700px; margin: auto;">
+                        <h2 class="head2">Get in Touch</h2>
+                        <p>For questions about enrollment, programs, or anything else, please don't hesitate to reach out.</p>
+                    </div>
+                    <form id="contact-form" class="form-container" novalidate>
+                        <div class="form-group"><label for="contact-name">Name</label><input type="text" id="contact-name" name="contact-name" required></div>
+                        <div class="form-group"><label for="contact-email">Email</label><input type="email" id="contact-email" name="contact-email" required></div>
+                        <div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" name="contact-message" rows="5" required></textarea></div>
+                        <button type="submit" class="btn btn-secondary">Send Message</button>
+                    </form>
+                    <div id="contact-form-success" class="form-success-message"><h4 class="head4">Message Sent!</h4><p>Thank you for reaching out. We have received your message and will get back to you shortly.</p></div>
+                </div>
+            </section>
+        </section>
     </main>
 
     <footer class="main-footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h4>Quick Links</h4>
+                    <h4 class="head4">Quick Links</h4>
                     <ul>
-                        <li><a href="index.html" class="nav-link">Welcome</a></li>
-                        <li><a href="About.html" class="nav-link">About Us</a></li>
-                        <li><a href="Programs.html" class="nav-link">Programs</a></li>
-                        <li><a href="Blog.html" class="nav-link">Village Voice</a></li>
+                        <li><a href="#home" class="nav-link">Welcome</a></li>
+                        <li><a href="#about" class="nav-link">About Us</a></li>
+                        <li><a href="#programs" class="nav-link">Programs</a></li>
+                        <li><a href="#blog" class="nav-link">Village Voice</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Get In Touch</h4>
+                    <h4 class="head4">Get In Touch</h4>
                     <ul>
                         <li><a href="tel:916-761-0211">📞 916-761-0211</a></li>
                         <li><a href="mailto:info@villagevalues.net">✉️ info@villagevalues.net</a></li>
@@ -414,7 +409,7 @@
                     </ul>
                 </div>
                  <div class="footer-column">
-                    <h4>Follow Us</h4>
+                    <h4 class="head4">Follow Us</h4>
                      <div class="social-media">
                         <a href="https://www.instagram.com/village.values.childcare?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Village Values on Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.74 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98C23.986 15.667 24 15.26 24 12s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.26 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
@@ -430,6 +425,4 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="script.js"></script>
-</body>
 </html>
