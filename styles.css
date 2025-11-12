@@ -257,16 +257,7 @@ a {
     transform: rotate(-45deg) translate(5px, -6px);
 }
 
-.page {
-    display: none; 
-    animation: fadeIn 0.6s ease;
-}
-
-.page.active {
-    display: block;
-}
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/*@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }*/
 
 .hero {
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); 
@@ -804,7 +795,7 @@ a {
     opacity: 0.7; 
 }
 
-/* Scroll Animations */
+/* Scroll Animations 
 .fade-in-section { 
     opacity: 0; 
     transform: translateY(20px); 
@@ -815,7 +806,7 @@ a {
     opacity: 1; 
     transform: translateY(0); 
 }
-
+*/
 /* Accordion Styles */
 .accordion-item { 
     border-bottom: 1px solid rgba(0,0,0,0.1); 
