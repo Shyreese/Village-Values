@@ -774,6 +774,11 @@ function FAQSection() {
           </p>
           <motion.a
             href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.hash = '#contact';
+              setTimeout(() => window.scrollTo(0, 0), 0);
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-[#149496] text-white px-8 py-3 rounded-full font-['Poppins'] hover:bg-[#1e7872] transition-colors"

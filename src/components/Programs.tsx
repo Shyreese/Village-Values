@@ -13,6 +13,7 @@ const programs = [
     description: "Gentle, responsive care focused on building trust, routines, and early sensory development.",
     image: imgImageWithFallback1,
     iconColor: "#e5795b",
+    id: "infant",
   },
   {
     title: "Toddler Program",
@@ -20,6 +21,7 @@ const programs = [
     description: "Exploration and discovery through play-based learning, language development, and social interaction.",
     image: imgImageWithFallback2,
     iconColor: "#f6d33a",
+    id: "toddler",
   },
   {
     title: "Preschool",
@@ -27,6 +29,7 @@ const programs = [
     description: "School readiness through structured activities, creative expression, and foundational academic skills.",
     image: imgImageWithFallback3,
     iconColor: "#149496",
+    id: "preschool",
   },
   {
     title: "Drop-In Care",
@@ -34,6 +37,7 @@ const programs = [
     description: "Flexible care options for occasional needs, date nights, or unexpected schedule changes.",
     image: imgImageWithFallback4,
     iconColor: "#c49a3a",
+    id: "drop-in",
   },
 ];
 

@@ -7,11 +7,12 @@ interface ProgramCardProps {
   description: string;
   image: string;
   iconColor: string;
+  id: string;
   index: number;
   isInView: boolean;
 }
 
-export function ProgramCard({ title, ageRange, description, image, iconColor, index, isInView }: ProgramCardProps) {
+export function ProgramCard({ title, ageRange, description, image, iconColor, index, isInView, id }: ProgramCardProps) {
   const getIcon = (color: string) => {
     if (color === "#e5795b") {
       return (
@@ -58,7 +59,7 @@ export function ProgramCard({ title, ageRange, description, image, iconColor, in
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
       className="group bg-[#f5edda] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
-      onClick={() => window.location.hash = '#programs'}
+      onClick={() => window.location.hash = `#programs/${id}`}
     >
       {/* Image Section */}
       <div className="relative h-64 overflow-hidden">

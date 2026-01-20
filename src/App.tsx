@@ -20,18 +20,30 @@ export default function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash === "#programs") {
+      const hash = window.location.hash.substring(1); // Remove the # symbol
+      
+      if (hash.startsWith("programs")) {
         setCurrentPage("programs");
-      } else if (hash === "#about") {
+        // Extract section ID if present (e.g., "programs/infant" -> "infant")
+        const sectionId = hash.split("/")[1];
+        if (sectionId) {
+          // Small delay to ensure page renders before scrolling
+          setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 100);
+        }
+      } else if (hash === "about") {
         setCurrentPage("about");
-      } else if (hash === "#enroll") {
+      } else if (hash === "enroll") {
         setCurrentPage("enroll");
-      } else if (hash === "#careers") {
+      } else if (hash === "careers") {
         setCurrentPage("careers");
-      } else if (hash === "#resources") {
+      } else if (hash === "resources") {
         setCurrentPage("resources");
-      } else if (hash === "#contact") {
+      } else if (hash === "contact") {
         setCurrentPage("contact");
       } else {
         setCurrentPage("home");

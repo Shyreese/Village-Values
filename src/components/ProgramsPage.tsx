@@ -451,6 +451,10 @@ function ComparisonTable() {
         <div className="text-center mt-8">
           <motion.a
             href="#book-visit"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('book-visit')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-[#c49a3a] text-white px-8 py-4 rounded-full font-['Poppins'] uppercase text-sm tracking-wider hover:opacity-90 transition-opacity"
