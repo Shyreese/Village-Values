@@ -134,14 +134,14 @@ function HeroSection() {
             >
               Send a Message
             </motion.a>
-            <motion.a
+            {/* <motion.a
               href="tel:5551234567"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white border-2 border-[#149496] text-[#232e43] px-10 py-4 rounded-full font-['Poppins'] tracking-wider uppercase shadow-lg hover:bg-[#f5edda] transition-colors"
             >
               Call Us
-            </motion.a>
+            </motion.a>  */}
           </div>
         </motion.div>
 
@@ -352,7 +352,7 @@ function ContactInformationSection() {
           <ContactCard
             icon={<PhoneIconLarge />}
             title="Phone Number"
-            main="(555) 123-4567"
+            main="916-761-0211"
             sub="Mon - Fri, 7:00 AM - 6:00 PM"
             delay={0}
           />
@@ -767,7 +767,7 @@ function VisitSection() {
           
           {/* Button */}
           <motion.a
-            href="#brightwheel"
+            href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="relative z-10 inline-block bg-white text-[#e5795b] px-10 py-4 rounded-full font-['Poppins'] text-base uppercase tracking-wider shadow-xl hover:bg-[#f5edda] transition-colors"

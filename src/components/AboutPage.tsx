@@ -339,33 +339,37 @@ function EnvironmentCard({ title, description, image, index }: {
 function MeetOurTeam() {
   const founders = [
     {
-      name: '[Name]',
-      role: '[Role at the center]',
-      yearsExperience: '[Years working with children]',
+      name: 'Shyreese Tyiska',
+      role: 'Co-Founder | Director & Lead Educator',
+      credentials: 'Early Childhood Curriculum Design, Daily Educational Leadership, Family & Developmental Communication',
+      whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
+      /* yearsExperience: '[Years working with children]',
       credentials: '[Credentials or licenses]',
       education: '[Education or certifications]',
       ageGroups: '[Age groups they specialize in]',
       whyChildcare: '[Why they chose childcare - one line human reason]',
       safetyTraining: '[CPR, First Aid, background cleared]',
       caringStyle: '[What parents can expect from them - caring style]',
-      personalFact: '[Hobby or fun fact]',
-      image: null,
+      personalFact: '[Hobby or fun fact]',*/
+      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1767236883/Shyreese_ri4wu4.png', 
     },
     {
-      name: '[Name]',
-      role: '[Role at the center]',
-      yearsExperience: '[Years working with children]',
+      name: 'Paskael Tyiska',
+      role: 'Co-Founder | Community & Mentorship',
+      credentials:'Community Partnership Development, Internship Program Director, Facility & Safety Operations',
+      whyChildcare:'My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.',
+      /* yearsExperience: '[Years working with children]',
       credentials: '[Credentials or licenses]',
       education: '[Education or certifications]',
       ageGroups: '[Age groups they specialize in]',
       whyChildcare: '[Why they chose childcare - one line human reason]',
       safetyTraining: '[CPR, First Aid, background cleared]',
       caringStyle: '[What parents can expect from them - caring style]',
-      personalFact: '[Hobby or fun fact]',
-      image: null,
+      personalFact: '[Hobby or fun fact]',*/
+      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1769130751/Screenshot_2026-01-22_181153_fvcgwv.png', 
     },
   ];
-
+ /* //Team members to be displayed
   const team = [
     {
       name: '[Name]',
@@ -440,7 +444,7 @@ function MeetOurTeam() {
       image: null,
     },
   ];
-
+ */
   return (
     <section id="team" className="relative overflow-hidden bg-[#f5edda] py-16 lg:py-24">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
@@ -468,11 +472,11 @@ function MeetOurTeam() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
           {team.map((member, index) => (
             <TeamCard key={index} {...member} index={index} />
           ))}
-        </div>
+        </div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -503,15 +507,15 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
   name: string;
   role: string;
   image: string | null;
-  index: number;
-  yearsExperience?: string;
+  //index: number;
+  //yearsExperience?: string;
   credentials?: string;
-  education?: string;
-  ageGroups?: string;
+  //education?: string;
+  //ageGroups?: string;
   whyChildcare?: string;
-  safetyTraining?: string;
-  caringStyle?: string;
-  personalFact?: string;
+  //safetyTraining?: string;
+  //caringStyle?: string;
+  //personalFact?: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -882,7 +886,7 @@ function BookAVisit() {
 
           {/* CTA Button */}
           <motion.a
-            href="#brightwheel"
+            href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block w-full md:w-auto bg-[#e5795b] text-white px-12 py-4 rounded-full font-['Poppins'] uppercase tracking-wider hover:bg-[#d66b4d] transition-colors shadow-lg"

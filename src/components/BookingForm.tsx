@@ -127,7 +127,7 @@ export function BookingForm() {
 
           {/* CTA Button */}
           <motion.a
-            href="#brightwheel"
+            href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block w-full md:w-auto bg-[#e5795b] text-white font-['Poppins'] uppercase tracking-wider px-12 py-4 rounded-2xl hover:bg-[#d66d4f] transition-colors shadow-lg"

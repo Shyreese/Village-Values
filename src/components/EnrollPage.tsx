@@ -652,7 +652,8 @@ function RequiredDocuments() {
             whileTap={{ scale: 0.95 }}
             className="block mx-auto mt-4 bg-[#e5795b] text-white px-8 py-3 rounded-full font-['Poppins'] hover:bg-[#d66b4d] transition-colors"
           >
-            Schedule a Call
+           {/* Schedule a Call */}
+           Call  +1 916-761-0211
           </motion.button>
         </motion.div>
       </div>
@@ -874,7 +875,7 @@ function ReadyToTakeNextStep() {
 
         {/* CTA Button */}
         <motion.a
-          href="#brightwheel"
+          href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
