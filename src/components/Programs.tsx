@@ -56,7 +56,7 @@ export function Programs() {
           <h2 className="font-['Poppins'] text-[#232e43] text-3xl md:text-[40px] mb-4">
             What We Offer
           </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="font-['Poppins'] text-[#1e7872] text-lg md:text-xl max-w-2xl mx-auto whitespace-nowrap">
             Age-appropriate care designed to nurture continuous growth through all childhood stages.
           </p>
         </motion.div>
@@ -78,14 +78,15 @@ export function Programs() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <motion.a
-            href="#programs"
+          <motion.button
+            type="button"
+            onClick={() => document.getElementById('programs')?.scrollIntoView({ behavior: 'smooth' })}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-[#149496] text-white px-8 py-4 rounded-full font-['Poppins'] uppercase text-sm tracking-wider hover:bg-[#1e7872] transition-colors"
+            className="inline-block bg-[#149496] text-white px-8 py-4 rounded-full font-['Poppins'] uppercase text-sm tracking-wider hover:bg-[#1e7872] transition-colors cursor-pointer"
           >
             View All Programs
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

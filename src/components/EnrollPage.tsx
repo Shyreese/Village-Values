@@ -14,33 +14,33 @@ export function EnrollPage() {
     <div className="min-h-screen bg-[#f5edda] overflow-x-hidden">
       {/* Header */}
       <Header />
-      
+
       {/* Hero Section */}
       <HeroSection />
-      
+
       {/* How Enrollment Works */}
       <HowEnrollmentWorks />
-      
+
       {/* Enrollment Form */}
       <EnrollmentFormSection />
-      
+
       {/* Pricing & Availability */}
       <PricingAndAvailability />
-      
+
       {/* Required Documents */}
       <RequiredDocuments />
-      
+
       {/* FAQ */}
       <FAQSection />
-      
+
       {/* Bottom CTA */}
       <ReadyToTakeNextStep />
-      
+
       {/* Footer */}
       <Footer />
-      
+
       {/* Bottom Navigation Bar */}
-      <BottomNavBar 
+      <BottomNavBar
         sections={[
           { id: 'how-it-works', label: 'How It Works' },
           { id: 'enrollment-form', label: 'Enroll Now' },
@@ -62,8 +62,8 @@ function Header() {
     <header className="bg-[#f5edda] fixed top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-5 flex items-center justify-between">
         {/* Logo & Title - Clickable to go home */}
-        <a 
-          href="/" 
+        <a
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             window.location.hash = '';
@@ -71,10 +71,10 @@ function Header() {
           }}
           className="cursor-pointer shrink-0 flex items-center gap-3"
         >
-          <img 
-            src={logoImage} 
-            alt="Village Values" 
-            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" 
+          <img
+            src={logoImage}
+            alt="Village Values"
+            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity"
           />
           <h1 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl hidden sm:block">
             Village Values
@@ -93,14 +93,15 @@ function Header() {
         </div>
 
         {/* Book a Visit Button */}
-        <motion.a
-          href="#contact"
+        <motion.button
+          type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors"
+          onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
+          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors cursor-pointer"
         >
           Book a Visit
-        </motion.a>
+        </motion.button>
       </div>
     </header>
   );
@@ -652,8 +653,8 @@ function RequiredDocuments() {
             whileTap={{ scale: 0.95 }}
             className="block mx-auto mt-4 bg-[#e5795b] text-white px-8 py-3 rounded-full font-['Poppins'] hover:bg-[#d66b4d] transition-colors"
           >
-           {/* Schedule a Call */}
-           Call  +1 916-761-0211
+            {/* Schedule a Call */}
+            Call  +1 916-761-0211
           </motion.button>
         </motion.div>
       </div>

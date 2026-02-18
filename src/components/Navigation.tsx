@@ -25,10 +25,10 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
             }}
             className="cursor-pointer shrink-0 flex items-center gap-5"
           >
-            <img 
-              src={logo} 
-              alt="Village Values" 
-              className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" 
+            <img
+              src={logo}
+              alt="Village Values"
+              className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity"
             />
             <h1 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl hidden sm:block">
               Village Values
@@ -47,14 +47,15 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
           </div>
 
           {/* Book a Visit Button */}
-          <motion.a
-            href={currentPage === 'contact' ? '#contact-form' : '#contact'}
+          <motion.button
+            type="button"
+            onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors"
+            className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors cursor-pointer"
           >
             Book a Visit
-          </motion.a>
+          </motion.button>
         </div>
       </nav>
     </motion.div>

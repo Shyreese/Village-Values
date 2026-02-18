@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import svgPaths from '../imports/svg-34qkhcxsxe';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 import heroImage from 'figma:asset/8702622d69c2aceacd807bbafaed4805316594ff.png';
@@ -42,7 +42,18 @@ const sectionSubtitleClassName = "font-['Poppins'] text-[#1e7872] text-xl";
 
 export function CareerPage() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const scrollTarget = sessionStorage.getItem('scrollTo');
+    if (scrollTarget) {
+      sessionStorage.removeItem('scrollTo');
+      setTimeout(() => {
+        const el = document.getElementById(scrollTarget);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
@@ -56,7 +67,7 @@ export function CareerPage() {
       <GrowthAndTraining />
       <ApplyForm />
       <Footer />
-      <BottomNavBar 
+      <BottomNavBar
         sections={[
           { id: 'why-work-here', label: 'Why Join Us' },
           { id: 'culture', label: 'Our Culture' },
@@ -93,15 +104,15 @@ function Header() {
   return (
     <header className="bg-[#f5edda] fixed top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-5 flex items-center justify-between">
-        <a 
-          href="/" 
+        <a
+          href="/"
           onClick={handleHomeClick}
           className="cursor-pointer shrink-0 flex items-center gap-3"
         >
-          <img 
-            src={logoImage} 
-            alt="Village Values" 
-            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" 
+          <img
+            src={logoImage}
+            alt="Village Values"
+            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity"
           />
           <h1 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl hidden sm:block">
             Village Values
@@ -110,27 +121,27 @@ function Header() {
 
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.href}
-              href={link.href} 
+              href={link.href}
               onClick={link.onClick}
-              className={`font-['Poppins'] text-base hover:text-[#149496] transition-colors ${
-                link.active ? 'text-[#149496]' : 'text-[#232e43]'
-              }`}
+              className={`font-['Poppins'] text-base hover:text-[#149496] transition-colors ${link.active ? 'text-[#149496]' : 'text-[#232e43]'
+                }`}
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <motion.a
-          href="#contact"
+        <motion.button
+          type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#149496] text-white px-5 py-2 rounded-full font-['Poppins'] text-sm tracking-wider uppercase hover:bg-[#1e7872] transition-colors"
+          onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
+          className="bg-[#149496] text-white px-5 py-2 rounded-full font-['Poppins'] text-sm tracking-wider uppercase hover:bg-[#1e7872] transition-colors cursor-pointer"
         >
           Book a Visit
-        </motion.a>
+        </motion.button>
       </div>
     </header>
   );
@@ -173,9 +184,9 @@ function HeroSection() {
 
           <motion.div {...fadeInRight} className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px]">
-              <img 
-                src={heroImage} 
-                alt="Join Our Team" 
+              <img
+                src={heroImage}
+                alt="Join Our Team"
                 className="w-full h-full object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-[#c49a3a] rounded-2xl px-8 py-6 shadow-xl">
@@ -332,13 +343,13 @@ function CultureMission() {
             className="relative"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[550px]">
-              <img 
-                src={cultureImage} 
-                alt="Our Culture" 
+              <img
+                src={cultureImage}
+                alt="Our Culture"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(35,46,67,0.3)] to-transparent" />
-              
+
               <div className="absolute bottom-20 left-52 bg-white rounded-2xl px-8 py-6 shadow-xl max-w-xs">
                 <p className="font-['Poppins'] text-[#149496] text-sm mb-2">Staff Member</p>
                 <p className="font-['Poppins'] italic text-[#232e43]">
@@ -548,7 +559,7 @@ function WhatWeOfferStaff() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           {benefits.map((benefit, index) => (
             <StaffBenefitCard key={index} {...benefit} index={index} />
           ))}
@@ -692,6 +703,29 @@ function GrowthAndTraining() {
 // APPLY FORM
 // ============================================================================
 function ApplyForm() {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const response = await fetch("https://formspree.io/f/mwvnvabw", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert("Application submitted successfully!");
+      form.reset();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <section id="apply-form" className="bg-[#f5edda] py-16 lg:py-24">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
@@ -709,7 +743,10 @@ function ApplyForm() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-8 lg:p-12"
         >
-          <form className="space-y-6">
+          <form
+            className="space-y-6"
+            onSubmit={handleSubmit}
+            encType="multipart/form-data">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block font-['Poppins'] text-[#232e43] mb-2">
@@ -717,8 +754,10 @@ function ApplyForm() {
                 </label>
                 <input
                   type="text"
+                  name="firstname"
                   placeholder="Enter your first name"
                   className={inputClassName}
+                  required
                 />
               </div>
               <div>
@@ -727,8 +766,10 @@ function ApplyForm() {
                 </label>
                 <input
                   type="text"
+                  name="lastname"
                   placeholder="Enter your last name"
                   className={inputClassName}
+                  required
                 />
               </div>
             </div>
@@ -740,8 +781,10 @@ function ApplyForm() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="you@example.com"
                   className={inputClassName}
+                  required
                 />
               </div>
               <div>
@@ -750,8 +793,10 @@ function ApplyForm() {
                 </label>
                 <input
                   type="tel"
+                  name="phone"
                   placeholder="(555) 123-4567"
                   className={inputClassName}
+                  required
                 />
               </div>
             </div>
@@ -761,8 +806,11 @@ function ApplyForm() {
                 <label className="block font-['Poppins'] text-[#232e43] mb-2">
                   Position Applying For *
                 </label>
-                <select className={inputClassName + " appearance-none"}>
-                  <option>Select a position</option>
+                <select
+                  name="position"
+                  className={inputClassName + " appearance-none"}
+                  required>
+                  <option value="">Select a position</option>
                   <option>Lead Educator</option>
                   <option>Infant Specialist</option>
                   <option>Toddler Guide</option>
@@ -775,8 +823,11 @@ function ApplyForm() {
                 <label className="block font-['Poppins'] text-[#232e43] mb-2">
                   Years of Experience *
                 </label>
-                <select className={inputClassName + " appearance-none"}>
-                  <option>Select experience level</option>
+                <select
+                  name="experience"
+                  className={inputClassName + " appearance-none"}
+                  required>
+                  <option value="">Select experience level</option>
                   <option>Less than 1 year</option>
                   <option>1-2 years</option>
                   <option>2-5 years</option>
@@ -791,6 +842,7 @@ function ApplyForm() {
               </label>
               <input
                 type="file"
+                name="resume"
                 accept=".pdf,.doc,.docx"
                 className={inputClassName + " file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-[#149496] file:text-white file:cursor-pointer hover:file:bg-[#1e7872]"}
               />
@@ -801,6 +853,7 @@ function ApplyForm() {
                 Tell us why you&apos;d be a great fit (optional)
               </label>
               <textarea
+                name="coverletter"
                 rows={4}
                 placeholder="Share your passion for early childhood education and what draws you to Village Values..."
                 className={inputClassName + " resize-none"}

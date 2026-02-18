@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export function Hero() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
-  
+
   const carouselImages = [
     {
       src: imgImageWithFallback4,
@@ -73,14 +73,15 @@ export function Hero() {
               Licensed in-home childcare built on trust, learning, and community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <motion.a
-                href="#contact"
+              <motion.button
+                type="button"
+                onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#149496] text-white px-8 py-4 rounded-full font-['Poppins'] uppercase text-sm tracking-wider hover:bg-[#1e7872] transition-colors text-center"
+                className="bg-[#149496] text-white px-8 py-4 rounded-full font-['Poppins'] uppercase text-sm tracking-wider hover:bg-[#1e7872] transition-colors text-center cursor-pointer"
               >
                 Book a Visit
-              </motion.a>
+              </motion.button>
               <motion.a
                 href="#about"
                 whileHover={{ scale: 1.05 }}

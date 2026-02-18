@@ -1,49 +1,43 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import svgPaths from '../imports/svg-cqjhf6dnru';
-import svgPathsContact from '../imports/svg-5eq722ur0f';
+import { useState, useEffect, } from 'react';
+import { Search, BookOpen, Heart, Moon, Users, CalendarDays, School, Book, Brain, Sparkles, Clock, Sun, Coffee, Apple, Utensils, Music, Palette } from 'lucide-react';
+import svgPathsHero from '../imports/svg-na88d9mshn';
+import svgPathsResources from '../imports/svg-t3ovlu8fzf';
+import svgPathsEducation from '../imports/svg-dnxsc6clny';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
-import wellnessImage from 'figma:asset/99280e67b5cc4b9be8bcb3ff8eecacca44d2b7ba.png';
+import { Footer } from './Footer';
+import { BottomNavBar } from './BottomNavBar';
+import { useRef, forwardRef } from 'react';
 
-export function ResourcePage() {
-  // Scroll to top on mount
+export function ResourcesPage() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [searchQuery, setSearchQuery] = useState('');
-
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* Header */}
+    <div className="min-h-screen bg-white">
       <Header />
-      
-      {/* Hero Section */}
       <HeroSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      
-      {/* Parent Resources */}
-      <ParentResources />
-      
-      {/* Childcare Education */}
-      <ChildcareEducation />
-      
-      {/* Local Community Services */}
-      <LocalCommunityServices />
-      
-      {/* Health & Safety Resources */}
-      <HealthAndSafety />
-      
-      {/* Wellness & Balance Resources */}
-      <WellnessAndBalance />
-      
-      {/* Downloads & Forms */}
-      <DownloadsAndForms />
-      
-      {/* Help Form */}
-      <NeedHelpFindingResources />
-      
-      {/* Footer */}
+      {/* ← CHANGED: pass setSelectedCategory to ParentResourcesSection */}
+      <ParentResourcesSection setSelectedCategory={setSelectedCategory} />
+      {/* ← NEW: add ResourceDetail component below, passing selectedCategory */}
+      <ResourceDetail selectedCategory={selectedCategory} ref={detailRef} />
+      <DailyScheduleSection />
+      <ChildcareEducationSection />
       <Footer />
+      <BottomNavBar
+        sections={[
+          { id: 'parent-resources', label: 'Parent Resources' },
+          { id: 'daily-schedule', label: 'Daily Schedule' },
+          { id: 'childcare', label: 'Staff Training' }
+        ]}
+      />
     </div>
   );
 }
@@ -53,44 +47,45 @@ export function ResourcePage() {
 // ============================================================================
 function Header() {
   return (
-    <header className="bg-[#f5edda] sticky top-0 z-50 shadow-sm">
+    <header className="bg-[#f5edda] fixed top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-5 flex items-center justify-between">
-        {/* Logo */}
-        <a 
-          href="/" 
+        {/* Logo & Title - Clickable to go home */}
+        <a
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             window.location.hash = '';
             window.scrollTo(0, 0);
           }}
-          className="cursor-pointer shrink-0"
+          className="cursor-pointer shrink-0 flex items-center gap-3"
         >
-          <img 
-            src={logoImage} 
-            alt="Village Values" 
-            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" 
-          />
+          <img src={logoImage} alt="Village Values" className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" />
+          <h1 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl hidden sm:block">
+            Village Values
+          </h1>
         </a>
 
-        {/* Navigation */}
-        <nav className="hidden lg:flex items-center gap-8 font-['Poppins'] text-[#232e43]">
-          <a href="#programs" className="hover:text-[#149496] transition-colors">Programs</a>
-          <a href="#about" className="hover:text-[#149496] transition-colors">About</a>
-          <a href="#enroll" className="hover:text-[#149496] transition-colors">Enroll</a>
-          <a href="#careers" className="hover:text-[#149496] transition-colors">Careers</a>
-          <a href="#resources" className="hover:text-[#149496] transition-colors">Resources</a>
-          <a href="#contact" className="hover:text-[#149496] transition-colors">Contact</a>
-        </nav>
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          <a href="/" onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.scrollTo(0, 0); }} className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">Home</a>
+          <a href="#programs" className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">Programs</a>
+          <a href="#about" className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">About</a>
+          <a href="#enroll" className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">Enroll</a>
+          <a href="#careers" className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">Careers</a>
+          <a href="#resources" className="font-['Poppins'] text-[#149496] text-base hover:text-[#149496] transition-colors">Resources</a>
+          <a href="#contact" className="font-['Poppins'] text-[#232e43] text-base hover:text-[#149496] transition-colors">Contact</a>
+        </div>
 
-        {/* CTA Button */}
-        <motion.a
-          href="#book-visit"
+        {/* Book a Visit Button */}
+        <motion.button
+          type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors"
+          onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
+          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors cursor-pointer"
         >
           Book a Visit
-        </motion.a>
+        </motion.button>
       </div>
     </header>
   );
@@ -99,159 +94,218 @@ function Header() {
 // ============================================================================
 // HERO SECTION
 // ============================================================================
-function HeroSection({ searchQuery, setSearchQuery }: { searchQuery: string; setSearchQuery: (q: string) => void }) {
+function HeroSection({ searchQuery, setSearchQuery }: { searchQuery: string; setSearchQuery: (query: string) => void }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f5edda] to-white py-24 lg:py-32">
-      <div className="max-w-4xl mx-auto px-6 lg:px-20 text-center relative z-10">
-        {/* Badge */}
+    <section className="bg-gradient-to-b from-[#f5edda] to-white py-16 lg:py-24 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute left-12 top-32 w-28 h-28 opacity-30 pointer-events-none">
+        <HouseIcon />
+      </div>
+      <div className="absolute left-[543px] bottom-20 w-24 h-24 opacity-30 pointer-events-none">
+        <HouseIcon />
+      </div>
+      <div className="absolute right-10 top-24 w-64 h-64 opacity-30 pointer-events-none">
+        <TreeIcon />
+      </div>
+      <div className="absolute right-48 bottom-10 w-64 h-64 opacity-30 pointer-events-none">
+        <GrassIcon />
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 lg:px-20 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-block bg-[#149496] text-white px-8 py-2 rounded-full mb-6 font-['Poppins']"
+          className="text-center"
         >
-          Resources & Support
-        </motion.div>
-
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-['Poppins'] text-[#232e43] text-5xl lg:text-[56px] lg:leading-[67.2px] mb-6"
-        >
-          Your Village of Support,<br />
-          All in One Place
-        </motion.h1>
-
-        {/* Paragraph */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-['Poppins'] text-[#1e7872] text-xl leading-[32.5px] mb-8 max-w-3xl mx-auto"
-        >
-          Resources collected by our Village Values Research & Resource Department to help your family grow, thrive, and feel supported every step of the way.
-        </motion.p>
-
-        {/* Search Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto mb-4"
-        >
-          <div className="relative">
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 text-[#1e7872]">
-              <SearchIcon />
-            </div>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search resources..."
-              className="w-full bg-white border-2 border-[rgba(20,148,150,0.2)] rounded-full px-16 py-5 font-['Poppins'] text-lg text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:ring-2 focus:ring-[#149496] shadow-lg"
-            />
+          {/* Badge */}
+          <div className="inline-block bg-[#149496] rounded-full px-8 py-2.5 mb-8">
+            <p className="font-['Poppins'] text-white text-base">Resources & Support</p>
           </div>
-          <p className="font-['Poppins'] text-[rgba(30,120,114,0.7)] text-sm mt-4 text-center">
+
+          {/* Heading */}
+          <h1 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[56px] lg:leading-[67.2px] mb-6">
+            Your Village of Support,
+            <br />
+            All in One Place
+          </h1>
+
+          {/* Paragraph */}
+          <p className="font-['Poppins'] text-[#1e7872] text-lg lg:text-xl leading-relaxed mb-10 max-w-[733px] mx-auto">
+            Resources collected by our Village Values Research & Resource Department to help your family grow, thrive, and feel supported every step of the way.
+          </p>
+
+          {/* Search Bar */}
+          <div className="max-w-[672px] mx-auto mb-4">
+            <div className="relative">
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-[#1e7872]">
+                <Search className="w-full h-full" strokeWidth={2} />
+              </div>
+              <input
+                type="text"
+                placeholder="Search resources..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-[72px] pl-16 pr-6 rounded-full bg-white border-2 border-[rgba(20,148,150,0.2)] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)] font-['Poppins'] text-lg text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:border-[#149496] transition-colors"
+              />
+            </div>
+          </div>
+
+          {/* Search Suggestions */}
+          <p className="font-['Poppins'] text-[rgba(30,120,114,0.7)] text-sm">
             Try searching: &quot;sleep tips&quot;, &quot;safety checklist&quot;, or &quot;local services&quot;
           </p>
         </motion.div>
       </div>
-
-      {/* Decorative Elements */}
-      <DecorativeVectorHouse className="absolute bottom-32 left-36 w-64 h-64 opacity-30" />
-      <DecorativeVectorTree className="absolute bottom-24 right-40 w-80 h-80 opacity-30" />
-      <DecorativeVectorGrass className="absolute bottom-16 right-56 w-64 h-64 opacity-30" />
     </section>
   );
 }
 
 // ============================================================================
-// PARENT RESOURCES
+// PARENT RESOURCES SECTION
 // ============================================================================
-function ParentResources() {
+function ParentResourcesSection({ setSelectedCategory }: { setSelectedCategory: (slug: string | null) => void }) {  // ← CHANGED: added props for setSelectedCategory
   const resources = [
     {
-      icon: 'child',
+      icon: <BookOpenIcon />,
       title: 'Child Development',
       description: 'Milestones, growth charts, and developmental stages',
-      count: '12 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'group',
+      icon: <HeartIcon />,
       title: 'Parenting Tips',
       description: 'Expert advice for everyday parenting challenges',
-      count: '18 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'health',
-      title: 'Daily Routines',
+      icon: <MoonIcon />,
+      title: 'Sleep & Feeding Guides',
       description: 'Schedules, routines, and nutrition resources',
-      count: '15 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'safety',
-      title: 'Home Safety',
-      description: 'Childproofing tips and safety guidelines',
-      count: '10 resources'
+      icon: <UsersIcon />,
+      title: 'Behavior Tools',
+      description: 'Positive discipline and emotional regulation strategies',
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'behavior',
-      title: 'Behavior Guidance',
-      description: 'Positive discipline strategies and techniques',
-      count: '13 resources'
+      icon: <CalendarIcon />,
+      title: 'Local Events',
+      description: 'Family-friendly activities and community gatherings',
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'activities',
+      icon: <SchoolIcon />,
       title: 'After-School Programs',
       description: 'Extracurricular activities and enrichment options',
-      count: '14 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'reading',
+      icon: <BookIcon />,
       title: 'Early Reading Resources',
       description: 'Literacy tools, book lists, and reading activities',
-      count: '20 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'mental',
+      icon: <BrainIcon />,
       title: 'Mental Health Support',
       description: 'Resources for parent and child well-being',
-      count: '11 resources'
+      count: 5,
+      color: '#149496'
     },
     {
-      icon: 'special',
+      icon: <SparklesIcon />,
       title: 'Special Needs Services',
       description: 'Support for children with unique learning needs',
-      count: '9 resources'
+      count: 5,
+      color: '#149496'
     }
   ];
 
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section id="parent-resources" className="py-16 lg:py-20 bg-white">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
+          <h2 className="font-['Poppins'] text-[#232e43] text-3xl lg:text-4xl mb-4">
             Parent Resources
           </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-xl">
-            Everything you need to support your child&apos;s growth and your family&apos;s well-being
+          <p className="font-['Poppins'] text-[#1e7872] text-lg">
+            Everything you need to support your child's growth and your family's well-being
           </p>
         </motion.div>
 
         {/* Resource Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resources.map((resource, index) => (
-            <ResourceCard key={index} {...resource} index={index} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {resources.map((resource, index) => {
+            // ← NEW: create URL-friendly slug from title
+            const slug = resource.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '');
+
+            return (
+              // ← CHANGED: added onClick to set the selected category
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}  // ← small improvement: added scale on hover
+                onClick={() => {
+                  setSelectedCategory(slug);
+
+                  requestAnimationFrame(() => {
+                    if (detailRef.current) {
+                      detailRef.current.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                      });
+
+                      window.scrollBy(0, -100);
+                    }
+                  });
+                }}
+                className="bg-[#f5edda] rounded-2xl p-6 cursor-pointer transition-shadow hover:shadow-xl h-full"  // ← added h-full for equal height
+              >
+                {/* Icon */}
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4">
+                  {resource.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="font-['Poppins'] text-[#232e43] text-xl mb-2">
+                  {resource.title}
+                </h3>
+
+                {/* Description */}
+                <p className="font-['Poppins'] text-[#1e7872] text-sm mb-4 leading-relaxed">
+                  {resource.description}
+                </p>
+
+                {/* ← NEW: count + arrow for visual cue */}
+                <div className="flex items-center justify-between text-sm text-[#149496] mt-2">
+                  <span>{resource.count} resources</span>
+                  <span aria-hidden="true">→</span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Contact Note */}
@@ -262,120 +316,588 @@ function ParentResources() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="font-['Poppins'] italic text-[#1e7872] text-center mt-12"
         >
-          Can&apos;t find what you&apos;re looking for or know a great resource to add to the list? Contact us!
+          Can’t find what you’re looking for or know a great resource to add? Contact us!
         </motion.p>
       </div>
     </section>
   );
 }
 
-function ResourceCard({ icon, title, description, count, index }: {
-  icon: string;
-  title: string;
-  description: string;
-  count: string;
-  index: number;
-}) {
+// ============================================================================
+// NEW COMPONENT: ResourceDetail 
+// ============================================================================
+function ResourceDetail({ selectedCategory }: { selectedCategory: string | null }) {
+  if (!selectedCategory) return null;
+
+  // ────────────────────────────────────────────────────────────────
+  //     ALL CATEGORIES DATA — ADD / EDIT RESOURCES HERE
+  // ────────────────────────────────────────────────────────────────
+  const resourceData: Record<
+    string,
+    { title: string; items: Array<{ title: string; description: string; link: string; source: string }> }
+  > = {
+    "child-development": {
+      title: "Child Development Resources",
+      items: [
+        {
+          title: "CDC's Developmental Milestones",
+          description: "Illustrated checklists by age, videos, and tips to track development from birth to 5 years.",
+          link: "https://www.cdc.gov/act-early/milestones/index.html",
+          source: "Centers for Disease Control and Prevention (CDC)"
+        },
+        {
+          title: "CDC Milestone Tracker App",
+          description: "Free mobile app to track milestones, get activities, and receive alerts.",
+          link: "https://www.cdc.gov/act-early/milestones-app/index.html",
+          source: "CDC"
+        },
+        {
+          title: "CDC Growth Charts",
+          description: "Percentile charts for height, weight, head circumference, and BMI (printable).",
+          link: "https://www.cdc.gov/growthcharts/cdc-growth-charts.htm",
+          source: "CDC"
+        },
+        {
+          title: "WHO Child Growth Standards",
+          description: "International growth reference charts for optimal child growth (0–5 years).",
+          link: "https://www.who.int/tools/child-growth-standards/standards",
+          source: "World Health Organization"
+        },
+        {
+          title: "Ages & Stages – HealthyChildren.org",
+          description: "Detailed milestone info, growth guidance, and parent articles by the AAP.",
+          link: "https://www.healthychildren.org/English/ages-stages/Pages/default.aspx",
+          source: "American Academy of Pediatrics"
+        }
+      ]
+    },
+
+    "parenting-tips": {
+      title: "Parenting Tips",
+      items: [
+        {
+          title: "Positive Parenting Tips (by age)",
+          description: "Age-specific advice on development, positive parenting, safety, and health for infants through preschoolers.",
+          link: "https://www.cdc.gov/child-development/positive-parenting-tips/index.html",
+          source: "Centers for Disease Control and Prevention (CDC)"
+        },
+        {
+          title: "Resources for Families",
+          description: "Practical strategies to support your child's growth, with emphasis on positive parenting and individual family approaches.",
+          link: "https://www.zerotothree.org/resources/for-families",
+          source: "ZERO TO THREE"
+        },
+        {
+          title: "Parent Resources, Tips, and Advice",
+          description: "Activities, games, articles, and guidance to raise kind, curious, and resilient children.",
+          link: "https://www.pbs.org/parents",
+          source: "PBS KIDS for Parents"
+        },
+        {
+          title: "UNICEF Parenting Resources",
+          description: "Expert advice and tips to help raise healthy, resilient, and happy children.",
+          link: "https://www.unicefusa.org/what-unicef-does/parenting",
+          source: "UNICEF USA"
+        },
+        {
+          title: "Positive Parenting Resources",
+          description: "Clearinghouse of science-based information on common parenting concerns and child behavior.",
+          link: "https://infoaboutkids.org/",
+          source: "infoaboutkids.org (Consortium of APA divisions)"
+        }
+      ]
+    },
+
+    "sleep-feeding-guides": {
+      title: "Sleep & Feeding Guides",
+      items: [
+        {
+          title: "Baby Feeding Schedules - 6 to 24 Months",
+          description: "Sample feeding schedules by month for infants and toddlers, including guidance on solids introduction.",
+          link: "https://solidstarts.com/feeding-schedules",
+          source: "Solid Starts"
+        },
+        {
+          title: "Ages 0-2 Feeding Recommendations",
+          description: "Guidelines on feeding from birth to 2 years, including breast milk/formula and establishing schedules.",
+          link: "https://healthyeatingresearch.org/tips-for-families/ages-0-2-feeding-recommendations",
+          source: "Healthy Eating Research"
+        },
+        {
+          title: "Healthy Sleep Habits for Babies and Toddlers",
+          description: "Tips for establishing bedtime routines, night feedings, and safe sleep practices.",
+          link: "https://www.nationwidechildrens.org/family-resources-education/health-wellness-and-safety-resources/helping-hands/healthy-sleep-habits-for-infants-and-toddlers",
+          source: "Nationwide Children's Hospital"
+        },
+        {
+          title: "Baby Schedules: When to Start a Daily Routine",
+          description: "Advice on when babies are ready for schedules, with samples for sleep, feeding, and routines.",
+          link: "https://www.babycenter.com/baby/schedules/the-basics-of-baby-schedules-why-when-and-how-to-start-a-rou_3658352",
+          source: "BabyCenter"
+        },
+        {
+          title: "Infant Food and Feeding",
+          description: "Expert guidance on introducing solids around 6 months and combining with breast milk/formula.",
+          link: "https://www.aap.org/en/patient-care/healthy-active-living-for-families/infant-food-and-feeding",
+          source: "American Academy of Pediatrics (AAP)"
+        }
+      ]
+    },
+
+    "behavior-tools": {
+      title: "Behavior Tools",
+      items: [
+        {
+          title: "Positive Parenting Tips: Preschoolers (3–5 years old)",
+          description: "Strategies for discipline, encouragement, and fostering independence in preschoolers.",
+          link: "https://www.cdc.gov/child-development/positive-parenting-tips/preschooler-3-5-years.html",
+          source: "Centers for Disease Control and Prevention (CDC)"
+        },
+        {
+          title: "Positive Behavior Strategies for Preschoolers",
+          description: "Techniques like systematic supervision, clear rules, and nurturing environments.",
+          link: "https://www.pbsmidwest.com/blog/behavior-management-positive-behavior-strategies-for-preschoolers",
+          source: "PBS Midwest"
+        },
+        {
+          title: "Positive Behavior Guidance",
+          description: "Tips for building relationships and environments that foster positive interactions in pre-K.",
+          link: "https://www.nysed.gov/early-learning/positive-behavior-guidance",
+          source: "New York State Education Department"
+        },
+        {
+          title: "Preschool Behavior Management Best Practices",
+          description: "Clear expectations, routines, positive language, and modeling to support prosocial behaviors.",
+          link: "https://mybrightwheel.com/blog/keys-to-effective-preschool-behavior-management",
+          source: "Brightwheel"
+        },
+        {
+          title: "Early Childhood PBIS",
+          description: "Prevention strategies, skill instruction, and responses to reduce challenging behaviors.",
+          link: "https://www.pbis.org/topics/early-childhood-pbis",
+          source: "Center on PBIS"
+        }
+      ]
+    },
+
+    "local-events": {
+      title: "Local Events (Bay Area)",
+      items: [
+        {
+          title: "Bay Area Parent Event Calendar",
+          description: "Calendar of kid-friendly events like art shows, farmers markets, and family activities across the Bay Area.",
+          link: "https://www.bayareaparent.com/event-calendar",
+          source: "Bay Area Parent Magazine"
+        },
+        {
+          title: "510 Families Events Calendar",
+          description: "Best things to do with kids in Oakland, Berkeley, and surrounding areas, including many free activities.",
+          link: "https://www.510families.com/calendar",
+          source: "510 Families"
+        },
+        {
+          title: "Bay Area Kid Fun – Family Events",
+          description: "Hundreds of events and special highlights for families in the San Francisco Bay Area.",
+          link: "https://www.bayareakidfun.com/",
+          source: "Bay Area Kid Fun"
+        },
+        {
+          title: "Bay Area Kids GO – Weekend Guide",
+          description: "Curated guide to family events like exhibits, classes, and outdoor adventures in SF, Oakland, San Jose.",
+          link: "https://events.bayareakidsgo.com/",
+          source: "Bay Area Kids GO"
+        },
+        {
+          title: "Macaroni KID Palo Alto-Redwood City Events",
+          description: "Local events including markets, story times, and free family activities in the Peninsula area.",
+          link: "https://paloalto.macaronikid.com/events/calendar",
+          source: "Macaroni KID"
+        }
+      ]
+    },
+
+    "after-school-programs": {
+      title: "After-School Programs (Bay Area)",
+      items: [
+        {
+          title: "SFUSD Before and After School Programs",
+          description: "School-based programs with childcare, play, and enrichment starting from Transitional Kindergarten.",
+          link: "https://www.sfusd.edu/schools/enroll/resources/and-after-school-programs",
+          source: "San Francisco Unified School District"
+        },
+        {
+          title: "After-School All-Stars Bay Area",
+          description: "Innovative after-school programs focused on academics, enrichment, and closing opportunity gaps.",
+          link: "https://afterschoolallstars.org/asas_chapter/bay-area",
+          source: "After-School All-Stars"
+        },
+        {
+          title: "YMCA After School Programs – Silicon Valley",
+          description: "Safe spaces with skill-building, relationships, and activities at Bay Area YMCAs.",
+          link: "https://www.ymcasv.org/child-care-camps/after-school-programs",
+          source: "YMCA Silicon Valley"
+        },
+        {
+          title: "Brains & Motion After-School Programs",
+          description: "STEAM, sports, and enrichment after-school activities across the Bay Area.",
+          link: "https://www.brains-and-motion.com/pages/after-school-programs-in-the-bay-area",
+          source: "Brains & Motion Education"
+        },
+        {
+          title: "After-School Classes – 510 Families Guide",
+          description: "Arts, sports, academics, and more classes in Oakland, Berkeley, and the East Bay.",
+          link: "https://www.510families.com/after-school-classes-kids-oakland-berkeley",
+          source: "510 Families"
+        }
+      ]
+    },
+
+    "early-reading-resources": {
+      title: "Early Reading Resources",
+      items: [
+        {
+          title: "Reading Tips for Parents of Preschoolers",
+          description: "Fun, practical ways to help your preschooler become a happy and confident reader, including reading aloud, talking about stories, and building print awareness.",
+          link: "https://www.readingrockets.org/topics/activities/articles/reading-tips-parents-preschoolers",
+          source: "Reading Rockets"
+        },
+        {
+          title: "Every Child Ready to Read – Resources",
+          description: "Research-based five practices (talking, singing, reading, writing, playing) with tips, activities, and parent workshops to build early literacy from birth to age 5.",
+          link: "https://everychildreadytoread.org/resources",
+          source: "Every Child Ready to Read (American Library Association)"
+        },
+        {
+          title: "PBS KIDS for Parents – Language and Literacy",
+          description: "Simple, powerful ways to develop literacy: talk, listen, read, and write together, with age-appropriate activities and video support for early childhood.",
+          link: "https://www.pbs.org/parents/learn-grow/all-ages/literacy",
+          source: "PBS KIDS for Parents"
+        },
+        {
+          title: "Reach Out and Read – Family Resources",
+          description: "Tips and videos for shared reading from newborn to age 4, plus guidance on choosing books and making reading interactive and fun.",
+          link: "https://reachoutandread.org/what-we-do/family-resources",
+          source: "Reach Out and Read"
+        },
+        {
+          title: "12 Early Literacy Tips to Boost Children's Reading Skills",
+          description: "Expert tips for building healthy reading habits at home, including starting early, using board books, and turning everyday moments into literacy opportunities.",
+          link: "https://www.startearly.org/post/12-tips-to-boost-early-literacy",
+          source: "Start Early"
+        }
+      ]
+    },
+    "mental-health-support": {
+      title: "Mental Health Support (Bay Area Focus)",
+      items: [
+        {
+          title: "T.A.L.K. Line – 24-Hour Parental Support",
+          description: "Free, confidential 24/7 hotline for parents/caregivers of children under 18 in the Bay Area – offers support, info, and referrals for mental health concerns.",
+          link: "https://safeandsound.org/for-parents/get-help-now/",
+          source: "Safe & Sound (Bay Area)"
+        },
+        {
+          title: "Center for Children and Youth (JFCS)",
+          description: "Bay Area services including parenting classes, child therapy, family counseling, assessments, and support from infancy through young adulthood.",
+          link: "https://ccy.jfcs.org/",
+          source: "Jewish Family and Children’s Services (Bay Area)"
+        },
+        {
+          title: "NAMI San Francisco – Youth and Family Resources",
+          description: "Local guide to SF mental health resources for children/youth/families, plus free NAMI Basics education classes for parents of kids with mental health symptoms.",
+          link: "https://www.namisf.org/resourcesforparentsofyouth",
+          source: "NAMI San Francisco"
+        },
+        {
+          title: "Pacific Clinics – Bay Area Behavioral Health",
+          description: "Comprehensive services including prevention/early intervention, neurodivergent support, mobile crisis, and family-focused mental health for children/youth.",
+          link: "https://www.pacificclinics.org/",
+          source: "Pacific Clinics (Bay Area)"
+        },
+        {
+          title: "Parents Place – Parenting & Mental Health Services",
+          description: "Bay Area workshops, coaching, child/family therapy, behavior support, and groups for parents dealing with young children's emotional/well-being needs.",
+          link: "https://ccy.jfcs.org/",  // Parents Place is part of JFCS
+          source: "Jewish Family and Children’s Services (Bay Area)"
+        }
+      ]
+    },
+
+    "special-needs-services": {
+      title: "Special Needs Services (Bay Area)",
+      items: [
+        {
+          title: "Early Start Program – California Department of Developmental Services",
+          description: "Statewide early intervention for infants/toddlers (0-3) with developmental delays or risks; coordinated through local Bay Area regional centers for assessments and services.",
+          link: "https://www.dds.ca.gov/services/early-start",
+          source: "CA Department of Developmental Services"
+        },
+        {
+          title: "Bay Area Regional Centers",
+          description: "21 centers serving developmental disabilities from birth; provide eligibility assessment, case management, early intervention referrals, and long-term support planning.",
+          link: "https://autism.ucsf.edu/bay-area-regional-centers",
+          source: "UCSF Center for ASD and NDDs (with DDS listings)"
+        },
+        {
+          title: "Parents Helping Parents (PHP)",
+          description: "San Jose/Bay Area parent support, early childhood services (0-5), consultations, groups, and resource connections for children with disabilities/delays.",
+          link: "https://www.php.com/",
+          source: "Parents Helping Parents"
+        },
+        {
+          title: "AbilityPath",
+          description: "Comprehensive Bay Area services from early intervention/infants to school-age support, therapy, and family resources for children of all abilities.",
+          link: "https://abilitypath.org/",
+          source: "AbilityPath"
+        },
+        {
+          title: "Felton Early Autism Program (FEAP)",
+          description: "San Francisco inclusive center-based early intervention for infants/toddlers with autism using Early Start Denver Model (ESDM) – therapies and family resources.",
+          link: "https://felton.org/social-services/cyftay/felton-early-autism-program-feap",
+          source: "Felton Institute"
+        }
+      ]
+    }
+  };
+
+  const category = resourceData[selectedCategory];
+
+  if (!category) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-6 lg:px-20 text-center">
+          <h2 className="font-['Poppins'] text-[#232e43] text-3xl mb-4">
+            Resources for {selectedCategory.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+          </h2>
+          <p className="font-['Poppins'] text-[#1e7872] text-lg">
+            Coming soon! Check back for curated resources or contact us with suggestions.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-      whileHover={{ scale: 1.02, y: -5 }}
-      className="bg-[#f5edda] rounded-2xl p-8 cursor-pointer transition-shadow hover:shadow-xl"
-    >
-      {/* Icon */}
-      <div className="bg-[rgba(20,148,150,0.1)] w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
-        {icon === 'child' && <ChildIcon />}
-        {icon === 'group' && <GroupIcon />}
-        {icon === 'health' && <HealthIconSmall />}
-        {icon === 'safety' && <SafetyIcon />}
-        {icon === 'behavior' && <BehaviorIcon />}
-        {icon === 'activities' && <ActivitiesIcon />}
-        {icon === 'reading' && <ReadingIcon />}
-        {icon === 'mental' && <MentalHealthIcon />}
-        {icon === 'special' && <SpecialNeedsIcon />}
+    <section className="py-16 bg-[#f5edda]">
+      <div className="max-w-3xl mx-auto px-6 lg:px-20">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="font-['Poppins'] text-[#232e43] text-3xl lg:text-4xl mb-8 text-center"
+        >
+          {category.title}
+        </motion.h2>
+
+        <div className="space-y-6">
+          {category.items.map((res, idx) => (
+            <motion.a
+              key={idx}
+              href={res.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="block bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow"
+            >
+              <h3 className="font-['Poppins'] text-[#232e43] text-xl mb-2">
+                {res.title}
+              </h3>
+              <p className="font-['Poppins'] text-[#1e7872] text-sm mb-3 leading-relaxed">
+                {res.description}
+              </p>
+              <p className="text-xs text-[#149496] italic">
+                Source: {res.source}
+              </p>
+            </motion.a>
+          ))}
+        </div>
+
+        <motion.button
+          onClick={() => setSelectedCategory(null)}
+          whileHover={{ scale: 1.05 }}
+          className="mt-12 mx-auto block bg-[#149496] text-white px-8 py-3 rounded-full font-['Poppins'] text-base hover:bg-[#1e7872] transition-colors"
+        >
+          Back to Resources
+        </motion.button>
       </div>
-
-      {/* Title */}
-      <h3 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-[28px] lg:leading-[39.2px] mb-3">
-        {title}
-      </h3>
-
-      {/* Description */}
-      <p className="font-['Poppins'] text-[#1e7872] text-sm leading-[22.75px] mb-6">
-        {description}
-      </p>
-
-      {/* Count & Arrow */}
-      <div className="flex items-center justify-between">
-        <span className="font-['Poppins'] text-[#149496] text-sm">{count}</span>
-        <span className="text-[#c49a3a] text-base">→</span>
-      </div>
-    </motion.div>
+    </section>
   );
 }
 
+
+
 // ============================================================================
-// CHILDCARE EDUCATION
+// DAILY SCHEDULE SECTION
 // ============================================================================
-function ChildcareEducation() {
-  const trainings = [
-    {
-      title: 'ECE Certification Courses',
-      description: 'State-approved training programs',
-      icon: 'certificate'
-    },
-    {
-      title: 'Classroom Management',
-      description: 'Tools and techniques for educators',
-      icon: 'classroom'
-    },
-    {
-      title: 'Child Safety Training',
-      description: 'CPR, First Aid, and emergency protocols',
-      icon: 'safety'
-    },
-    {
-      title: 'Curriculum Development',
-      description: 'Age-appropriate learning materials',
-      icon: 'curriculum'
-    },
-    {
-      title: 'Special Education Resources',
-      description: 'Inclusive classroom strategies',
-      icon: 'special'
-    },
-    {
-      title: 'Professional Development',
-      description: 'Workshops, webinars, and conferences',
-      icon: 'development'
-    },
-    {
-      title: 'Parent Communication',
-      description: 'Building strong family partnerships',
-      icon: 'communication'
-    },
-    {
-      title: 'Assessment Tools',
-      description: 'Tracking progress and development',
-      icon: 'assessment'
-    }
+function DailyScheduleSection() {
+  const scheduleItems = [
+    { time: '7:00 AM - 8:30 AM', activity: 'Arrival & Free Play', description: 'Children arrive and engage in self-directed activities' },
+    { time: '8:30 AM - 9:00 AM', activity: 'Morning Circle Time', description: 'Welcome, songs, and calendar activities' },
+    { time: '9:00 AM - 9:30 AM', activity: 'Snack Time', description: 'Healthy snacks and social time' },
+    { time: '9:30 AM - 10:30 AM', activity: 'Learning Centers', description: 'Rotating activities: art, science, dramatic play, blocks' },
+    { time: '10:30 AM - 11:30 AM', activity: 'Outdoor Play', description: 'Physical activity and nature exploration' },
+    { time: '11:30 AM - 12:00 PM', activity: 'Story Time & Music', description: 'Interactive reading and musical activities' },
+    { time: '12:00 PM - 12:45 PM', activity: 'Lunch', description: 'Nutritious meals and family-style dining' },
+    { time: '12:45 PM - 2:45 PM', activity: 'Quiet Time & Nap', description: 'Rest and rejuvenation for growing bodies' },
+    { time: '2:45 PM - 3:15 PM', activity: 'Afternoon Snack', description: 'Light refreshments and table conversation' },
+    { time: '3:15 PM - 4:30 PM', activity: 'Afternoon Activities', description: 'Choice time, special projects, or outdoor play' },
+    { time: '4:30 PM - 6:00 PM', activity: 'Free Play & Departure', description: 'Open play until families arrive for pickup' }
   ];
 
   return (
-    <section className="bg-[#f5edda] py-16 lg:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
+    <section id="daily-schedule" className="bg-[#f5edda] py-16 lg:py-24 relative overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-4"
+          className="text-center mb-12"
         >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
+          <h2 className="font-['Poppins'] text-[#232e43] text-3xl lg:text-4xl mb-4">
+            Daily Schedule
+          </h2>
+          <p className="font-['Poppins'] text-[#1e7872] text-lg">
+            A structured day designed to support learning, growth, and fun
+          </p>
+        </motion.div>
+
+        {/* Schedule Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl shadow-lg overflow-hidden"
+        >
+          {scheduleItems.map((item, index) => (
+            <div
+              key={index}
+              className={`grid grid-cols-1 md:grid-cols-3 gap-4 p-6 ${index !== scheduleItems.length - 1 ? 'border-b border-[#f5edda]' : ''
+                } hover:bg-[#f5edda] transition-colors`}
+            >
+              {/* Time */}
+              <div className="font-['Poppins'] text-[#149496] md:text-right">
+                {item.time}
+              </div>
+
+              {/* Activity */}
+              <div className="font-['Poppins'] text-[#232e43]">
+                {item.activity}
+              </div>
+
+              {/* Description */}
+              <div className="font-['Poppins'] text-[#1e7872] text-sm">
+                {item.description}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Footer Note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center mt-8"
+        >
+          <p className="font-['Poppins'] text-[#1e7872] text-sm italic">
+            Schedule may vary slightly by age group and classroom. Ask your teacher for specific timing.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================================
+// CHILDCARE EDUCATION SECTION
+// ============================================================================
+function ChildcareEducationSection() {
+  // State to track which training category is selected
+  const [selectedTraining, setSelectedTraining] = useState<string | null>(null);
+
+  // Ref to scroll to the detail section smoothly when a card is clicked
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  const trainings = [
+    {
+      icon: <ClassroomIcon />,
+      title: 'Classroom Management',
+      description: 'Strategies for creating positive, structured learning environments',
+      count: 3
+    },
+    {
+      icon: <EarlyChildhoodIcon />,
+      title: 'Early Childhood Development Basics',
+      description: 'Core concepts in child development and learning theory',
+      count: 3
+    },
+    {
+      icon: <SafetyIcon />,
+      title: 'Safety & Mandated Reporting',
+      description: 'Critical safety protocols and legal responsibilities',
+      count: 3
+    },
+    {
+      icon: <LessonPlanIcon />,
+      title: 'Lesson Planning Ideas',
+      description: 'Templates, themes, and age-appropriate activity plans',
+      count: 3
+    },
+    {
+      icon: <ActivityIcon />,
+      title: 'Activity Guides',
+      description: 'Creative activities for learning, play, and exploration',
+      count: 3
+    },
+    {
+      icon: <BehaviorIcon />,
+      title: 'Behavior Strategies',
+      description: 'Positive guidance techniques and conflict resolution',
+      count: 3
+    },
+    {
+      icon: <ProfessionalGrowthIcon />,
+      title: 'Professional Growth',
+      description: 'Career development resources and continuing education',
+      count: 3
+    },
+    {
+      icon: <LicensingIcon />,
+      title: 'Licensing Requirements',
+      description: 'State regulations, certification info, and compliance guides',
+      count: 3
+    }
+  ];
+
+  return (
+    <section id="childcare" className="bg-[#f5edda] py-16 lg:py-24 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute left-[119px] top-[60.58px] w-[252px] h-[252px] opacity-30">
+        <BeeDecorIcon />
+      </div>
+      <div className="absolute right-[252px] bottom-[80px] w-[180px] h-[197px] opacity-30">
+        <AppleDecorIcon />
+      </div>
+      <div className="absolute right-[115px] top-[562.58px] w-[252px] h-[252px] opacity-30">
+        <StarDecorIcon />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="font-['Poppins'] text-[#232e43] text-[40px] leading-[52px] mb-4">
             Childcare Education
           </h2>
           <p className="font-['Poppins'] text-[#1e7872] text-xl mb-2">
@@ -386,12 +908,65 @@ function ChildcareEducation() {
           </p>
         </motion.div>
 
-        {/* Training Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {trainings.map((training, index) => (
-            <TrainingCard key={index} {...training} index={index} />
-          ))}
+        {/* Training Cards Grid - now clickable */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {trainings.map((training, index) => {
+            // Create a clean slug from the title (same format as parent resources)
+            const slug = training.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '');
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                onClick={() => {
+                  setSelectedTraining(slug);
+                  // Scroll smoothly to the detail section after state updates
+                  requestAnimationFrame(() => {
+                    detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    window.scrollBy(0, -100); // small offset so header doesn't cover title
+                  });
+                }}
+                className="bg-white rounded-2xl p-6 cursor-pointer transition-shadow hover:shadow-xl"
+              >
+                {/* Icon */}
+                <div className="w-14 h-14 bg-[rgba(196,154,58,0.1)] rounded-[16.4px] flex items-center justify-center mb-6">
+                  {training.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="font-['Poppins'] text-[#232e43] text-xl mb-3 leading-7">
+                  {training.title}
+                </h3>
+
+                {/* Description */}
+                <p className="font-['Poppins'] text-[#1e7872] text-sm mb-6 leading-[22.75px]">
+                  {training.description}
+                </p>
+
+                {/* Resource Count */}
+                <p className="font-['Poppins'] text-[#c49a3a] text-sm leading-5">
+                  {training.count} resources
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* ────────────────────────────────────────────────────────────────
+            NEW: Detail view that appears when a training card is clicked
+         ──────────────────────────────────────────────────────────────── */}
+        <TrainingDetail
+          selectedTraining={selectedTraining}
+          setSelectedTraining={setSelectedTraining}
+          ref={detailRef}
+        />
 
         {/* CTA Banner */}
         <motion.div
@@ -399,1000 +974,597 @@ function ChildcareEducation() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 bg-gradient-to-r from-[#149496] to-[#1e7872] rounded-2xl p-8 text-center text-white"
+          className="bg-gradient-to-b from-[#149496] to-[#1e7872] rounded-2xl shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] p-8 text-center"
         >
-          <h3 className="font-['Poppins'] text-2xl mb-3">Staff Training Portal</h3>
-          <p className="font-['Poppins'] mb-6">Access exclusive educational content and certification programs</p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-[#149496] px-8 py-3 rounded-full font-['Poppins'] uppercase tracking-wider hover:bg-gray-100 transition-colors"
-          >
-            Access Portal
-          </motion.button>
+          <p className="font-['Poppins'] text-white text-lg leading-7 max-w-[668px] mx-auto">
+            All staff members have access to our comprehensive training library. We believe that investing in our educators creates the best experience for children.
+          </p>
         </motion.div>
       </div>
     </section>
   );
 }
 
-function TrainingCard({ title, description, icon, index }: {
-  title: string;
-  description: string;
-  icon: string;
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-      className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow"
-    >
-      <div className="bg-[rgba(196,154,58,0.1)] w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
-        <ChartIcon />
-      </div>
-      <h3 className="font-['Poppins'] text-[#232e43] text-lg mb-2">
-        {title}
-      </h3>
-      <p className="font-['Poppins'] text-[#1e7872] text-sm">
-        {description}
-      </p>
-    </motion.div>
-  );
-}
+// ============================================================================
+// NEW COMPONENT: Shows detailed resources when a training card is clicked
+// ============================================================================
+const TrainingDetail = forwardRef<HTMLDivElement, {
+  selectedTraining: string | null;
+  setSelectedTraining: (slug: string | null) => void;
+}>(({ selectedTraining, setSelectedTraining }, ref) => {
+  if (!selectedTraining) return null;
 
-// ============================================================================
-// LOCAL COMMUNITY SERVICES
-// ============================================================================
-function LocalCommunityServices() {
-  const services = [
-    {
-      title: 'Pediatricians',
-      description: 'Trusted local doctors',
-      count: '8 providers'
+  // Data structure: slug → display title + array of 3 resources
+  const trainingData: Record<string, { title: string; items: Array<{ title: string; description: string; link: string; source: string }> }> = {
+    "classroom-management": {
+      title: "Classroom Management Resources",
+      items: [
+        {
+          title: "Positive Classroom Management Strategies",
+          description: "Practical techniques to build a respectful, productive classroom environment in early childhood settings.",
+          link: "https://www.naeyc.org/resources/pubs/yc/may2017/positive-classroom-management-strategies",
+          source: "NAEYC"
+        },
+        {
+          title: "Classroom Management That Works",
+          description: "Research-based strategies for establishing rules, routines, and positive relationships with young children.",
+          link: "https://www.edutopia.org/article/classroom-management-works",
+          source: "Edutopia"
+        },
+        {
+          title: "Foundations of Positive Guidance",
+          description: "Free introductory course on creating supportive environments and guiding behavior positively.",
+          link: "https://www.cceionline.com/course/foundations-of-positive-guidance",
+          source: "ChildCare Education Institute (free trial available)"
+        }
+      ]
     },
-    {
-      title: 'Family Therapists',
-      description: 'Counseling and support',
-      count: '5 providers'
+
+    "early-childhood-development-basics": {
+      title: "Early Childhood Development Basics Resources",
+      items: [
+        {
+          title: "Watch Me! Celebrating Milestones and Sharing Concerns",
+          description: "Free CDC training module on tracking developmental milestones and communicating with families.",
+          link: "https://www.cdc.gov/watch-me-training/about/index.html",
+          source: "Centers for Disease Control and Prevention (CDC)"
+        },
+        {
+          title: "Developmentally Appropriate Practice (DAP)",
+          description: "Core principles of how young children learn and develop, with practical examples for educators.",
+          link: "https://www.naeyc.org/resources/position-statements/dap",
+          source: "NAEYC"
+        },
+        {
+          title: "The Science of Early Childhood Development",
+          description: "Overview of brain development, attachment, and key concepts in the first five years.",
+          link: "https://developingchild.harvard.edu/science/key-concepts/",
+          source: "Center on the Developing Child – Harvard University"
+        }
+      ]
     },
-    {
-      title: 'Speech Therapists',
-      description: 'Language development specialists',
-      count: '6 providers'
+
+    "safety-mandated-reporting": {
+      title: "Safety & Mandated Reporting Resources",
+      items: [
+        {
+          title: "Mandated Reporter Training for Child Care Providers",
+          description: "California-specific free training on recognizing and reporting child abuse/neglect (AB 1207 compliant).",
+          link: "https://mandatedreporterca.com/",
+          source: "California Department of Social Services"
+        },
+        {
+          title: "Preventive Health & Safety Practices",
+          description: "Videos and guides covering emergency procedures, illness prevention, and safe environments.",
+          link: "https://ccld.childcarevideos.org/child-care-center-operators/health-and-safety-training",
+          source: "California Community Care Licensing Division"
+        },
+        {
+          title: "Caring for Our Children – Safety Standards",
+          description: "National standards for injury prevention, supervision, and emergency preparedness in child care.",
+          link: "https://nrckids.org/CFOC/Database/1",
+          source: "American Academy of Pediatrics / National Resource Center"
+        }
+      ]
     },
-    {
-      title: 'Occupational Therapy',
-      description: 'Motor skills support',
-      count: '4 providers'
+
+    "lesson-planning-ideas": {
+      title: "Lesson Planning Ideas Resources",
+      items: [
+        {
+          title: "Preschool Lesson Plan Templates",
+          description: "Free downloadable weekly and thematic lesson plan templates for early childhood classrooms.",
+          link: "https://www.preschool-plan-it.com/lesson-plans.html",
+          source: "Preschool Plan-It"
+        },
+        {
+          title: "Creative Curriculum – Planning Tools",
+          description: "Ideas and frameworks for intentional, play-based lesson planning aligned with developmental goals.",
+          link: "https://teachingstrategies.com/product-resources/creative-curriculum/",
+          source: "Teaching Strategies (free resources section)"
+        },
+        {
+          title: "Lesson Planning for Infants & Toddlers",
+          description: "Examples of responsive, interest-based planning for younger children.",
+          link: "https://www.zerotothree.org/resources/series/lesson-planning-for-infants-and-toddlers",
+          source: "ZERO TO THREE"
+        }
+      ]
+    },
+
+    "activity-guides": {
+      title: "Activity Guides Resources",
+      items: [
+        {
+          title: "HiMama Activity Library",
+          description: "Hundreds of free, searchable activity ideas categorized by domain and age group.",
+          link: "https://www.himama.com/learning/child-activities",
+          source: "HiMama"
+        },
+        {
+          title: "Pre-K Printable Fun Activities",
+          description: "Free themed activities, crafts, and games with step-by-step instructions.",
+          link: "https://www.prekprintablefun.com/",
+          source: "Pre-K Printable Fun"
+        },
+        {
+          title: "NAEYC Activity Ideas",
+          description: "Play-based learning activities that support all areas of development.",
+          link: "https://www.naeyc.org/resources/topics/play/activities",
+          source: "NAEYC"
+        }
+      ]
+    },
+
+    "behavior-strategies": {
+      title: "Behavior Strategies Resources",
+      items: [
+        {
+          title: "Positive Guidance Techniques",
+          description: "Practical strategies for responding to challenging behavior with empathy and teaching.",
+          link: "https://www.naeyc.org/resources/pubs/yc/jul2020/positive-guidance-techniques",
+          source: "NAEYC"
+        },
+        {
+          title: "CSEFEL – Center on the Social and Emotional Foundations for Early Learning",
+          description: "Free modules, tools, and visuals for teaching social-emotional skills and managing behavior.",
+          link: "http://csefel.vanderbilt.edu/",
+          source: "Vanderbilt University"
+        },
+        {
+          title: "Pyramid Model Resources",
+          description: "Evidence-based practices for promoting social-emotional competence and preventing challenging behavior.",
+          link: "https://challengingbehavior.org/",
+          source: "Center on Social and Emotional Foundations for Early Learning"
+        }
+      ]
+    },
+
+    "professional-growth": {
+      title: "Professional Growth Resources",
+      items: [
+        {
+          title: "NAEYC Professional Development Webinars",
+          description: "Free and low-cost webinars and recorded sessions on best practices in early childhood.",
+          link: "https://www.naeyc.org/events/trainings-webinars",
+          source: "NAEYC"
+        },
+        {
+          title: "ChildCare Education Institute Free Trial Courses",
+          description: "Access to sample courses and free clock hours for professional development.",
+          link: "https://www.cceionline.com/free-trial",
+          source: "ChildCare Education Institute"
+        },
+        {
+          title: "Zero to Three Professional Development",
+          description: "Free webinars, articles, and tools focused on infant/toddler care and leadership.",
+          link: "https://www.zerotothree.org/resources/professional-development",
+          source: "ZERO TO THREE"
+        }
+      ]
+    },
+
+    "licensing-requirements": {
+      title: "Licensing Requirements Resources",
+      items: [
+        {
+          title: "California Child Care Licensing – Provider Resources",
+          description: "Official manuals, forms, regulations, and orientation materials for licensed providers.",
+          link: "https://www.cdss.ca.gov/inforesources/child-care-licensing/resources-for-providers",
+          source: "California Department of Social Services (CDSS)"
+        },
+        {
+          title: "Community Care Licensing Division Videos",
+          description: "Free video series explaining key licensing rules and compliance topics.",
+          link: "https://ccld.childcarevideos.org/",
+          source: "CDSS Community Care Licensing"
+        },
+        {
+          title: "How to Become a Licensed Family Child Care Provider",
+          description: "Step-by-step guide including required training, inspections, and application process.",
+          link: "https://www.cdss.ca.gov/inforesources/child-care-licensing/becoming-a-licensed-provider",
+          source: "California Department of Social Services"
+        }
+      ]
     }
-  ];
+  };
 
-  return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
-            Local Community Services
+  const category = trainingData[selectedTraining];
+
+  if (!category) {
+    return (
+      <div ref={ref} className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-6 lg:px-20 text-center">
+          <h2 className="font-['Poppins'] text-[#232e43] text-3xl mb-4">
+            {selectedTraining?.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'Training'}
           </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-xl">
-            Vetted professionals and services in your area
+          <p className="font-['Poppins'] text-[#1e7872] text-lg">
+            Resources coming soon! Contact us with suggestions.
           </p>
-        </motion.div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} index={index} />
-          ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-function ServiceCard({ title, description, count, index }: {
-  title: string;
-  description: string;
-  count: string;
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-[#f5edda] rounded-2xl p-6 text-center"
-    >
-      <div className="bg-[rgba(20,148,150,0.1)] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-        <LocationIcon />
-      </div>
-      <h3 className="font-['Poppins'] text-[#232e43] text-lg mb-2">
-        {title}
-      </h3>
-      <p className="font-['Poppins'] text-[#1e7872] text-sm mb-3">
-        {description}
-      </p>
-      <p className="font-['Poppins'] text-[#149496] text-sm">{count}</p>
-    </motion.div>
-  );
-}
-
-// ============================================================================
-// HEALTH & SAFETY RESOURCES
-// ============================================================================
-function HealthAndSafety() {
-  const resources = [
-    {
-      title: 'Vaccination Schedule',
-      count: '1 resource'
-    },
-    {
-      title: 'Illness Guidelines',
-      count: '3 resources'
-    },
-    {
-      title: 'Emergency Prep',
-      count: '5 resources'
-    },
-    {
-      title: 'Nutrition Guides',
-      count: '7 resources'
-    },
-    {
-      title: 'Car Seat Safety',
-      count: '4 resources'
-    },
-    {
-      title: 'Poison Control',
-      count: '2 resources'
-    }
-  ];
+    );
+  }
 
   return (
-    <section className="bg-[#f5edda] py-16 lg:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        {/* Header */}
-        <motion.div
+    <div ref={ref} className="py-16 bg-[#f5edda]">
+      <div className="max-w-3xl mx-auto px-6 lg:px-20">
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          className="font-['Poppins'] text-[#232e43] text-3xl lg:text-4xl mb-8 text-center"
         >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
-            Health & Safety Resources
-          </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-xl">
-            Essential health and safety information for families
-          </p>
-        </motion.div>
+          {category.title}
+        </motion.h2>
 
-        {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {resources.map((resource, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
-              className="bg-white rounded-2xl p-4 text-center hover:shadow-md transition-shadow cursor-pointer"
-            >
-              <h3 className="font-['Poppins'] text-[#232e43] mb-2">
-                {resource.title}
-              </h3>
-              <p className="font-['Poppins'] text-[#149496] text-sm">{resource.count}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Important Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 bg-[#e5795b] rounded-2xl p-8 text-center text-white"
-        >
-          <p className="font-['Poppins'] text-lg">
-            🚨 In case of emergency, always call 911 first. These resources are for information only.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// WELLNESS & BALANCE RESOURCES
-// ============================================================================
-function WellnessAndBalance() {
-  return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px]"
-          >
-            <img 
-              src={wellnessImage} 
-              alt="Wellness & Balance" 
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          {/* Right - Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-6">
-              Wellness & Balance Resources
-            </h2>
-            <p className="font-['Poppins'] text-[#1e7872] text-lg leading-relaxed mb-6">
-              Parenting is a journey that requires care for yourself, too. We&apos;ve compiled resources to support your mental health, stress management, and overall family wellness.
-            </p>
-
-            <ul className="space-y-4 mb-8">
-              {[
-                'Self-care strategies for parents',
-                'Work-life balance tips',
-                'Stress management techniques',
-                'Mindfulness and meditation',
-                'Family wellness activities',
-                'Sleep hygiene for all ages'
-              ].map((item, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="flex items-start gap-3"
-                >
-                  <div className="w-6 h-6 bg-[#149496] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="font-['Poppins'] text-[#232e43]">{item}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#149496] text-white px-8 py-3 rounded-full font-['Poppins'] uppercase tracking-wider hover:bg-[#1e7872] transition-colors"
-            >
-              Explore Wellness Resources
-            </motion.button>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// DOWNLOADS & FORMS
-// ============================================================================
-function DownloadsAndForms() {
-  const documents = [
-    {
-      icon: 'document',
-      title: 'Parent Handbook',
-      description: 'Complete guide to our policies, procedures, and programs',
-      size: '2.4 MB'
-    },
-    {
-      icon: 'clipboard',
-      title: 'Enrollment Forms',
-      description: 'Required paperwork for new family enrollment',
-      size: '1.8 MB'
-    },
-    {
-      icon: 'shield',
-      title: 'Safety Checklists',
-      description: 'Home and outdoor safety guidelines for families',
-      size: '850 KB'
-    },
-    {
-      icon: 'calendar',
-      title: 'Activity Calendars',
-      description: 'Monthly themes, events, and learning activities',
-      size: '1.2 MB'
-    },
-    {
-      icon: 'chart',
-      title: 'Behavior Charts',
-      description: 'Positive behavior tracking tools for home use',
-      size: '650 KB'
-    },
-    {
-      icon: 'report',
-      title: 'Daily Report Templates',
-      description: 'Track meals, naps, activities, and milestones',
-      size: '720 KB'
-    },
-    {
-      icon: 'phone',
-      title: 'Emergency Contact Sheets',
-      description: 'Keep important contact information organized',
-      size: '450 KB'
-    },
-    {
-      icon: 'medical',
-      title: 'Medical Forms',
-      description: 'Medication authorization and health information forms',
-      size: '980 KB'
-    }
-  ];
-
-  return (
-    <section className="bg-[#f5edda] py-16 lg:py-24 relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
-            Downloads & Forms
-          </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-xl">
-            Important documents and forms for families and staff
-          </p>
-        </motion.div>
-
-        {/* Documents Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {documents.map((doc, index) => (
-            <DownloadCard key={index} {...doc} index={index} />
-          ))}
-        </div>
-
-        {/* Help Text */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-['Poppins'] text-[#1e7872] text-center mt-12"
-        >
-          All forms are available in PDF format. Need help filling them out?{' '}
-          <a href="#contact" className="text-[#149496] underline hover:text-[#1e7872]">
-            Contact us
-          </a>
-        </motion.p>
-      </div>
-
-      {/* Decorative Globe Icon */}
-      <div className="absolute top-12 left-12 w-32 h-32 opacity-20">
-        <GlobeIcon />
-      </div>
-
-      {/* Decorative Folder Icon */}
-      <div className="absolute bottom-12 right-12 w-32 h-32 opacity-20">
-        <FolderIcon />
-      </div>
-    </section>
-  );
-}
-
-function DownloadCard({ icon, title, description, size, index }: {
-  icon: string;
-  title: string;
-  description: string;
-  size: string;
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-      className="bg-white rounded-2xl p-6 hover:shadow-xl transition-shadow cursor-pointer relative"
-    >
-      {/* Icon & Download Button */}
-      <div className="flex items-start justify-between mb-6">
-        <div className="bg-[rgba(20,148,150,0.1)] w-14 h-14 rounded-2xl flex items-center justify-center">
-          {icon === 'document' && <DocumentIconDownload />}
-          {icon === 'clipboard' && <ClipboardIcon />}
-          {icon === 'shield' && <ShieldIcon />}
-          {icon === 'calendar' && <CalendarIconDownload />}
-          {icon === 'chart' && <ChartIconDownload />}
-          {icon === 'report' && <ReportIcon />}
-          {icon === 'phone' && <PhoneIconDownload />}
-          {icon === 'medical' && <MedicalIconDownload />}
-        </div>
-        <div className="text-[#c49a3a]">
-          <DownloadIconSmall />
-        </div>
-      </div>
-
-      {/* Title */}
-      <h3 className="font-['Poppins'] text-[#232e43] text-xl mb-2">
-        {title}
-      </h3>
-
-      {/* Description */}
-      <p className="font-['Poppins'] text-[#1e7872] text-sm leading-[22.75px] mb-4">
-        {description}
-      </p>
-
-      {/* File Size */}
-      <p className="font-['Poppins'] text-[rgba(20,148,150,0.7)] text-xs">
-        {size}
-      </p>
-    </motion.div>
-  );
-}
-
-// ============================================================================
-// NEED HELP FINDING RESOURCES
-// ============================================================================
-function NeedHelpFindingResources() {
-  const [selectedRole, setSelectedRole] = useState('');
-
-  return (
-    <section className="bg-white py-16 lg:py-24 relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="font-['Poppins'] text-[#232e43] text-4xl lg:text-[40px] lg:leading-[52px] mb-4">
-            Need Help Finding Resources?
-          </h2>
-          <p className="font-['Poppins'] text-[#1e7872] text-xl">
-            Our team is here to connect you with the information you need
-          </p>
-        </motion.div>
-
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto bg-[#f5edda] rounded-3xl shadow-xl p-8 lg:p-12 mb-12"
-        >
-          <form className="space-y-6">
-            {/* Name */}
-            <div>
-              <label className="block font-['Poppins'] text-[#232e43] mb-2">Your Name *</label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                  <UserIconContact />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full bg-white border-2 border-white rounded-2xl pl-12 pr-4 py-3 font-['Poppins'] text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:ring-2 focus:ring-[#149496]"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block font-['Poppins'] text-[#232e43] mb-2">Email Address *</label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                  <EmailIconContact />
-                </div>
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="w-full bg-white border-2 border-white rounded-2xl pl-12 pr-4 py-3 font-['Poppins'] text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:ring-2 focus:ring-[#149496]"
-                />
-              </div>
-            </div>
-
-            {/* Role Dropdown */}
-            <div>
-              <label className="block font-['Poppins'] text-[#232e43] mb-2">Who are you seeking resources for? *</label>
-              <select
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-                className="w-full bg-white border-2 border-white rounded-2xl px-4 py-3 font-['Poppins'] text-[#232e43] focus:outline-none focus:ring-2 focus:ring-[#149496] appearance-none cursor-pointer"
-                style={{ color: selectedRole ? '#232e43' : 'rgba(35,46,67,0.5)' }}
-              >
-                <option value="" disabled>Select an option</option>
-                <option value="parent">Parent / Guardian</option>
-                <option value="educator">Educator / Staff</option>
-                <option value="intern">Intern / Student</option>
-                <option value="partner">Community Partner</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block font-['Poppins'] text-[#232e43] mb-2">How can we help? *</label>
-              <div className="relative">
-                <div className="absolute left-4 top-4">
-                  <MessageIconContact />
-                </div>
-                <textarea
-                  rows={4}
-                  placeholder="Tell us what resources or information you're looking for..."
-                  className="w-full bg-white border-2 border-white rounded-2xl pl-12 pr-4 py-3 font-['Poppins'] text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:ring-2 focus:ring-[#149496] resize-none"
-                ></textarea>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <motion.button
-              type="submit"
+        <div className="space-y-6">
+          {category.items.map((res, idx) => (
+            <motion.a
+              key={idx}
+              href={res.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-[#149496] text-white px-8 py-4 rounded-2xl font-['Poppins'] uppercase text-base tracking-wider shadow-lg hover:bg-[#1e7872] transition-colors"
+              className="block bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow"
             >
-              Send Message
-            </motion.button>
-          </form>
-        </motion.div>
-
-        {/* Newsletter Subscription */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto bg-gradient-to-b from-[#c49a3a] to-[#f6d33a] rounded-2xl shadow-xl p-8 text-center"
-        >
-          <h3 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-[28px] lg:leading-[39.2px] mb-4">
-            Get New Resources Every Month
-          </h3>
-          <p className="font-['Poppins'] text-[rgba(35,46,67,0.8)] mb-6">
-            Subscribe to our newsletter for curated resources, parenting tips, and community updates.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 bg-white border-2 border-white rounded-full px-4 py-3 font-['Poppins'] text-[#232e43] placeholder:text-[rgba(35,46,67,0.5)] focus:outline-none focus:ring-2 focus:ring-[#232e43]"
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#232e43] text-white px-6 py-3 rounded-full font-['Poppins'] hover:bg-[#1a2332] transition-colors whitespace-nowrap"
-            >
-              Subscribe
-            </motion.button>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Decorative Location Pin Icon */}
-      <div className="absolute top-12 right-12 w-64 h-64 opacity-30 pointer-events-none hidden lg:block" style={{ transform: 'rotate(350deg)' }}>
-        <LocationPinIcon />
-      </div>
-
-      {/* Decorative Paper Airplane Icon */}
-      <div className="absolute bottom-12 left-12 w-64 h-64 opacity-30 pointer-events-none hidden lg:block" style={{ transform: 'rotate(342deg)' }}>
-        <PaperAirplaneIcon />
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// FOOTER
-// ============================================================================
-function Footer() {
-  return (
-    <footer className="bg-[#232e43] py-12 lg:py-16">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <img src={logoImage} alt="Village Values" className="h-12 w-auto mb-4" />
-            <p className="font-['Poppins'] text-white/70 text-sm">
-              Nurturing young minds in a safe and caring environment.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="/" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Home</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Programs</a></li>
-              <li><a href="#about" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">About</a></li>
-              <li><a href="#enroll" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Enroll</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#resources" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Parent Resources</a></li>
-              <li><a href="#resources" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Health & Safety</a></li>
-              <li><a href="#resources" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Community Services</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="font-['Poppins'] text-white/70 text-sm">123 Main Street</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">Anytown, ST 12345</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">(555) 123-4567</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">info@villagevalues.com</li>
-            </ul>
-          </div>
+              <h3 className="font-['Poppins'] text-[#232e43] text-xl mb-2">
+                {res.title}
+              </h3>
+              <p className="font-['Poppins'] text-[#1e7872] text-sm mb-3 leading-relaxed">
+                {res.description}
+              </p>
+              <p className="text-xs text-[#149496] italic">
+                Source: {res.source}
+              </p>
+            </motion.a>
+          ))}
         </div>
 
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-['Poppins'] text-white/60 text-sm text-center md:text-left">
-            © 2024 Village Values Daycare. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <FacebookIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <InstagramIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <TwitterIconSmall />
-            </a>
-          </div>
-        </div>
+        <motion.button
+          onClick={() => setSelectedTraining(null)}
+          whileHover={{ scale: 1.05 }}
+          className="mt-12 mx-auto block bg-[#149496] text-white px-8 py-3 rounded-full font-['Poppins'] text-base hover:bg-[#1e7872] transition-colors">
+          Back to Trainings
+        </motion.button>
       </div>
-    </footer>
-  );
-}
-
-// ============================================================================
-// DECORATIVE VECTORS (All at 50% opacity)
-// ============================================================================
-function DecorativeVectorHouse({ className }: { className?: string }) {
-  return (
-    <div className={className}>
-      <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
-        <g opacity="0.5">
-          <path d={svgPaths.p2f98fdf0} fill="#E5795B" />
-          <path d={svgPaths.p14f1c380} fill="#E5795B" />
-          <path d={svgPaths.p244d6640} fill="#E5795B" />
-          <path d={svgPaths.p327f8e00} fill="#E5795B" />
-        </g>
-      </svg>
     </div>
   );
-}
-
-function DecorativeVectorTree({ className }: { className?: string }) {
-  return (
-    <div className={className}>
-      <svg className="w-full h-full" fill="none" viewBox="0 0 310 303">
-        <g opacity="0.5">
-          <path d={svgPaths.p3c08cf00} fill="#149496" />
-          <path d={svgPaths.p20c6d400} fill="#149496" />
-          <path d={svgPaths.pd699f00} fill="#149496" />
-          <path d={svgPaths.p1e015c00} fill="#149496" />
-          <path d={svgPaths.pb2a9280} fill="#149496" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function DecorativeVectorGrass({ className }: { className?: string }) {
-  return (
-    <div className={className}>
-      <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
-        <g opacity="0.5">
-          <path d={svgPaths.p15f51900} fill="#1E7872" />
-          <path d={svgPaths.p2b360600} fill="#1E7872" />
-          <path d={svgPaths.p3b3d4d00} fill="#1E7872" />
-          <path d={svgPaths.p2eb2a780} fill="#1E7872" />
-          <path d={svgPaths.p171c380} fill="#1E7872" />
-          <path d={svgPaths.p1030c600} fill="#1E7872" />
-          <path d={svgPaths.p26c23280} fill="#1E7872" />
-        </g>
-      </svg>
-    </div>
-  );
-}
+});
 
 // ============================================================================
-// ICONS
+// ICON COMPONENTS
 // ============================================================================
-function SearchIcon() {
+function HouseIcon() {
   return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24">
-      <path d="M21 21L16.66 16.66" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-      <path d={svgPaths.p19568f00} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
+      <g opacity="0.3">
+        <path d={svgPathsHero.p2f98fdf0} fill="#E5795B" />
+        <path d={svgPathsHero.p14f1c380} fill="#E5795B" />
+        <path d={svgPathsHero.p244d6640} fill="#E5795B" />
+        <path d={svgPathsHero.p327f8e00} fill="#E5795B" />
+      </g>
     </svg>
   );
 }
 
-function ChildIcon() {
+function TreeIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p12922f00} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d="M20 16H20.0133" stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.p2b75c580} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d="M12 16H12.0133" stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
+    <svg className="w-full h-full" fill="none" viewBox="0 0 310 303">
+      <g opacity="0.3">
+        <path d={svgPathsHero.p3c08cf00} fill="#149496" />
+        <path d={svgPathsHero.p20c6d400} fill="#149496" />
+        <path d={svgPathsHero.pd699f00} fill="#149496" />
+        <path d={svgPathsHero.p1e015c00} fill="#149496" />
+        <path d={svgPathsHero.pb2a9280} fill="#149496" />
+      </g>
     </svg>
   );
 }
 
-function GroupIcon() {
+function GrassIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p9921600} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
+    <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
+      <g>
+        <path d={svgPathsHero.p15f51900} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p2b360600} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p3b3d4d00} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p2eb2a780} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p171c380} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p1030c600} fill="#1E7872" opacity="0.3" />
+        <path d={svgPathsHero.p26c23280} fill="#1E7872" opacity="0.3" />
+      </g>
     </svg>
   );
 }
 
-function HealthIconSmall() {
+function BookOpenIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p186c1a00} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p308d0700} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p9921600} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p186c1a00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function UsersIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p2ee517c0} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p27a3200} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p16bbf900} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p8d31b00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10.6667 2.66667V8" stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M21.3333 2.66667V8" stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 13.3333H28" stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function SchoolIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p17d8f380} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6.66667 18.6667V13.3333L16 8L25.3333 13.3333V18.6667" stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p2b75c580} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p308d0700} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function BrainIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.p2d575c00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.pa476500} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p15c192c0} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p13a8aa80} fill="#149496" />
+      <path d={svgPathsResources.p3c1b880} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function SparklesIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 32 32">
+      <path d={svgPathsResources.pbbd9800} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.pecb2400} fill="#149496" />
+      <path d={svgPathsResources.pf6f00} stroke="#149496" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CoffeeIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function AppleIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function UtensilsIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function MusicIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PaletteIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsResources.p186c1a00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p10890b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsResources.p12922f00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Education Section Icons
+function ClassroomIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsEducation.p184ba090} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p182f3148} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p2f1426c0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p5d36b00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function EarlyChildhoodIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d="M14 21V5.83333" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p3536b5c0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.pf30d500} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p1baaa40} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p3fb109e0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.pcb4cbe0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p3edc4ae0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p13ba1050} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 function SafetyIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.pae2ff80} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsEducation.p1a3063b0} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function LessonPlanIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsEducation.p35802300} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p2c7af00} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M14 12.8333H18.6667" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M14 18.6667H18.6667" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.33333 12.8333H9.345" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.33333 18.6667H9.345" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ActivityIcon() {
+  return (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsEducation.p294c6200} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10.5 21H17.5" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11.6667 25.6667H16.3333" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 function BehaviorIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p194b3700} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+      <path d={svgPathsEducation.p25e06300} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function ActivitiesIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p1b4f5d00} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-    </svg>
-  );
-}
-
-function ReadingIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d="M16 9.33333V28" stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.p308d0700} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-    </svg>
-  );
-}
-
-function MentalHealthIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.pbbd9800} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d="M26.6667 2.66667V8" stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d="M29.3333 5.33333H24" stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.pecb2400} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-    </svg>
-  );
-}
-
-function SpecialNeedsIcon() {
-  return (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32">
-      <path d={svgPaths.p13a8aa80} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.pf6f00} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.p17d8f380} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.p3b88f000} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-      <path d={svgPaths.p3c98a360} stroke="#149496" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.66667" />
-    </svg>
-  );
-}
-
-function ChartIcon() {
+function ProfessionalGrowthIcon() {
   return (
     <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d={svgPaths.p184ba090} stroke="#C49A3A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.33333" />
-      <path d={svgPaths.p182f3148} stroke="#C49A3A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.33333" />
-      <path d={svgPaths.p2f1426c0} stroke="#C49A3A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.33333" />
-      <path d={svgPaths.p5d36b00} stroke="#C49A3A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.33333" />
+      <path d={svgPathsEducation.p275e0300} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p3997a780} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function LocationIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function FacebookIconSmall() {
-  return (
-    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-    </svg>
-  );
-}
-
-function InstagramIconSmall() {
-  return (
-    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-    </svg>
-  );
-}
-
-function TwitterIconSmall() {
-  return (
-    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-    </svg>
-  );
-}
-
-function DocumentIconDownload() {
+function LicensingIcon() {
   return (
     <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M17.5 2.33333H7C5.52724 2.33333 4.33333 3.52724 4.33333 5V23C4.33333 24.4728 5.52724 25.6667 7 25.6667H21C22.4728 25.6667 23.6667 24.4728 23.6667 23V8.5M17.5 2.33333L23.6667 8.5M17.5 2.33333V8.5H23.6667M9.33333 10.5H11.6667M18.6667 15.1667H9.33333M18.6667 19.8333H9.33333" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p38e02680} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPathsEducation.p394f8700} stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11.6667 10.5H9.33333" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M18.6667 15.1667H9.33333" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M18.6667 19.8333H9.33333" stroke="#C49A3A" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function ClipboardIcon() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M18.6667 4.66667H21C22.4728 4.66667 23.6667 5.86057 23.6667 7.33333V23.3333C23.6667 24.8061 22.4728 26 21 26H7C5.52724 26 4.33333 24.8061 4.33333 23.3333V7.33333C4.33333 5.86057 5.52724 4.66667 7 4.66667H9.33333M11.6667 2.33333H16.3333C17.0697 2.33333 17.6667 2.9303 17.6667 3.66667V5.66667C17.6667 6.40305 17.0697 7 16.3333 7H11.6667C10.9303 7 10.3333 6.40305 10.3333 5.66667V3.66667C10.3333 2.9303 10.9303 2.33333 11.6667 2.33333Z" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ShieldIcon() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M14 25.6667C14 25.6667 23.3333 21 23.3333 14V5.83333L14 2.33333L4.66667 5.83333V14C4.66667 21 14 25.6667 14 25.6667Z" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function CalendarIconDownload() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M9.33333 2.33333V7M18.6667 2.33333V7M3.5 11.6667H24.5M6.33333 4.66667H21.6667C23.1394 4.66667 24.3333 5.86057 24.3333 7.33333V22.6667C24.3333 24.1394 23.1394 25.3333 21.6667 25.3333H6.33333C4.86057 25.3333 3.66667 24.1394 3.66667 22.6667V7.33333C3.66667 5.86057 4.86057 4.66667 6.33333 4.66667Z" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ChartIconDownload() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M14 23.3333V11.6667M21 23.3333V4.66667M7 23.3333V18.6667" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ReportIcon() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M4.66667 14L11.6667 21L23.3333 7" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function PhoneIconDownload() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M25.6667 19.8333V23.3333C25.6667 24.8061 24.4728 26 22.9999 26C10.297 26 0 15.703 0 3C0 1.52724 1.19391 0.333333 2.66667 0.333333H6.16667C7.63943 0.333333 8.83333 1.52724 8.83333 3V6.5C8.83333 7.97276 7.63943 9.16667 6.16667 9.16667H4.66667C4.66667 15.6155 9.88449 20.8333 16.3333 20.8333V19.3333C16.3333 17.8606 17.5272 16.6667 19 16.6667H22.5C23.9728 16.6667 25.1667 17.8606 25.1667 19.3333" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function MedicalIconDownload() {
-  return (
-    <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-      <path d="M4.66667 14C4.66667 19.1547 8.8453 23.3333 14 23.3333C19.1547 23.3333 23.3333 19.1547 23.3333 14C23.3333 8.8453 19.1547 4.66667 14 4.66667C8.8453 4.66667 4.66667 8.8453 4.66667 14ZM14 9.33333V18.6667M9.33333 14H18.6667" stroke="#149496" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function DownloadIconSmall() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 20 20">
-      <path d="M0.833333 10.8333V0.833333M0.833333 10.8333L4.16667 7.5M0.833333 10.8333L-2.5 7.5" stroke="#C49A3A" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" transform="translate(10 4)" />
-      <path d="M2.5 13.3333L2.5 14.1667C2.5 15.5474 3.61929 16.6667 5 16.6667L15 16.6667C16.3807 16.6667 17.5 15.5474 17.5 14.1667L17.5 13.3333" stroke="#C49A3A" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function GlobeIcon() {
-  return (
-    <svg className="w-full h-full" fill="none" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" stroke="#149496" strokeWidth="3" opacity="0.5" />
-      <path d="M50 10 Q70 50 50 90 Q30 50 50 10" stroke="#149496" strokeWidth="2" fill="none" opacity="0.5" />
-      <path d="M50 10 Q30 50 50 90 Q70 50 50 10" stroke="#149496" strokeWidth="2" fill="none" opacity="0.5" />
-      <line x1="10" y1="50" x2="90" y2="50" stroke="#149496" strokeWidth="2" opacity="0.5" />
-      <line x1="50" y1="10" x2="50" y2="90" stroke="#149496" strokeWidth="2" opacity="0.5" />
-    </svg>
-  );
-}
-
-function FolderIcon() {
-  return (
-    <svg className="w-full h-full" fill="none" viewBox="0 0 100 100">
-      <path d="M10 20 L40 20 L50 30 L90 30 L90 80 L10 80 Z" stroke="#C49A3A" strokeWidth="3" fill="none" opacity="0.5" />
-      <path d="M10 30 L90 30" stroke="#C49A3A" strokeWidth="2" opacity="0.5" />
-    </svg>
-  );
-}
-
-function UserIconContact() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 20 20">
-      <path d="M15.8333 17.5V15.8333C15.8333 14.9493 15.4821 14.1014 14.857 13.4763C14.2319 12.8512 13.3841 12.5 12.5 12.5H7.5C6.61594 12.5 5.7681 12.8512 5.14298 13.4763C4.51786 14.1014 4.16667 14.9493 4.16667 15.8333V17.5" stroke="#1E7872" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={svgPathsContact.p32ab0300} stroke="#1E7872" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function EmailIconContact() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 20 20">
-      <path d={svgPathsContact.pd919a80} stroke="#1E7872" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={svgPathsContact.p24d83580} stroke="#1E7872" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function MessageIconContact() {
-  return (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 20 20">
-      <path d={svgPathsContact.p12dcd500} stroke="#1E7872" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LocationPinIcon() {
+// Decorative Icons
+function BeeDecorIcon() {
   return (
     <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
-      <path d={svgPathsContact.p330d0e80} fill="#149496" opacity="0.3" />
-      <path d={svgPathsContact.p5247f00} fill="#149496" opacity="0.3" />
+      <path d={svgPathsEducation.p3b491b80} fill="#C49A3A" opacity="0.3" />
     </svg>
   );
 }
 
-function PaperAirplaneIcon() {
+function AppleDecorIcon() {
+  return (
+    <svg className="w-full h-full" fill="none" viewBox="0 0 180 197">
+      <path d={svgPathsEducation.p3c515872} fill="#E5795B" opacity="0.3" />
+    </svg>
+  );
+}
+
+function StarDecorIcon() {
   return (
     <svg className="w-full h-full" fill="none" viewBox="0 0 252 252">
-      <path d={svgPathsContact.p1756200} fill="#C49A3A" opacity="0.3" />
+      <path d={svgPathsEducation.p52c5200} fill="#149496" opacity="0.3" />
     </svg>
   );
 }

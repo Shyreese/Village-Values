@@ -24,33 +24,33 @@ export function AboutPage() {
     <div className="min-h-screen bg-[#f5edda] overflow-x-hidden">
       {/* Header */}
       <Header />
-      
+
       {/* Hero Section */}
       <HeroSection />
-      
+
       {/* Mission Statement */}
       <MissionSection />
-      
+
       {/* Our Story */}
       <OurStory />
-      
+
       {/* Our Environments */}
       <OurEnvironments />
-      
+
       {/* Meet Our Team */}
       <MeetOurTeam />
-      
+
       {/* Stay Connected */}
       <StayConnected />
-      
+
       {/* Book a Visit */}
       <BookAVisit />
-      
+
       {/* Footer */}
       <Footer />
-      
+
       {/* Bottom Navigation Bar */}
-      <BottomNavBar 
+      <BottomNavBar
         sections={[
           { id: 'story', label: 'Our Story' },
           { id: 'environments', label: 'Environments' },
@@ -71,8 +71,8 @@ function Header() {
     <header className="bg-[#f5edda] fixed top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-5 flex items-center justify-between">
         {/* Logo & Title - Clickable to go home */}
-        <a 
-          href="/" 
+        <a
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             window.location.hash = '';
@@ -80,10 +80,10 @@ function Header() {
           }}
           className="cursor-pointer shrink-0 flex items-center gap-3"
         >
-          <img 
-            src={logoImage} 
-            alt="Village Values" 
-            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity" 
+          <img
+            src={logoImage}
+            alt="Village Values"
+            className="h-12 w-12 rounded-full object-cover hover:opacity-80 transition-opacity"
           />
           <h1 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl hidden sm:block">
             Village Values
@@ -102,14 +102,15 @@ function Header() {
         </div>
 
         {/* Book a Visit Button */}
-        <motion.a
-          href="#contact"
+        <motion.button
+          type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors"
+          onClick={() => window.open('https://calendly.com/villagevalues-info/30min?month=2026-02', '_blank')}
+          className="bg-[#149496] text-white px-6 py-2.5 rounded-full font-['Poppins'] text-base tracking-wider uppercase hover:bg-[#1e7872] transition-colors cursor-pointer"
         >
           Book a Visit
-        </motion.a>
+        </motion.button>
       </div>
     </header>
   );
@@ -351,13 +352,13 @@ function MeetOurTeam() {
       safetyTraining: '[CPR, First Aid, background cleared]',
       caringStyle: '[What parents can expect from them - caring style]',
       personalFact: '[Hobby or fun fact]',*/
-      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1767236883/Shyreese_ri4wu4.png', 
+      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1767236883/Shyreese_ri4wu4.png',
     },
     {
       name: 'Paskael Tyiska',
       role: 'Co-Founder | Community & Mentorship',
-      credentials:'Community Partnership Development, Internship Program Director, Facility & Safety Operations',
-      whyChildcare:'My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.',
+      credentials: 'Community Partnership Development, Internship Program Director, Facility & Safety Operations',
+      whyChildcare: 'My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.',
       /* yearsExperience: '[Years working with children]',
       credentials: '[Credentials or licenses]',
       education: '[Education or certifications]',
@@ -366,85 +367,85 @@ function MeetOurTeam() {
       safetyTraining: '[CPR, First Aid, background cleared]',
       caringStyle: '[What parents can expect from them - caring style]',
       personalFact: '[Hobby or fun fact]',*/
-      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1769130751/Screenshot_2026-01-22_181153_fvcgwv.png', 
+      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1769130751/Screenshot_2026-01-22_181153_fvcgwv.png',
     },
   ];
- /* //Team members to be displayed
-  const team = [
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-    {
-      name: '[Name]',
-      role: 'Intern',
-      school: '[School and degree]',
-      whyEarlyEducation: '[Why do you support early childhood education]',
-      contribution: '[How do you contribute to this program or mission]',
-      excitement: '[What excites you about helping families and this community]',
-      image: null,
-    },
-  ];
- */
+  /* //Team members to be displayed
+   const team = [
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+     {
+       name: '[Name]',
+       role: 'Intern',
+       school: '[School and degree]',
+       whyEarlyEducation: '[Why do you support early childhood education]',
+       contribution: '[How do you contribute to this program or mission]',
+       excitement: '[What excites you about helping families and this community]',
+       image: null,
+     },
+   ];
+  */
   return (
     <section id="team" className="relative overflow-hidden bg-[#f5edda] py-16 lg:py-24">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
@@ -536,7 +537,7 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
       >
         {/* Profile Picture */}
         <motion.div
-          animate={{ 
+          animate={{
             width: isExpanded ? 160 : 96,
             height: isExpanded ? 160 : 96
           }}
@@ -545,13 +546,13 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
         >
           {image && <img src={image} alt={name} className="w-full h-full object-cover" />}
         </motion.div>
-        
+
         {/* Name and Role */}
         <div className="text-center mb-4 pb-4 border-b border-gray-200">
           <h3 className="font-['Poppins'] text-[#232e43] text-xl lg:text-2xl mb-1">{name}</h3>
           <p className="font-['Poppins'] text-[#149496] text-sm">{role}</p>
         </div>
-        
+
         {/* Always Visible Info */}
         <div className="space-y-3 text-left">
           {yearsExperience && (
@@ -560,7 +561,7 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
               <p className="font-['Poppins'] text-[#1e7872] text-xs">{yearsExperience}</p>
             </div>
           )}
-          
+
           {credentials && (
             <div>
               <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Credentials/Licenses:</p>
@@ -572,7 +573,7 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
         {/* Expandable Content */}
         <motion.div
           initial={false}
-          animate={{ 
+          animate={{
             height: isExpanded ? 'auto' : 0,
             opacity: isExpanded ? 1 : 0,
             marginTop: isExpanded ? 16 : 0
@@ -587,35 +588,35 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
                 <p className="font-['Poppins'] text-[#1e7872] text-xs">{education}</p>
               </div>
             )}
-            
+
             {ageGroups && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Age Groups:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs">{ageGroups}</p>
               </div>
             )}
-            
+
             {whyChildcare && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Why Childcare:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs italic">{whyChildcare}</p>
               </div>
             )}
-            
+
             {safetyTraining && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Safety Training:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs">{safetyTraining}</p>
               </div>
             )}
-            
+
             {caringStyle && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Caring Style:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs">{caringStyle}</p>
               </div>
             )}
-            
+
             {personalFact && (
               <div className="pt-3 border-t border-gray-200">
                 <p className="font-['Poppins'] text-[#1e7872] text-xs italic">{personalFact}</p>
@@ -670,7 +671,7 @@ function TeamCard({ name, role, image, index, school, whyEarlyEducation, contrib
       >
         {/* Profile Picture */}
         <motion.div
-          animate={{ 
+          animate={{
             width: isExpanded ? 120 : 80,
             height: isExpanded ? 120 : 80
           }}
@@ -679,7 +680,7 @@ function TeamCard({ name, role, image, index, school, whyEarlyEducation, contrib
         >
           {image && <img src={image} alt={name} className="w-full h-full object-cover" />}
         </motion.div>
-        
+
         {/* Name and Role */}
         <div className="text-center mb-3 pb-3 border-b border-gray-200">
           <h3 className="font-['Poppins'] text-[#232e43] text-base lg:text-lg mb-1">{name}</h3>
@@ -689,7 +690,7 @@ function TeamCard({ name, role, image, index, school, whyEarlyEducation, contrib
         {/* Expandable Content */}
         <motion.div
           initial={false}
-          animate={{ 
+          animate={{
             height: isExpanded ? 'auto' : 0,
             opacity: isExpanded ? 1 : 0,
             marginTop: isExpanded ? 12 : 0
@@ -704,21 +705,21 @@ function TeamCard({ name, role, image, index, school, whyEarlyEducation, contrib
                 <p className="font-['Poppins'] text-[#1e7872] text-xs">{school}</p>
               </div>
             )}
-            
+
             {whyEarlyEducation && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Why Early Childhood Education:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs italic">{whyEarlyEducation}</p>
               </div>
             )}
-            
+
             {contribution && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">Contribution:</p>
                 <p className="font-['Poppins'] text-[#1e7872] text-xs italic">{contribution}</p>
               </div>
             )}
-            
+
             {excitement && (
               <div>
                 <p className="font-['Poppins'] text-[#232e43] text-xs mb-1">What Excites Me:</p>
@@ -851,7 +852,7 @@ function BookAVisit() {
           <h3 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl mb-4">
             Schedule Your Visit on Brightwheel
           </h3>
-          
+
           <p className="font-['Poppins'] text-[#1e7872] text-base lg:text-lg mb-8 max-w-xl mx-auto">
             Come meet our team, see our facilities, and experience the Village Values difference firsthand. Use our Brightwheel portal to pick a time that works for your family!
           </p>
