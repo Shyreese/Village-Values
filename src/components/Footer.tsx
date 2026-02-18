@@ -143,7 +143,7 @@ export function Footer() {
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a 
-              href="#" 
+              href="https://www.facebook.com/profile.php?id=61577857693376&mibextid=wwXIfr" 
               className="w-10 h-10 bg-[rgba(255,255,255,0.1)] rounded-full flex items-center justify-center hover:bg-[rgba(255,255,255,0.2)] transition-colors"
               aria-label="Facebook"
             >
@@ -165,7 +165,7 @@ export function Footer() {
               </svg>
             </a>
             <a 
-              href="#" 
+              href="https://www.linkedin.com/company/villagevalues/" 
               className="w-10 h-10 bg-[rgba(255,255,255,0.1)] rounded-full flex items-center justify-center hover:bg-[rgba(255,255,255,0.2)] transition-colors"
               aria-label="LinkedIn"
             >

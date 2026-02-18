@@ -1,7 +1,7 @@
 
-  # Create Full Website Layout
+  #Village Values
 
-  This is a code bundle for Create Full Website Layout. The original project is available at https://www.figma.com/design/QQCOZxghfCqx6RlJrwBj1u/Create-Full-Website-Layout.
+The project design is available at https://www.figma.com/design/QQCOZxghfCqx6RlJrwBj1u/Create-Full-Website-Layout.
 
   ## Running the code
 
