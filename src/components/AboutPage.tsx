@@ -341,18 +341,16 @@ function MeetOurTeam() {
   const founders = [
     {
       name: 'Shyreese Tyiska',
-      role: 'Co-Founder | Director & Lead Educator',
-      credentials: 'Early Childhood Curriculum Design, Daily Educational Leadership, Family & Developmental Communication',
-      whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
-      /* yearsExperience: '[Years working with children]',
+      role: 'Co-Director | Lead Educator',
+      yearsExperience: 'Over 18 years',
       credentials: '[Credentials or licenses]',
-      education: '[Education or certifications]',
-      ageGroups: '[Age groups they specialize in]',
-      whyChildcare: '[Why they chose childcare - one line human reason]',
-      safetyTraining: '[CPR, First Aid, background cleared]',
-      caringStyle: '[What parents can expect from them - caring style]',
-      personalFact: '[Hobby or fun fact]',*/
-      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1767236883/Shyreese_ri4wu4.png',
+      education: 'Early Childhood Education coursework with the UCLA Extension program.',
+      ageGroups: '0-5 year olds',
+      whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
+      safetyTraining: 'CPR and First Aid certified from the American Heart Association ',
+      caringStyle: 'My approach blends safety, structure, creativity, and compassionate care to help every child thrive while giving families confidence and peace of mind.',
+      personalFact: '[Hobby or fun fact]',
+      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/v1771849412/Shyrees_VV_a3q0y9.jpg',
     },
     {
       name: 'Paskael Tyiska',
@@ -508,15 +506,15 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
   name: string;
   role: string;
   image: string | null;
-  //index: number;
-  //yearsExperience?: string;
+  index: number;
+  yearsExperience?: string;
   credentials?: string;
-  //education?: string;
-  //ageGroups?: string;
+  education?: string;
+  ageGroups?: string;
   whyChildcare?: string;
-  //safetyTraining?: string;
-  //caringStyle?: string;
-  //personalFact?: string;
+  safetyTraining?: string;
+  caringStyle?: string;
+  personalFact?: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
