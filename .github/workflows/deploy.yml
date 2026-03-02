@@ -2,7 +2,7 @@ name: Deploy Vite Site to Pages
 
 on:
   push:
-    branches: [main] # Trigger when you push to main
+    branches: [main]
 
 permissions:
   contents: read
@@ -23,10 +23,12 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        # Using 'ci' instead of 'install' is faster and cleaner for Actions
+        run: npm ci 
 
       - name: Build
-        run: npm run build
+        # npx ensures the local vite runner is used with correct permissions
+        run: npx vite build 
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -34,9 +36,15 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This must match your "outDir" in vite.config.ts
           path: './build' 
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps: deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
