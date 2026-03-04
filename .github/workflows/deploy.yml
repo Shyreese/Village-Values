@@ -23,27 +23,22 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # Using 'ci' instead of 'install' is faster and cleaner for Actions
-        run: npm ci 
+        run: npm ci
 
       - name: Build
-        # npx ensures the local vite runner is used with correct permissions
-        run: npx vite build 
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+        run: npx vite build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build' 
+          path: './build' # Must match your outDir
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
