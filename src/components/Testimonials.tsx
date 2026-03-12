@@ -5,31 +5,26 @@ import { useInView } from "./useInView";
 const testimonials = [
   {
     name: "Chanita D.",
-    location: "Antelope CA",
     stars: 5,
     text: "Village Values is awesome. My son was always happy leaving here and enjoying their park days. They helped with his math homework while I was at work. Super helpful and great daycare and my son loved the other kids.",
   },
   {
     name: "Andaeas W.",
-    location: "TX",
     stars: 5,
     text: "I can't say enough good things about this childcare service. The staff are so thoughtful patient and genuinely caring. They've created such a safe and loving environment for my four year old. Every day my child comes home happy learning new things and excited to go back. It's such a relief knowing they're in kind capable hands.",
   },
   {
     name: "Lucile J.",
-    location: "San Francisco CA",
     stars: 5,
     text: "I couldn't find drop in childcare anywhere until I found Village Values. From structured play to meals included my grandson had an amazing time and came home happy tired and already asking to go back. Village Values truly lives up to its name.",
   },
   {
     name: "Kristina P.",
-    location: "Redding CA",
     stars: 5,
     text: "Village Values is exceptional as it relates to child safety skill development business operations and being a community resource hub. The staff are experienced in early childhood needs and provide a safe welcoming space for children and peace of mind for parents.",
   },
   {
     name: "Turtle B.",
-    location: "Sacramento CA",
     stars: 5,
     text: "Village Values makes it so much easier being away from your child all day. The staff go above and beyond to create a loving structured and positive environment. The space is always clean welcoming and full of joy. It genuinely feels like an extension of our family.",
   },
@@ -98,9 +93,6 @@ export function Testimonials() {
                 <div className="text-center space-y-1">
                   <p className="font-['Poppins'] text-[#232e43]">
                     {testimonials[currentIndex].name}
-                  </p>
-                  <p className="font-['Poppins'] text-[#1e7872] text-sm">
-                    {testimonials[currentIndex].location}
                   </p>
                 </div>
               </motion.div>

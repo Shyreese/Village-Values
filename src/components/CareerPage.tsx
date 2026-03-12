@@ -4,6 +4,7 @@ import svgPaths from '../imports/svg-34qkhcxsxe';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 import heroImage from 'figma:asset/8702622d69c2aceacd807bbafaed4805316594ff.png';
 import { BottomNavBar } from './BottomNavBar';
+import { Footer } from './Footer';
 
 const cultureImage = "https://images.unsplash.com/photo-1636772523547-5577d04e8dc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXljYXJlJTIwdGVhY2hlcnMlMjBzdGFmZiUyMGNsYXNzcm9vbXxlbnwxfHx8fDE3NjYyNzY1NTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
@@ -879,71 +880,6 @@ function ApplyForm() {
   );
 }
 
-// ============================================================================
-// FOOTER
-// ============================================================================
-function Footer() {
-  return (
-    <footer className="bg-[#232e43] py-12 lg:py-16">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <img src={logoImage} alt="Village Values" className="h-12 w-auto mb-4" />
-            <p className="font-['Poppins'] text-white/70 text-sm">
-              Nurturing young minds in a safe and caring environment.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="/" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Home</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Programs</a></li>
-              <li><a href="#about" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">About</a></li>
-              <li><a href="#enroll" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Enroll</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Careers</h3>
-            <ul className="space-y-2">
-              <li><a href="#careers" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Why Work Here</a></li>
-              <li><a href="#open-positions" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Open Positions</a></li>
-              <li><a href="#apply-form" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Apply Now</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="font-['Poppins'] text-white/70 text-sm">123 Main Street</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">Anytown, ST 12345</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">(555) 123-4567</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">careers@villagevalues.com</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-['Poppins'] text-white/60 text-sm text-center md:text-left">
-            © 2024 Village Values Daycare. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <FacebookIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <InstagramIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <TwitterIconSmall />
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 // ============================================================================
 // DECORATIVE VECTORS

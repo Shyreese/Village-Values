@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import svgPaths from '../imports/svg-djgq00ppfz';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 import { BottomNavBar } from './BottomNavBar';
+import { Footer } from './Footer';
 
 export function EnrollPage() {
   // Scroll to top on mount
@@ -893,77 +894,6 @@ function ReadyToTakeNextStep() {
       <DecorativeVectorStarWhite className="absolute top-20 left-20 w-48 h-48 opacity-20" />
       <DecorativeVectorLeafWhite className="absolute bottom-20 right-20 w-40 h-40 opacity-20" />
     </section>
-  );
-}
-
-// ============================================================================
-// FOOTER
-// ============================================================================
-function Footer() {
-  return (
-    <footer className="bg-[#232e43] py-12 lg:py-16">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Logo & About */}
-          <div>
-            <img src={logoImage} alt="Village Values" className="h-12 w-auto mb-4" />
-            <p className="font-['Poppins'] text-white/70 text-sm">
-              Nurturing young minds in a safe and caring environment.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="/" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Home</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Programs</a></li>
-              <li><a href="#about" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">About</a></li>
-              <li><a href="#enroll" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Enroll</a></li>
-            </ul>
-          </div>
-
-          {/* Programs */}
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Programs</h3>
-            <ul className="space-y-2">
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Infant Care</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Toddler Program</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Preschool</a></li>
-              <li><a href="#programs" className="font-['Poppins'] text-white/70 hover:text-white text-sm transition-colors">Drop-In Care</a></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-['Poppins'] text-white mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="font-['Poppins'] text-white/70 text-sm">123 Main Street</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">Anytown, ST 12345</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">(555) 123-4567</li>
-              <li className="font-['Poppins'] text-white/70 text-sm">info@villagevalues.com</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-['Poppins'] text-white/60 text-sm text-center md:text-left">
-            © 2024 Village Values Daycare. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <FacebookIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <InstagramIconSmall />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <TwitterIconSmall />
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 }
 
