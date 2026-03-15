@@ -9,7 +9,7 @@ const testimonials = [
     text: "Village Values is awesome. My son was always happy leaving here and enjoying their park days. They helped with his math homework while I was at work. Super helpful and great daycare and my son loved the other kids.",
   },
   {
-    name: "Andaeas W.",
+    name: "Andaes W.",
     stars: 5,
     text: "I can't say enough good things about this childcare service. The staff are so thoughtful patient and genuinely caring. They've created such a safe and loving environment for my four year old. Every day my child comes home happy learning new things and excited to go back. It's such a relief knowing they're in kind capable hands.",
   },
