@@ -68,7 +68,7 @@ export function BookingForm() {
             Ready to Join Our Village?
           </h2>
           <p className="font-['Poppins'] text-lg md:text-xl text-white/90">
-            We make enrollment and visit scheduling easy with Brightwheel—our secure, parent-friendly portal!
+            We make enrollment and visit scheduling easy with our secure, parent-friendly form!
           </p>
         </motion.div>
 
@@ -90,11 +90,11 @@ export function BookingForm() {
 
           {/* Content */}
           <h3 className="font-['Poppins'] text-[#232e43] text-2xl md:text-3xl mb-4">
-            Start Your Enrollment on Brightwheel
+            Start Your Enrollment!
           </h3>
           
           <p className="font-['Poppins'] text-[#1e7872] text-base md:text-lg mb-6 max-w-xl mx-auto">
-            Brightwheel makes it simple to share your family&apos;s information, schedule a visit, and get started with Village Values. The whole process takes just a few minutes!
+            The form makes it simple to share your family&apos;s information, schedule a visit, and get started with Village Values. The whole process takes just a few minutes!
           </p>
 
           {/* Benefits List */}
@@ -127,18 +127,18 @@ export function BookingForm() {
 
           {/* CTA Button */}
           <motion.a
-            href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfVS1aVqzZ1krXN1ma06fuSuaBOKGWwI4AfthKUnrR8BZy2Ig/viewform?usp=header"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block w-full md:w-auto bg-[#e5795b] text-white font-['Poppins'] uppercase tracking-wider px-12 py-4 rounded-2xl hover:bg-[#d66d4f] transition-colors shadow-lg"
           >
-            Go to Brightwheel
+            Enroll Now
           </motion.a>
 
-          {/* Bottom Note */}
+          {/* Bottom Note 
           <p className="font-['Poppins'] text-[#1e7872] text-sm mt-6 italic">
             New to Brightwheel? Don&apos;t worry—it&apos;s designed for parents like you!
-          </p>
+          </p>*/}
         </motion.div>
       </div>
     </section>

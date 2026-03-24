@@ -480,7 +480,7 @@ function BookAVisit() {
             Ready to See Our Programs in Action?
           </h2>
           <p className="font-['Poppins'] text-white/90 text-xl">
-            Book a visit through Brightwheel—it's quick, secure, and designed with busy parents in mind!
+            Book a visit! It's quick, secure, and designed with busy parents in mind!
           </p>
         </div>
 
@@ -498,11 +498,11 @@ function BookAVisit() {
 
           {/* Content */}
           <h3 className="font-['Poppins'] text-[#232e43] text-2xl lg:text-3xl mb-4">
-            Schedule Your Visit on Brightwheel
+            Schedule Your Visit!
           </h3>
           
           <p className="font-['Poppins'] text-[#1e7872] text-base lg:text-lg mb-8 max-w-xl mx-auto">
-            Come meet our team, see our facilities, and experience the Village Values difference firsthand. Use our Brightwheel portal to pick a time that works for your family!
+            Come meet our team, see our facilities, and experience the Village Values difference firsthand. Use our link to pick a time that works for your family!
           </p>
 
           {/* Benefits List */}
@@ -535,12 +535,12 @@ function BookAVisit() {
 
           {/* CTA Button */}
           <motion.a
-            href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfVS1aVqzZ1krXN1ma06fuSuaBOKGWwI4AfthKUnrR8BZy2Ig/viewform?usp=header"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block w-full md:w-auto bg-[#e5795b] text-white px-12 py-4 rounded-full font-['Poppins'] uppercase tracking-wider hover:bg-[#d66b4d] transition-colors shadow-lg"
           >
-            Book on Brightwheel
+            Book Your Visit
           </motion.a>
 
           {/* Bottom Note */}

@@ -872,12 +872,12 @@ function ReadyToTakeNextStep() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-['Poppins'] text-white/90 text-xl mb-8 max-w-2xl mx-auto"
         >
-          Enrollment is easy! We use Brightwheel to make the process simple and convenient for busy families. Click below to fill out your information and we'll be in touch soon!
+          Enrollment is easy! We use a form to make the process simple and convenient for busy families. Click below to fill out your information and we'll be in touch soon!
         </motion.p>
 
         {/* CTA Button */}
         <motion.a
-          href="https://schools.mybrightwheel.com/sign-in?redirect_path=forms/a3312612-97f2-456c-9444-121c9a92c1a9/self-service"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfVS1aVqzZ1krXN1ma06fuSuaBOKGWwI4AfthKUnrR8BZy2Ig/viewform?usp=header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -886,7 +886,7 @@ function ReadyToTakeNextStep() {
           whileTap={{ scale: 0.95 }}
           className="inline-block bg-[#e5795b] text-white px-10 py-4 rounded-full font-['Poppins'] uppercase text-base tracking-wider shadow-lg hover:bg-[#d66b4d] transition-colors"
         >
-          Enroll on Brightwheel
+          Enroll 
         </motion.a>
       </div>
 

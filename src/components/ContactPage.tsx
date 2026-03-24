@@ -828,7 +828,7 @@ function VisitSection() {
 
           {/* Paragraph */}
           <p className="relative z-10 font-['Poppins'] text-white/90 text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
-            We use Brightwheel to make enrollment and visit scheduling easy for busy parents. Head over to our Brightwheel portal to get started—it only takes a few minutes to fill out your information!
+            We use a form to make enrollment and visit scheduling easy for busy parents. Head over to our Brightwheel portal to get started—it only takes a few minutes to fill out your information!
           </p>
 
           {/* Button */}
@@ -838,13 +838,13 @@ function VisitSection() {
             whileTap={{ scale: 0.95 }}
             className="relative z-10 inline-block bg-white text-[#e5795b] px-10 py-4 rounded-full font-['Poppins'] text-base uppercase tracking-wider shadow-xl hover:bg-[#f5edda] transition-colors"
           >
-            Go to Brightwheel
+            Enroll Now
           </motion.a>
 
-          {/* Small text at bottom */}
+          {/* Small text at bottom 
           <p className="relative z-10 font-['Poppins'] text-white/70 text-sm mt-8">
             New to Brightwheel? Don't worry—it's simple and secure!
-          </p>
+          </p>*/}
         </motion.div>
       </div>
     </section>
