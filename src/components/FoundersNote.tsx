@@ -26,10 +26,7 @@ export function FoundersNote() {
                 transition={{ duration: 0.3 }}
                 onClick={() => window.location.hash = '#about'}
               />
-              {/* Est Badge */}
-              <div className="absolute bottom-6 right-6 bg-[#c49a3a] rounded-2xl px-6 py-4 shadow-lg">
-                <p className="font-['Poppins'] text-white text-xl">Est. 2014</p>
-              </div>
+
             </div>
           </motion.div>
 

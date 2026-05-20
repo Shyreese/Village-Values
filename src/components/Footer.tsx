@@ -137,7 +137,7 @@ export function Footer() {
         <div className="pt-8 border-t border-[rgba(255,255,255,0.1)] flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
           <p className="font-['Poppins'] text-[rgba(255,255,255,0.6)] text-sm">
-            © 2024 Village Values. All rights reserved. Licensed & Insured.
+            © 2026 Village Values. All rights reserved. Licensed & Insured.
           </p>
 
           {/* Social Links */}

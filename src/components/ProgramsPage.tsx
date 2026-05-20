@@ -361,7 +361,7 @@ function DropInCare() {
           <DropInCard
             icon={<ClockIcon />}
             title="Flexible Hours"
-            description="Available Monday–Friday, 7 AM – 6 PM"
+            description="Available Monday–Friday, 6:30 AM – 6:30 PM"
           />
           <DropInCard
             icon={<CalendarIcon />}
@@ -423,25 +423,25 @@ function ComparisonTable() {
               <TableRow
                 program="Infant Program"
                 age="6-12 months"
-                hours="7 AM - 6 PM"
+                hours="6:30 AM – 6:30 PM"
                 bg="bg-[#f5edda]"
               />
               <TableRow
                 program="Toddler Program"
                 age="1-3 years"
-                hours="7 AM - 6 PM"
+                hours="6:30 AM – 6:30 PM"
                 bg="bg-white"
               />
               <TableRow
                 program="Preschool Program"
                 age="3-5 years"
-                hours="7 AM - 6 PM"
+                hours="6:30 AM – 6:30 PM"
                 bg="bg-[#f5edda]"
               />
               <TableRow
                 program="Drop-In Care"
                 age="6 months-5 years"
-                hours="7 AM - 6 PM"
+                hours="6:30 AM – 6:30 PM"
                 bg="bg-white"
               />
             </tbody>
