@@ -5,6 +5,7 @@ import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png'
 import heroImage from 'figma:asset/8702622d69c2aceacd807bbafaed4805316594ff.png';
 import { BottomNavBar } from './BottomNavBar';
 import { Footer } from './Footer';
+import { PageLayout } from './PageLayout';
 
 const cultureImage = "https://images.unsplash.com/photo-1636772523547-5577d04e8dc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXljYXJlJTIwdGVhY2hlcnMlMjBzdGFmZiUyMGNsYXNzcm9vbXxlbnwxfHx8fDE3NjYyNzY1NTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
@@ -58,8 +59,10 @@ export function CareerPage() {
   }, []);
 
   return (
+    <PageLayout
+        currentPage="careers"
+        bgColor="bg-gradient-to-b from-[#f5edda] to-white" > 
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Header />
       <HeroSection />
       <WhyWorkHere />
       <CultureMission />
@@ -67,7 +70,6 @@ export function CareerPage() {
       <WhatWeOfferStaff />
       <GrowthAndTraining />
       <ApplyForm />
-      <Footer />
       <BottomNavBar
         sections={[
           { id: 'why-work-here', label: 'Why Join Us' },
@@ -79,6 +81,7 @@ export function CareerPage() {
         ]}
       />
     </div>
+    </PageLayout>
   );
 }
 

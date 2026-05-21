@@ -4,6 +4,7 @@ import svgPaths from '../imports/svg-djgq00ppfz';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 import { BottomNavBar } from './BottomNavBar';
 import { Footer } from './Footer';
+import { PageLayout } from './PageLayout';
 
 export function EnrollPage() {
   // Scroll to top on mount
@@ -12,9 +13,11 @@ export function EnrollPage() {
   }, []);
 
   return (
+    <PageLayout
+      currentPage="enroll"
+      bgColor="bg-gradient-to-b from-[#f5edda] to-white" > 
     <div className="min-h-screen bg-[#f5edda] overflow-x-hidden">
-      {/* Header */}
-      <Header />
+
 
       {/* Hero Section */}
       <HeroSection />
@@ -37,9 +40,6 @@ export function EnrollPage() {
       {/* Bottom CTA */}
       <ReadyToTakeNextStep />
 
-      {/* Footer */}
-      <Footer />
-
       {/* Bottom Navigation Bar */}
       <BottomNavBar
         sections={[
@@ -52,6 +52,7 @@ export function EnrollPage() {
         ]}
       />
     </div>
+    </PageLayout>
   );
 }
 

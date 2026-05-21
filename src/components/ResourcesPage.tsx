@@ -8,6 +8,7 @@ import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png'
 import { Footer } from './Footer';
 import { BottomNavBar } from './BottomNavBar';
 import { useRef, forwardRef } from 'react';
+import { PageLayout } from './PageLayout';
 
 export function ResourcesPage() {
 
@@ -21,8 +22,10 @@ export function ResourcesPage() {
   }, []);
 
   return (
+    <PageLayout
+        currentPage="resources"
+        bgColor="bg-gradient-to-b from-[#f5edda] to-white" > 
     <div className="min-h-screen bg-white">
-      <Header />
       <HeroSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {/* ← CHANGED: pass setSelectedCategory to ParentResourcesSection */}
       <ParentResourcesSection setSelectedCategory={setSelectedCategory} />
@@ -30,7 +33,6 @@ export function ResourcesPage() {
       <ResourceDetail selectedCategory={selectedCategory} ref={detailRef} />
       <DailyScheduleSection />
       <ChildcareEducationSection />
-      <Footer />
       <BottomNavBar
         sections={[
           { id: 'parent-resources', label: 'Parent Resources' },
@@ -39,6 +41,7 @@ export function ResourcesPage() {
         ]}
       />
     </div>
+    </PageLayout>
   );
 }
 

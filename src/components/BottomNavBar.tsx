@@ -44,7 +44,7 @@ export function BottomNavBar({ sections }: BottomNavBarProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-[1000px] px-4"
+      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-[1000px] px-2 sm:px-4"
     >
       <motion.div 
         className="bg-gradient-to-r from-[#C49A3A]/90 via-[#d4aa4a]/90 to-[#C49A3A]/90 backdrop-blur-xl relative rounded-[32px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.3),0px_10px_30px_rgba(245,237,218,0.6)_inset,0px_0px_40px_rgba(196,154,58,0.4)] border-2 border-[#F5EDDA]/50"
@@ -63,7 +63,7 @@ export function BottomNavBar({ sections }: BottomNavBarProps) {
           animate={{ x: ['-100%', '100%'] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
-        <div className="h-[60px] overflow-hidden relative flex items-center justify-center gap-2 px-6 sm:px-12">
+        <div className="min-h-[80px] overflow-hidden relative flex flex-wrap items-center justify-center gap-2 px-4 py-4 sm:px-6">
           {navSections.map((section, index) => (
             <NavButton
               key={section.id}
@@ -117,7 +117,7 @@ function NavButton({ label, isLast, onClick }: NavButtonProps) {
       onClick={onClick}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
-      className="h-[36px] px-6 rounded-full bg-[#F5EDDA]/80 backdrop-blur-sm text-[#232e43] hover:bg-[#F5EDDA] hover:shadow-[0px_4px_12px_rgba(35,46,67,0.2)] border-2 border-white/60 font-['Poppins'] text-[14px] leading-[20px] text-nowrap transition-all duration-200"
+      className="min-w-[100px] flex-1 sm:flex-none h-auto rounded-full bg-[#F5EDDA]/90 backdrop-blur-sm text-[#232e43] hover:bg-[#F5EDDA] hover:shadow-[0px_4px_12px_rgba(35,46,67,0.2)] border-2 border-white/70 font-['Poppins'] text-[13px] leading-[20px] px-4 py-3 transition-all duration-200"
     >
       {label}
     </motion.button>

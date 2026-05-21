@@ -528,7 +528,7 @@ function HoursOfOperationSection() {
           <div className="space-y-4 mb-8">
             <div className="flex justify-between items-center py-4 border-b border-white">
               <span className="font-['Poppins'] text-[#232e43]">Monday - Friday</span>
-              <span className="font-['Poppins'] text-[#149496]">6:30 AM - 5:30 PM</span>
+              <span className="font-['Poppins'] text-[#149496]">6:30 AM - 6:30 PM</span>
             </div>
             <div className="flex justify-between items-center py-4 border-b border-white">
               <span className="font-['Poppins'] text-[#232e43]">Saturday</span>

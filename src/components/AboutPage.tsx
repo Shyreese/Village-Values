@@ -14,6 +14,7 @@ import imgTeam3 from 'figma:asset/b068a89f71b6e9545b91acd20faf82885452dc06.png';
 import imgTeam4 from 'figma:asset/ca27e31ef2c2e6763717010455537962ccdd0fe8.png';
 import { BottomNavBar } from './BottomNavBar';
 import { Footer } from './Footer';
+import { PageLayout } from './PageLayout';
 
 export function AboutPage() {
   // Scroll to top on mount
@@ -22,9 +23,10 @@ export function AboutPage() {
   }, []);
 
   return (
+    <PageLayout
+      currentPage="about"
+      bgColor="bg-gradient-to-b from-[#f5edda] to-white" >
     <div className="min-h-screen bg-[#f5edda] overflow-x-hidden">
-      {/* Header */}
-      <Header />
 
       {/* Hero Section */}
       <HeroSection />
@@ -47,9 +49,6 @@ export function AboutPage() {
       {/* Book a Visit */}
       <BookAVisit />
 
-      {/* Footer */}
-      <Footer />
-
       {/* Bottom Navigation Bar */}
       <BottomNavBar
         sections={[
@@ -61,6 +60,7 @@ export function AboutPage() {
         ]}
       />
     </div>
+    </PageLayout>
   );
 }
 
