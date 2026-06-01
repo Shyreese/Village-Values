@@ -1,5 +1,4 @@
 import svgPaths from '../imports/svg-m43v9m7s58';
-import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 
 export function Footer() {
   return (
@@ -18,7 +17,7 @@ export function Footer() {
               }}
               className="flex items-center gap-2 mb-4 cursor-pointer hover:opacity-80 transition-opacity"
             >
-              <img src={logoImage} alt="Village Values" className="w-10 h-10 rounded-full" />
+              <img src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1780335403/Village_Values_Logo_Transparent_Cleaned_20_1_vvtrxx.png" alt="Village Values" className="w-10 h-10 rounded-full" />
               <h3 className="font-['Poppins'] text-white">Village Values</h3>
             </a>
             <p className="font-['Poppins'] text-[rgba(255,255,255,0.7)] text-sm leading-6">

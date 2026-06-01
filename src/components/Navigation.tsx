@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import logo from "figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png";
 
 interface NavigationProps {
   currentPage?: 'home' | 'programs' | 'about' | 'enroll' | 'careers' | 'resources' | 'contact';
@@ -8,6 +7,7 @@ interface NavigationProps {
 
 export function Navigation({ currentPage = 'home' }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -60,7 +60,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
               className="cursor-pointer shrink-0 flex items-center gap-3"
             >
               <img
-                src={logo}
+                src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1780335403/Village_Values_Logo_Transparent_Cleaned_20_1_vvtrxx.png"
                 alt="Village Values logo"
                 className="h-10 w-10 rounded-full object-cover hover:opacity-80 transition-opacity"
               />
