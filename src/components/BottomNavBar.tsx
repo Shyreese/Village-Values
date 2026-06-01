@@ -63,12 +63,11 @@ export function BottomNavBar({ sections }: BottomNavBarProps) {
           animate={{ x: ['-100%', '100%'] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
-        <div className="min-h-[80px] overflow-hidden relative flex flex-wrap items-center justify-center gap-2 px-4 py-4 sm:px-6">
-          {navSections.map((section, index) => (
+        <div className="min-h-[80px] overflow-x-auto relative flex flex-nowrap items-center justify-start md:justify-center gap-2 px-4 py-4 sm:px-6">
+          {navSections.map((section) => (
             <NavButton
               key={section.id}
               label={section.label}
-              isLast={index === navSections.length - 1}
               onClick={() => scrollToSection(section.id)}
             />
           ))}
@@ -107,17 +106,16 @@ export function BottomNavBar({ sections }: BottomNavBarProps) {
 
 interface NavButtonProps {
   label: string;
-  isLast: boolean;
   onClick: () => void;
 }
 
-function NavButton({ label, isLast, onClick }: NavButtonProps) {
+function NavButton({ label, onClick }: NavButtonProps) {
   return (
     <motion.button
       onClick={onClick}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
-      className="min-w-[100px] flex-1 sm:flex-none h-auto rounded-full bg-[#F5EDDA]/90 backdrop-blur-sm text-[#232e43] hover:bg-[#F5EDDA] hover:shadow-[0px_4px_12px_rgba(35,46,67,0.2)] border-2 border-white/70 font-['Poppins'] text-[13px] leading-[20px] px-4 py-3 transition-all duration-200"
+      className="min-w-[120px] flex-none h-auto rounded-full bg-[#F5EDDA]/90 backdrop-blur-sm text-[#232e43] hover:bg-[#F5EDDA] hover:shadow-[0px_4px_12px_rgba(35,46,67,0.2)] border-2 border-white/70 font-['Poppins'] text-[13px] leading-[20px] px-4 py-3 transition-all duration-200"
     >
       {label}
     </motion.button>
