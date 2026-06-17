@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import svgPaths from '../imports/svg-9p6g9itbjb';
 import imgHero from 'figma:asset/ba59090be9c12b8024e88e8ac3c5681bf0d086f9.png';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
-import imgStory from 'figma:asset/63e301fbec260b5ace96d0f4cde75e071b58afd1.png';
+import imgStory from '../assets/image_picker_7AAC014F-9C77-440F-889C-94599A143926-9518-00000751C0829B2F.jpg';
 import imgEnv1 from 'figma:asset/9ea0bd25103ef664c7d3e953afa36854e885e9bd.png';
 import imgEnv2 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
 import imgEnv3 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
