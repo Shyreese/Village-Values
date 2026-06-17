@@ -344,7 +344,7 @@ function MeetOurTeam() {
       name: 'Shyreese Tyiska',
       role: 'Co-Director | Lead Educator',
       yearsExperience: 'Over 18 years',
-      credentials: '[Credentials or licenses]',
+      credentials: 'Licensed Childcare provider by CA Department of Social Services, Sacramento County Office of Education Early Learning PBM Certificate',
       education: 'Early Childhood Education coursework with the UCLA Extension program.',
       ageGroups: '0-5 year olds',
       whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
@@ -356,7 +356,7 @@ function MeetOurTeam() {
     {
       name: 'Paskael Tyiska',
       role: 'Co-Founder | Community & Mentorship',
-      credentials: 'Community Partnership Development, Internship Program Director, Facility & Safety Operations',
+      credentials: 'Licensed Childcare provider by CA Department of Social Services, Sacramento County Office of Education Early Learning PBM Certificate',
       whyChildcare: 'My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.',
       /* yearsExperience: '[Years working with children]',
       credentials: '[Credentials or licenses]',
