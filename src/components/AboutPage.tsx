@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import svgPaths from '../imports/svg-9p6g9itbjb';
 import imgHero from 'figma:asset/ba59090be9c12b8024e88e8ac3c5681bf0d086f9.png';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
-import imgStory from 'figma:asset/63e301fbec260b5ace96d0f4cde75e071b58afd1.png';
+import imgStory from '../assets/image_picker_7AAC014F-9C77-440F-889C-94599A143926-9518-00000751C0829B2F.jpg';
 import imgEnv1 from 'figma:asset/9ea0bd25103ef664c7d3e953afa36854e885e9bd.png';
 import imgEnv2 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
 import imgEnv3 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
@@ -400,19 +400,23 @@ function MeetOurTeam() {
       name: 'Shyreese Tyiska',
       role: 'Co-Director | Lead Educator',
       yearsExperience: 'Over 18 years',
-      credentials: '[Credentials or licenses]',
+      credentials: 'Licensed Childcare provider by CA Department of Social Services, Sacramento County Office of Education Early Learning PBM Certificate',
       education: 'Early Childhood Education coursework with the UCLA Extension program.',
       ageGroups: '0-5 year olds',
       whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
       safetyTraining: 'CPR and First Aid certified from the American Heart Association ',
       caringStyle: 'My approach blends safety, structure, creativity, and compassionate care to help every child thrive while giving families confidence and peace of mind.',
+<<<<<<< HEAD
       personalFact: '[Hobby or fun fact]',
       image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/c_fill,g_face,w_400,h_400/v1771849412/Shyrees_VV_a3q0y9.jpg',
+=======
+      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/v1771849412/Shyrees_VV_a3q0y9.jpg',
+>>>>>>> 5a7d75e7f8fad67d78fc8b51aad80614680bf99f
     },
     {
       name: 'Paskael Tyiska',
       role: 'Co-Founder | Community & Mentorship',
-      credentials: 'Community Partnership Development, Internship Program Director, Facility & Safety Operations',
+      credentials: 'Licensed Childcare provider by CA Department of Social Services, Sacramento County Office of Education Early Learning PBM Certificate',
       whyChildcare: 'My passion has always been in building strong communities and mentoring others to see their own potential. At Village Values, my role is to ensure our center is a pillar of support for everyone who walks through our doors. I manage our operations, lead our community partnership initiatives, and run our internship program. I believe that by mentoring the next generation of caregivers and connecting our families with valuable local resources, we strengthen the entire village.',
       /* yearsExperience: '[Years working with children]',
       credentials: '[Credentials or licenses]',
