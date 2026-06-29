@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import svgPaths from '../imports/svg-9p6g9itbjb';
 import imgHero from 'figma:asset/ba59090be9c12b8024e88e8ac3c5681bf0d086f9.png';
 import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
@@ -275,6 +275,28 @@ function OurEnvironments() {
     { title: 'Creative Corner', description: 'Hands-on activities and art projects', image: imgEnv3 },
     { title: 'Outdoor Play Space', description: 'Fresh air and active play', image: imgEnv4 },
   ];
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            void video.play().catch(() => undefined);
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="environments" className="relative overflow-hidden bg-white py-16 lg:py-24">
@@ -294,6 +316,40 @@ function OurEnvironments() {
             Safe spaces designed for exploration, growth, and creativity at every developmental stage.
           </p>
         </motion.div>
+<div className="mb-8 overflow-hidden rounded-[2rem] border border-[#149496]/15 bg-[#f5edda] p-4 shadow-sm sm:p-6 lg:p-8">
+  <div className="grid items-center gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
+    <div className="max-w-m">
+      <h3 className="mb-4 font-['Poppins'] text-2xl text-[#232e43] lg:text-[28px]">
+        See Village Values in action
+      </h3>
+      <p className="font-['Poppins'] text-base leading-7 text-[#1e7872]">
+        A glimpse into our warm, engaging environment and the care we bring to every child every day.
+      </p>
+    </div>
+    
+    {/* Clean Container with Strict Responsive Sizing */}
+    <div className="flex justify-center items-center w-full">
+      <div className="w-full max-w-[450px] h-[200px] sm:h-[240px] overflow-hidden rounded-[1.5rem] border border-[#149496]/20 bg-black shadow-inner">
+        <video 
+          ref={videoRef}
+          className="w-full h-full object-cover bg-black" 
+          controls 
+          autoPlay
+          playsInline 
+          webkit-playsinline="true" 
+          muted
+          preload="metadata" 
+          poster="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov"
+        >
+          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
         {/* Environment Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -351,7 +407,7 @@ function MeetOurTeam() {
       safetyTraining: 'CPR and First Aid certified from the American Heart Association ',
       caringStyle: 'My approach blends safety, structure, creativity, and compassionate care to help every child thrive while giving families confidence and peace of mind.',
       personalFact: '[Hobby or fun fact]',
-      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/v1771849412/Shyrees_VV_a3q0y9.jpg',
+      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/c_fill,g_face,w_400,h_400/v1771849412/Shyrees_VV_a3q0y9.jpg',
     },
     {
       name: 'Paskael Tyiska',
@@ -366,7 +422,7 @@ function MeetOurTeam() {
       safetyTraining: '[CPR, First Aid, background cleared]',
       caringStyle: '[What parents can expect from them - caring style]',
       personalFact: '[Hobby or fun fact]',*/
-      image: 'https://res.cloudinary.com/dqifsvgju/image/upload/v1769130751/Screenshot_2026-01-22_181153_fvcgwv.png',
+      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/c_fill,g_face,w_400,h_400/v1782503513/image_picker_DBE40A90-90D5-4B87-8AEF-1B9E83401F50-7174-0000056EFE7048A3_ilexrw.png',
     },
   ];
   /* //Team members to be displayed
@@ -543,7 +599,13 @@ function FounderCard({ name, role, image, index, yearsExperience, credentials, e
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="rounded-full mx-auto mb-6 overflow-hidden border-4 border-[#f5edda] shadow-lg bg-[#e0e0e0]"
         >
-          {image && <img src={image} alt={name} className="w-full h-full object-cover" />}
+          {image && (
+            <img
+              src={image}
+              alt={name}
+              className="h-full w-full scale-125 object-cover object-[25%_10%]"
+            />
+          )}
         </motion.div>
 
         {/* Name and Role */}
@@ -677,7 +739,13 @@ function TeamCard({ name, role, image, index, school, whyEarlyEducation, contrib
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="rounded-full mx-auto mb-4 overflow-hidden border-4 border-[#f5edda] shadow-lg bg-[#e0e0e0]"
         >
-          {image && <img src={image} alt={name} className="w-full h-full object-cover" />}
+          {image && (
+            <img
+              src={image}
+              alt={name}
+              className="h-full w-full scale-125 object-cover object-[25%_10%]"
+            />
+          )}
         </motion.div>
 
         {/* Name and Role */}

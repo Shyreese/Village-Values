@@ -109,7 +109,7 @@ function Container2() {
 function Paragraph() {
   return (
     <div className="h-[28px] relative shrink-0 w-full" data-name="Paragraph">
-      <p className="absolute font-['Poppins:Regular',sans-serif] leading-[28px] left-0 not-italic text-[20px] text-nowrap text-white top-[1.67px] whitespace-pre">Est. 2020</p>
+      <p className="absolute font-['Poppins:Regular',sans-serif] leading-[28px] left-0 not-italic text-[20px] text-nowrap text-white top-[1.67px] whitespace-pre">Est. 2025</p>
     </div>
   );
 }
