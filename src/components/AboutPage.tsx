@@ -406,12 +406,6 @@ function MeetOurTeam() {
       whyChildcare: 'As a lifelong educator, my heart is in the classroom, watching a child’s eyes light up when they make a new discovery. I design and lead our play-based curriculum, ensuring every activity is not just fun, but purposeful. My focus is on the individual developmental journey of every child, from our infants to our preschoolers. I am here to be your primary resource for your child’s educational and emotional growth, celebrating every milestone with you.',
       safetyTraining: 'CPR and First Aid certified from the American Heart Association ',
       caringStyle: 'My approach blends safety, structure, creativity, and compassionate care to help every child thrive while giving families confidence and peace of mind.',
-<<<<<<< HEAD
-      personalFact: '[Hobby or fun fact]',
-      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/c_fill,g_face,w_400,h_400/v1771849412/Shyrees_VV_a3q0y9.jpg',
-=======
-      image: 'https://res.cloudinary.com/dm4ezpefh/image/upload/v1771849412/Shyrees_VV_a3q0y9.jpg',
->>>>>>> 5a7d75e7f8fad67d78fc8b51aad80614680bf99f
     },
     {
       name: 'Paskael Tyiska',
