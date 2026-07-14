@@ -8,15 +8,15 @@ const socialPosts = [
     caption: "Creative play time with our toddler group! 🎨",
   },
   {
-    image: "https://images.unsplash.com/photo-1544772711-57da9c7368fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVzY2hvb2wlMjBsZWFybmluZyUyMGFjdGl2aXRpZXN8ZW58MXx8fHwxNzY2MTc4MzE0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967582/image_picker_4D390630-C00A-4A1A-A330-39AD64D513EE-8473-0000036A38D1A63B_wrachb.jpg",
     caption: "Learning letters through fun activities 📚",
   },
   {
-    image: "https://images.unsplash.com/photo-1647627611823-d08fa901678e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHBsYXlpbmclMjBvdXRkb29yc3xlbnwxfHx8fDE3NjYwNjgyMjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967452/image_picker_BF75BDD8-D800-4589-8C04-7507BD16D15C-9518-00000751C1C1C087_qp5pg2.jpg",
     caption: "Sweet moments with our littlest villagers 💕",
   },
   {
-    image: "https://images.unsplash.com/flagged/photo-1570319725055-d163350105a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXljYXJlJTIwc3RvcnklMjB0aW1lfGVufDF8fHx8MTc2NjE3ODMxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051384/image_picker_AC03DB29-5446-49B6-BA79-E1410EF902D8-8473-0000036A40D4490D_c2jci2.jpg",
     caption: "Family fun day celebration! 🎉",
   },
 ];

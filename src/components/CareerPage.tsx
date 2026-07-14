@@ -189,8 +189,7 @@ function HeroSection() {
           <motion.div {...fadeInRight} className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px]">
               <img
-                src={heroImage}
-                alt="Join Our Team"
+                src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967433/image_picker_D04A6744-A509-4E6B-9950-9A118C85E642-9518-00000751BFD9B155_ymnm4g.jpg"
                 className="w-full h-full object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-[#c49a3a] rounded-2xl px-8 py-6 shadow-xl">

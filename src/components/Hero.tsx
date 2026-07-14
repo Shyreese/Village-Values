@@ -9,19 +9,19 @@ export function Hero() {
 
   const carouselImages = [
     {
-      src: imgImageWithFallback4,
+      src: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051260/image_picker_8B5EFCB3-0D0E-4323-B5F2-0C1274C43A57-8473-0000036A3E81F26D_si8vaq.jpg",
       alt: "Children playing"
     },
     {
-      src: "https://images.unsplash.com/photo-1597075958693-75173d1c837f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXljYXJlJTIwY2hpbGRyZW4lMjBhY3Rpdml0aWVzfGVufDF8fHx8MTc2NDgwMTgxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      src: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051230/image_picker_5F73208B-84D6-460C-A0D3-C319ACDBA17D-8473-0000036A3CFA8BAD_rw2lgs.jpg",
       alt: "Daycare children activities"
     },
     {
-      src: "https://images.unsplash.com/photo-1626187429639-7a77bfad0523?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0b2RkbGVyJTIwcGxheWluZyUyMHRveXN8ZW58MXx8fHwxNzY0NzYzNzEyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      src: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051334/image_picker_4A1A78C5-F4A9-4A39-8A6E-B9C5B41DACFF-8473-0000036A40341EB6_hfqnnd.jpg",
       alt: "Toddler playing with toys"
     },
     {
-      src: "https://images.unsplash.com/photo-1554721299-e0b8aa7666ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVzY2hvb2wlMjBraWRzJTIwbGVhcm5pbmd8ZW58MXx8fHwxNzY0ODAxODE0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      src: "https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967754/image_picker_103618B6-2C2E-44E9-AAB7-365568F93DC4-8473-0000036A3B204568_g7bitv.jpg",
       alt: "Preschool kids learning"
     }
   ];

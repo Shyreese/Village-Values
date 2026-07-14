@@ -66,6 +66,7 @@ export function ProgramCard({ title, ageRange, description, image, iconColor, in
         <img
           src={image}
           alt={title}
+          style={{ objectPosition: 'center 32%' }}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {/* Icon Badge */}

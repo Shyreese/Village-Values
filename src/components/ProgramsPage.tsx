@@ -81,7 +81,7 @@ function HeroSection() {
             className="rounded-3xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
           >
             <ImageWithFallback
-              src={imgHero}
+              src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967719/image_picker_E3BE6D37-D81C-4D1B-86AC-C05918C4F5C5-8473-0000036A39485AAD_tmhuup.jpg"
               alt="Happy children playing"
               className="w-full h-[500px] object-cover"
             />
@@ -228,7 +228,7 @@ function ToddlerProgram() {
             className="rounded-3xl overflow-hidden shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]"
           >
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1754623034737-805e6300a94e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0b2RkbGVyJTIwcGxheWluZyUyMGRheWNhcmV8ZW58MXx8fHwxNzY2MjcwOTE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051353/image_picker_08C6D99A-F74A-414A-B378-C5C04E3D2339-8473-0000036A40C0099F_qvv0s2.jpg"
               alt="Toddler Program"
               className="w-full h-[600px] object-cover"
             />
@@ -317,7 +317,7 @@ function PreschoolProgram() {
           >
             <div className="rounded-3xl overflow-hidden shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1761208663763-c4d30657c910?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tfGVufDF8fHx8MTc2NjI3MTAyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="https://res.cloudinary.com/dm4ezpefh/image/upload/v1784051271/image_picker_03B0D692-6332-4F9D-9907-69493D18CB9B-8473-0000036A3EC82D51_dxxslj.jpg"
                 alt="Preschool Program"
                 className="w-full h-[600px] object-cover"
               />

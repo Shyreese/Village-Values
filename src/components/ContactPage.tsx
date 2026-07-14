@@ -8,7 +8,7 @@ import svgPathsCareers from '../imports/svg-8iy3x6elu4';
 import svgPathsVisit from '../imports/svg-uj2p21gynf';
 import { PageLayout } from './PageLayout';
 
-const heroImage = "https://images.unsplash.com/photo-1742522450616-a2cf0cba1274?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHNtaWxpbmd8ZW58MXx8fHwxNzY2MTY5NjIwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+const heroImage = "https://res.cloudinary.com/dm4ezpefh/image/upload/v1783967443/image_picker_7AAC014F-9C77-440F-889C-94599A143926-9518-00000751C0829B2F_nozgc5.jpg";
 
 export function ContactPage() {
   const [selectedTopic, setSelectedTopic] = useState('');
