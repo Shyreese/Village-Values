@@ -161,7 +161,7 @@ function HeroSection() {
             <img
               src={heroImage}
               alt="Happy family"
-              className="w-full h-[500px] object-cover"
+              className="w-full h-[300px] sm:h-[400px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(35,46,67,0.2)] to-transparent"></div>
 

@@ -1,17 +1,17 @@
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import svgPaths from '../imports/svg-9p6g9itbjb';
-import imgHero from 'figma:asset/ba59090be9c12b8024e88e8ac3c5681bf0d086f9.png';
-import logoImage from 'figma:asset/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
+import imgHero from '../assets/ba59090be9c12b8024e88e8ac3c5681bf0d086f9.png';
+import logoImage from '../assets/812e68f0e38eb12d17187ac3fd565ef3be28e713.png';
 import imgStory from '../assets/image_picker_7AAC014F-9C77-440F-889C-94599A143926-9518-00000751C0829B2F.jpg';
-import imgEnv1 from 'figma:asset/9ea0bd25103ef664c7d3e953afa36854e885e9bd.png';
-import imgEnv2 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
-import imgEnv3 from 'figma:asset/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
-import imgEnv4 from 'figma:asset/6f62f72217494770bd91e775714c5d665ec0c738.png';
-import imgTeam1 from 'figma:asset/e03b94db5142c4ef4947991f63a4ec301b08cf79.png';
-import imgTeam2 from 'figma:asset/7b1661a324ecfd7ae8307491f3cb63bf113f890f.png';
-import imgTeam3 from 'figma:asset/b068a89f71b6e9545b91acd20faf82885452dc06.png';
-import imgTeam4 from 'figma:asset/ca27e31ef2c2e6763717010455537962ccdd0fe8.png';
+import imgEnv1 from '../assets/9ea0bd25103ef664c7d3e953afa36854e885e9bd.png';
+import imgEnv2 from '../assets/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
+import imgEnv3 from '../assets/4cd16b76a3e21abfab79bf7da38c206b5d3f4198.png';
+import imgEnv4 from '../assets/6f62f72217494770bd91e775714c5d665ec0c738.png';
+import imgTeam1 from '../assets/e03b94db5142c4ef4947991f63a4ec301b08cf79.png';
+import imgTeam2 from '../assets/7b1661a324ecfd7ae8307491f3cb63bf113f890f.png';
+import imgTeam3 from '../assets/b068a89f71b6e9545b91acd20faf82885452dc06.png';
+import imgTeam4 from '../assets/ca27e31ef2c2e6763717010455537962ccdd0fe8.png';
 import { BottomNavBar } from './BottomNavBar';
 import { Footer } from './Footer';
 import { PageLayout } from './PageLayout';
@@ -220,7 +220,7 @@ function OurStory() {
               Our Story
             </h2>
             <p className="font-['Poppins'] text-[#1e7872] text-lg lg:leading-[28px] mb-4">
-              Village Values Daycare was founded in 2015 by Shyreese and Paskel Tyiska, two educators with a shared vision of creating a childcare center that felt like family.
+              Village Values Daycare was founded in 2025 by Shyreese and Paskael Tyiska, two educators with a shared vision of creating a childcare center that felt like family.
             </p>
             <p className="font-['Poppins'] text-[#1e7872] text-lg lg:leading-[28px] mb-4">
               After years of working in traditional childcare settings, they realized there was a gap—a need for a place where children weren&apos;t just cared for, but truly nurtured. They wanted to build a community where parents felt supported, educators felt valued, and children felt seen.
@@ -253,7 +253,7 @@ function OurStory() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-3xl overflow-hidden shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]"
           >
-            <img src={imgStory} alt="Our Story" className="w-full h-[400px] object-cover" />
+            <img src={imgStory} alt="Our Story" className="w-full h-[300px] sm:h-[400px] object-cover" />
           </motion.div>
         </div>
       </div>
@@ -335,13 +335,12 @@ function OurEnvironments() {
           className="w-full h-full object-cover bg-black" 
           controls 
           autoPlay
+          loop
           playsInline 
-          webkit-playsinline="true" 
           muted
-          preload="metadata" 
-          poster="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov"
+          preload="metadata"
         >
-          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/f_mp4/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
