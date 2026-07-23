@@ -340,7 +340,7 @@ function OurEnvironments() {
           muted
           preload="metadata"
         >
-          <source src="https://player.cloudinary.com/embed/?cloud_name=dm4ezpefh&public_id=CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf&profile=cld-default" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/f_mp4/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
