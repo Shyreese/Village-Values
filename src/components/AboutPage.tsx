@@ -276,7 +276,8 @@ function OurEnvironments() {
     { title: 'Outdoor Play Space', description: 'Fresh air and active play', image: imgEnv4 },
   ];
   const videoRef = useRef<HTMLVideoElement | null>(null);
-
+  const baseUrl = "https://res.cloudinary.com";
+  const publicId = "CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf";
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -340,7 +341,10 @@ function OurEnvironments() {
           muted
           preload="metadata"
         >
-          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/f_mp4/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mov" type="video/mp4" />
+          {/* WebM serves highly-compressed, next-gen video to Chrome, Edge, and Firefox */}
+          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.webm" type="video/webm" />
+          {/* MP4 serves as the optimized fallback for Safari and iOS */}
+          <source src="https://res.cloudinary.com/dm4ezpefh/video/upload/v1782325189/CE2FD7C5-6F89-4688-A0C2-79CB8D2F2AEE_L0_001_1780000329.861862_IMG_2739_krx7jf.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
