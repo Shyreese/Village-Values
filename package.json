@@ -60,5 +60,9 @@
       "scripts": {
             "dev": "vite",
             "build": "vite build"
+      },
+      "allowScripts": {
+            "@swc/core@1.15.8": true,
+            "esbuild@0.25.12": true
       }
 }
